@@ -10,18 +10,48 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DongGo"
+        android:text="@string/app_name"
         android:layout_centerInParent="true"
         android:fontFamily="@font/cookierun"
-        android:textSize="52sp"
+        android:textSize="60sp"
         android:textColor="@color/brandColor"/>
 
     <TextView
+        android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="오늘도 동고하세요!"
+        android:text="@string/intro"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:textColor="@color/text_gray"/>
+
+
+<!--    액티비티를 보기 위한 버튼  -->
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/btn2"
+        android:onClick="clickBtn1"/>
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LoginCLient"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/btn3"
+        android:onClick="clickBtn2"/>
+
+
+    <Button
+        android:id="@+id/btn3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LoginGosu"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/tv"
+        android:onClick="clickBtn3"/>
 
 </RelativeLayout>
