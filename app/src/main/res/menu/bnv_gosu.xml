@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/bnv_gosu_receive"
+        android:title="@string/gosu_tab1"
+        android:icon="@drawable/ic_re"/>
+    <item android:id="@+id/bnv_gosu_list"
+        android:title="@string/gosu_tab2"
+        android:icon="@drawable/ic_list"/>
+    <item android:id="@+id/bnv_gosu_chat"
+        android:title="@string/gosu_tab3"
+        android:icon="@drawable/ic_chat"/>
+    <item android:id="@+id/bnv_gosu_profile"
+        android:title="@string/gosu_tab4"
+        android:icon="@drawable/ic_profile"/>
+    <item android:id="@+id/bnv_gosu_set"
+        android:title="@string/gosu_tab5"
+        android:icon="@drawable/ic_settings"/>
+</menu>

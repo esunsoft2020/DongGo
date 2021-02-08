@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DongGo"
+        android:fontFamily="@font/cookierun"
+        android:textColor="@color/brandColor"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tab1_client"
+        android:layout_below="@id/tv1"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/text_normal"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tab1_client_text"
+        android:layout_below="@id/tv2"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/text_normal"/>
+
+
+</RelativeLayout>
