@@ -42,14 +42,12 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/mypage"
             android:layout_marginTop="16dp"/>
 
         <ImageView
             android:id="@+id/iv"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/shot"
             android:layout_alignBottom="@id/civ"
             android:layout_alignRight="@id/civ"/>
 

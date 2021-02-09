@@ -31,7 +31,6 @@
             android:id="@+id/iv"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/list"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="200dp"/>
         <TextView
