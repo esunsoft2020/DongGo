@@ -31,6 +31,19 @@ public class MainActivity extends AppCompatActivity {
         tran.add(R.id.container, fragments[0]);
         tran.commit();
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        showFragment();
+
+
+    }
+
+    void showFragment(){
         Boolean login = getIntent().getBooleanExtra("login",false);
 
         bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -89,10 +102,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
-
-
     }
+
 }

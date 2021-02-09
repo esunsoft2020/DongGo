@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DongGo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".GosuActivity"></activity>
+        <activity android:name=".JoinActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".GosuActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".IntroActivity">
             <intent-filter>

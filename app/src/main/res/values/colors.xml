@@ -12,4 +12,5 @@
     <color name="text_gray">#636363</color>
     <color name="text_black">#FF111111</color>
     <color name="text_light_gray">#FF999999</color>
+    <color name="btn">#9ed8d7</color>
 </resources>
