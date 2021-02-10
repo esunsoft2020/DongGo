@@ -18,6 +18,12 @@
 
     <string name="tab1_client">딱!맞는 고수를</string>
     <string name="tab1_client_text">소개해드립니다!</string>
+    <string name="tab1_client_text1">어떤 분야의 전문가를 찾으시나요?</string>
+    <string name="tab1_client_text3">동고 인기 서비스</string>
+    <string name="tab1_client_text4">추천 서비스</string>
+    <string name="tab1_client_text5">신규 서비스</string>
+
+    <string name="tab1_client_text2">인기서비스</string>
 
     <string name="tab2">고수 찾기</string>
     <string name="tab2_text">리뷰 많은순</string>
@@ -130,4 +136,6 @@
     <string name="distance5">50km</string>
     <string name="distance6">100km</string>
     <string name="distance7">전국</string>
+    <string name="all">전체보기</string>
+
 </resources>

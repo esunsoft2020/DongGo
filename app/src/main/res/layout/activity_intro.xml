@@ -34,15 +34,17 @@
         android:text="Logout"
         android:layout_alignParentRight="true"
         android:layout_above="@id/btn2"
-        android:onClick="clickBtn1"/>
+        android:onClick="clickBtn1"
+        android:textAllCaps="false"/>
     <Button
         android:id="@+id/btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LoginCLient"
+        android:text="LoginClient"
         android:layout_alignParentRight="true"
         android:layout_above="@id/btn3"
-        android:onClick="clickBtn2"/>
+        android:onClick="clickBtn2"
+        android:textAllCaps="false"/>
 
 
     <Button
@@ -52,6 +54,7 @@
         android:text="LoginGosu"
         android:layout_alignParentRight="true"
         android:layout_above="@id/tv"
-        android:onClick="clickBtn3"/>
+        android:onClick="clickBtn3"
+        android:textAllCaps="false"/>
 
 </RelativeLayout>

@@ -58,5 +58,6 @@ public class GosuJoinActivity extends AppCompatActivity {
     public void clickBranch(View view) {
         Intent intent = new Intent(this,GosuJoin2Activity.class);
         startActivity(intent);
+        finish();
     }
 }
