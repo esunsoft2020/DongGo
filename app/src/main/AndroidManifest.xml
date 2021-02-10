@@ -12,9 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DongGo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".JoinActivity"></activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".GosuActivity" />
+        <activity android:name=".GosuJoin6Activity"></activity>
+        <activity android:name=".GosuJoin5Activity" />
+        <activity android:name=".GosuJoin4Activity" />
+        <activity android:name=".GosuJoin3Activity" />
+        <activity android:name=".GosuJoin2Activity" />
+        <activity android:name=".GosuJoinActivity" />
+        <activity
+            android:name=".JoinActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".LoginActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".GosuActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".MainActivity" />
         <activity android:name=".IntroActivity">
             <intent-filter>

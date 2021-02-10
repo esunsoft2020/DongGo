@@ -66,4 +66,68 @@
     <string name="login_text7">Kakao로 시작하기</string>
     <string name="login_text8">Facebook으로 시작하기</string>
     <string name="login_text9">회원가입</string>
+
+    <string name="join_text1">고객으로 가입</string>
+    <string name="join_text2">고수님에게 도움을 받고 싶어요</string>
+    <string name="join_text3">고수로 가입</string>
+    <string name="join_text4">비즈니스에 맞는 고객을 만나고 싶어요</string>
+    <string name="join_text5">이름</string>
+    <string name="join_text6">이름(실명)을 입력해주세요.</string>
+    <string name="join_text7">이메일</string>
+    <string name="join_text8">id@donggo.com</string>
+    <string name="join_text9">비밀번호</string>
+    <string name="join_text10">영문+숫자 조합 8자리 이상 입력해주세요.</string>
+    <string name="join_text11">비밀번호 확인</string>
+    <string name="join_text12">비밀번호를 한번 더 입력해주세요.</string>
+    <string name="join_text13">이용약관</string>
+    <string name="join_text14">및</string>
+    <string name="join_text15">개인정보취급방침</string>
+    <string name="join_text16">에 동의합니다.(필수)</string>
+
+    <string name="branch1">레슨</string>
+    <string name="branch2">홈/리빙</string>
+    <string name="branch3">이벤트</string>
+    <string name="branch4">비즈니스</string>
+    <string name="branch5">디자인/개발</string>
+    <string name="branch6">건강/미용</string>
+    <string name="branch7">알바</string>
+    <string name="branch8">기타</string>
+
+    <string name="gosu_join">고수가입</string>
+    <string name="gosu_join_text2">전문 활동 분야를 선택해주세요.</string>
+    <string name="gosu_join2_text1"></string>
+    <string name="branch_service">어떤 서비스를 제공하실 수 있나요?</string>
+    <string name="branch_service1">구체적으로 어떤 서비스를 제공하실 수 있나요?</string>
+    <string name="branch_service2">고수님의 활동 지역의 주소를 알려주세요.</string>
+    <string name="branch_service3">활동 지역은 근처의 고객을 찾는게 도움이 됩니다.</string>
+    <string name="branch_service4">예)강남구 역삼동 123-45(혹은 건물명)</string>
+    <string name="branch_service5">주소 수정</string>
+    <string name="branch_service6">이용 가능 거리</string>
+    <string name="branch_service7">고객님과 매칭을 위해 아래의 정보가 추가로 필요해요.</string>
+    <string name="branch_service8">성별</string>
+    <string name="branch_service9">남자</string>
+    <string name="branch_service10">여자</string>
+    <string name="branch_service11">휴대전화 번호인증</string>
+    <string name="branch_service12">예)010-1234-5678</string>
+    <string name="branch_service13">전송</string>
+    <string name="branch_service14">인증번호</string>
+    <string name="branch_service15">SMS 인증번호를 입력해주세요.</string>
+    <string name="branch_service16">인증하기</string>
+
+    <string name="complete">완료</string>
+    <string name="next">다음</string>
+    <string name="progress1">66%</string>
+    <string name="progress2">77%</string>
+    <string name="progress3">86%</string>
+    <string name="progress4">100%</string>
+    <string name="example_address1">[도로명] 서울특별시 강남구 테헤란로 221(역삼동)</string>
+    <string name="example_address2">[지번] 서울특별시 강남구 역삼동 677-26</string>
+
+    <string name="distance1">2km</string>
+    <string name="distance2">5km</string>
+    <string name="distance3">10km</string>
+    <string name="distance4">25km</string>
+    <string name="distance5">50km</string>
+    <string name="distance6">100km</string>
+    <string name="distance7">전국</string>
 </resources>

@@ -74,7 +74,7 @@
                 android:text="@string/login_text3"
                 android:textColor="@color/text_normal"
                 android:textSize="16sp"
-                android:layout_marginTop="32dp"/>
+                android:layout_marginTop="28dp"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="32dp"
                 android:text="@string/login_text6"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -125,18 +125,23 @@
                 android:textAllCaps="false"
                 android:backgroundTint="#098AF1"/>
 
-            <Button
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="4dp"
-                android:text="@string/login_text9"
-                android:textStyle="bold"
-                android:textColor="@color/text_gray"
-                android:textSize="18sp"
-                android:textAllCaps="false"
-                android:backgroundTint="@color/white"
-                android:onClick="clickJoin"/>
-
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="16dp"
+                android:background="@color/white"
+                android:padding="12dp"
+                android:onClick="clickJoin">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/login_text9"
+                    android:textColor="@color/text_gray"
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
+            </RelativeLayout>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

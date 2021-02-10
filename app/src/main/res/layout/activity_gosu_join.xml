@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GosuJoinActivity">
+    
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gosu_join"
+                android:layout_gravity="center"
+                android:textColor="@color/text_normal"
+                android:textSize="16sp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_clear"
+                android:layout_gravity="right"
+                android:layout_margin="16dp"
+                android:onClick="clickClear"/>
+        </com.google.android.material.appbar.MaterialToolbar>
+        
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appbar">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:text="@string/gosu_join_text2"
+            android:textColor="@color/text_normal"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/et"
+                android:onClick="clickBranch"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/iv1"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:adjustViewBounds="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toRightOf="@id/iv1"
+                    android:text="@string/branch1"
+                    android:textColor="@color/text_normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/et"
+                android:onClick="clickBranch"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/iv2"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:adjustViewBounds="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toRightOf="@id/iv2"
+                    android:text="@string/branch2"
+                    android:textColor="@color/text_normal" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout1"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/et"
+                android:onClick="clickBranch"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/iv3"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:adjustViewBounds="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toRightOf="@id/iv3"
+                    android:text="@string/branch3"
+                    android:textColor="@color/text_normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/et"
+                android:onClick="clickBranch"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/iv4"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:adjustViewBounds="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toRightOf="@id/iv4"
+                    android:text="@string/branch4"
+                    android:textColor="@color/text_normal" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout2"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/et"
+                android:onClick="clickBranch"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/iv5"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:adjustViewBounds="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toRightOf="@id/iv5"
+                    android:text="@string/branch5"
+                    android:textColor="@color/text_normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/et"
+                android:onClick="clickBranch"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/iv6"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:adjustViewBounds="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toRightOf="@id/iv6"
+                    android:text="@string/branch6"
+                    android:textColor="@color/text_normal" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout3"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/et"
+                android:onClick="clickBranch"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/iv7"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:adjustViewBounds="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toRightOf="@id/iv7"
+                    android:text="@string/branch7"
+                    android:textColor="@color/text_normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/et"
+                android:onClick="clickBranch"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/iv8"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:adjustViewBounds="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toRightOf="@id/iv8"
+                    android:text="@string/branch8"
+                    android:textColor="@color/text_normal" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
