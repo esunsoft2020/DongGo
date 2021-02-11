@@ -13,8 +13,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 
 public class Tab1ClientFragment extends Fragment {
 
@@ -22,6 +25,13 @@ public class Tab1ClientFragment extends Fragment {
     TextView[] all = new TextView[2];
     ImageView[] branchs = new ImageView[8];
     TextView[] titles = new TextView[8];
+
+    RecyclerView service1,service2,service3;
+    Service2Adapter adapter2,adapter3;
+
+
+    ArrayList<Service2Item> items2 = new ArrayList<>();
+    ArrayList<Service2Item> items3 = new ArrayList<>();
 
     @Nullable
     @Override
@@ -46,7 +56,18 @@ public class Tab1ClientFragment extends Fragment {
         for(int i =0 ; i<titles.length;i++){
             titles[i] = view.findViewById(R.id.tv10+i);
         }
+        
+        service1 = view.findViewById(R.id.service1);
 
+
+        service2 = view.findViewById(R.id.service2);
+        adapter2 = new Service2Adapter(getActivity(),items2);
+        service2.setAdapter(adapter2);
+
+
+        service3 = view.findViewById(R.id.service3);
+        adapter3 = new Service2Adapter(getActivity(),items3);
+        service3.setAdapter(adapter3);
 
 
     }
@@ -54,6 +75,20 @@ public class Tab1ClientFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+
+        items2.clear();
+        items2.add(new Service2Item("http://donggo.dothome.co.kr/icon/service2/cafe.jpg","상업공간 인테리어"));
+        items2.add(new Service2Item("http://donggo.dothome.co.kr/icon/service2/study.jpg","영어 과외"));
+        items2.add(new Service2Item("http://donggo.dothome.co.kr/icon/service2/marketing.jpg","블로그 마케팅"));
+        items2.add(new Service2Item("http://donggo.dothome.co.kr/icon/service2/box.jpg","원룸/소형 이사"));
+
+        items3.clear();
+        items3.add(new Service2Item("http://donggo.dothome.co.kr/icon/service3/construct.jpg","외풍차단/틈막이 시공"));
+        items3.add(new Service2Item("http://donggo.dothome.co.kr/icon/service3/whisky.jpg","위스키 레슨"));
+        items3.add(new Service2Item("http://donggo.dothome.co.kr/icon/service3/choco.jpg","초콜릿 레슨"));
+        items3.add(new Service2Item("http://donggo.dothome.co.kr/icon/service3/food.jpg","명절/제사 음식 대행"));
+
 
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/resson.png").into(branchs[0]);
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/home.png").into(branchs[1]);
@@ -113,13 +148,19 @@ public class Tab1ClientFragment extends Fragment {
         //TODO : 다른 액티비티 생성하기
 
         Intent intent = new Intent(getActivity(),AllServiceActivity.class);
+        Bundle bundle = new Bundle();
         if(v.getTag()==null){
-            intent.putExtra("service",((TextView)v).getText().toString());
 
+            bundle.putString("service",((TextView)v).getText().toString());
+            bundle.putInt("s",2);
+            G.serviceNum = 2;
         }else{
-            intent.putExtra("service",v.getTag().toString());
-        }
 
+            bundle.putString("service",v.getTag().toString());
+            bundle.putInt("s",3);
+            G.serviceNum = 3;
+        }
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

@@ -48,7 +48,7 @@ public class SearchActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(SearchActivity.this, position+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchActivity.this, service[position] +" 준비중입니다.", Toast.LENGTH_SHORT).show();
             }
         });
 

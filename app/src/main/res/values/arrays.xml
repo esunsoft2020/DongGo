@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="popular_service">
+        <item>영어 과외</item>
+        <item>퍼스널트레이닝(PT)</item>
+        <item>집 인테리어</item>
+        <item>욕실/화장실 리모델링</item>
+        <item>보컬 레슨</item>
+        <item>에어컨 설치 및 수리</item>
+        <item>싱크대 교체</item>
+        <item>수학 과외</item>
+        <item>타일 시공</item>
+        <item>조명 인테리어</item>
+    </string-array>
+
+</resources>
