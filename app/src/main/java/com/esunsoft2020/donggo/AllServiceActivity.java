@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,22 +46,35 @@ public class AllServiceActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         title.setText(bundle.getString("service"));
-        int serviceNum = bundle.getInt("s");
-
+        int serviceNum = bundle.getInt("s",0);
+//        Toast.makeText(this, serviceNum+"", Toast.LENGTH_SHORT).show();
         items.clear();
 
-        items.add(new GridViewItem("http://donggo.dothome.co.kr/icon/service2/cafe.jpg","상업공간 인테리어"));
-        items.add(new GridViewItem("http://donggo.dothome.co.kr/icon/service2/cafe.jpg","상업공간 인테리어"));
-        Toast.makeText(this, G.serviceNum+"", Toast.LENGTH_SHORT).show();
-        switch (G.serviceNum){
-            case 2:
+        //TODO : serviceNum 안 넘어옴...
+        switch (bundle.getString("service")){
+            case "추천 서비스":
                 inflatePic2();
                 break;
 
-            case 3:
+            case "신규 서비스":
                 inflatePic3();
                 break;
         }
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String imgUrl = items.get(position).imgUrl;
+                String service = items.get(position).title;
+
+                Intent intent = new Intent(AllServiceActivity.this,ClickServiceActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putStringArray("service",new String[]{imgUrl,service});
+                intent.putExtras(bundle);
+                AllServiceActivity.this.startActivity(intent);
+            }
+        });
     }
 
     void inflatePic2(){

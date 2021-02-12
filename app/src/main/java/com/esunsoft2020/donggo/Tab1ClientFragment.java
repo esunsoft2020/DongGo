@@ -146,28 +146,27 @@ public class Tab1ClientFragment extends Fragment {
     void clickIcon(View v){
 
         //TODO : 다른 액티비티 생성하기
-
         Intent intent = new Intent(getActivity(),AllServiceActivity.class);
-        Bundle bundle = new Bundle();
-        if(v.getTag()==null){
-
-            bundle.putString("service",((TextView)v).getText().toString());
-            bundle.putInt("s",2);
-            G.serviceNum = 2;
-        }else{
-
-            bundle.putString("service",v.getTag().toString());
-            bundle.putInt("s",3);
-            G.serviceNum = 3;
-        }
-        intent.putExtras(bundle);
+        intent.putExtra("service",v.getTag().toString());
+        Toast.makeText(getActivity(), "준비중입니다.", Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 
     void clickAll(View v){
 
         Intent intent = new Intent(getActivity(),AllServiceActivity.class);
-        intent.putExtra("service",v.getTag().toString());
+
+        Bundle bundle = new Bundle();
+        if(v.getTag()==null){
+
+            bundle.putString("service",((TextView)v).getText().toString());
+            bundle.putInt("s",2);
+        }else{
+
+            bundle.putString("service",v.getTag().toString());
+            bundle.putInt("s",3);
+        }
+        intent.putExtras(bundle);
         startActivity(intent);
 
     }

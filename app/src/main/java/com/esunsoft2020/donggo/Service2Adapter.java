@@ -1,6 +1,8 @@
 package com.esunsoft2020.donggo;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,7 +73,11 @@ public class Service2Adapter extends RecyclerView.Adapter<Service2Adapter.VH> {
                     String imgUrl = items.get(position).imgUrl;
                     String service = items.get(position).service;
 
-                    //인텐트 추가 작업하기
+                    Intent intent = new Intent(context,ClickServiceActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putStringArray("service",new String[]{imgUrl,service});
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
 
 
                     //전환 효과 [ LoLLIPOP 버전 이상 -api.21 ]
