@@ -27,9 +27,11 @@ public class Tab1ClientFragment extends Fragment {
     TextView[] titles = new TextView[8];
 
     RecyclerView service1,service2,service3;
+
+    Service1Adapter adapter1;
+    ArrayList<Service1Item> items1 = new ArrayList<>();
+
     Service2Adapter adapter2,adapter3;
-
-
     ArrayList<Service2Item> items2 = new ArrayList<>();
     ArrayList<Service2Item> items3 = new ArrayList<>();
 
@@ -58,7 +60,8 @@ public class Tab1ClientFragment extends Fragment {
         }
         
         service1 = view.findViewById(R.id.service1);
-
+        adapter1 = new Service1Adapter(getActivity(),items1);
+        service1.setAdapter(adapter1);
 
         service2 = view.findViewById(R.id.service2);
         adapter2 = new Service2Adapter(getActivity(),items2);
@@ -75,6 +78,17 @@ public class Tab1ClientFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        items1.clear();
+        items1.add(new Service1Item("http://donggo.dothome.co.kr/icon/service2/study.jpg","영어 과외","69,345명 고수 활동중"));
+        items1.add(new Service1Item("http://donggo.dothome.co.kr/icon/service1/exercise.jpg","퍼스널트레이닝(PT)","13,980명 고수 활동중"));
+        items1.add(new Service1Item("http://donggo.dothome.co.kr/icon/service1/house.jpg","집 인테리어","14,879명 고수 활동중"));
+        items1.add(new Service1Item("http://donggo.dothome.co.kr/icon/service1/bathroom.jpg","욕실/화장실 리모델링","10,818명 고수 활동중"));
+        items1.add(new Service1Item("http://donggo.dothome.co.kr/icon/service1/vocal.jpg","보컬 레슨","14,897명 고수 활동중"));
+        items1.add(new Service1Item("http://donggo.dothome.co.kr/icon/service1/fan.jpg","에어컨 설치 및 수리","3,604명 고수 활동중"));
+        items1.add(new Service1Item("http://donggo.dothome.co.kr/icon/service1/sink.jpg","싱크대 교체","5,962명 고수 활동중"));
+        items1.add(new Service1Item("http://donggo.dothome.co.kr/icon/service1/math.jpg","수학 과외","52,167명 고수 활동중"));
+        items1.add(new Service1Item("http://donggo.dothome.co.kr/icon/service1/lights.jpg","조명 인테리어","6,526명 고수 활동중"));
 
 
         items2.clear();
