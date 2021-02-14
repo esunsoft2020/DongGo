@@ -22,15 +22,31 @@ public class Tab4GosuFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_tab4gosu,container,false);
     }
 
+    CircleImageView civ;
+    ImageView iv,iv1;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        CircleImageView civ;
-        ImageView iv;
+        iv=view.findViewById(R.id.iv);
+        civ=view.findViewById(R.id.civ);
+        iv1 = view.findViewById(R.id.iv1);
 
-        Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/mypage.png").into(civ=view.findViewById(R.id.civ));
-        Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/shot.png").into(iv=view.findViewById(R.id.iv));
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //개인 사진 iv(변경할 수 있게해야함)
+        Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/mypage.png").into(civ);
+
+        //변경x
+        Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/shot.png").into(iv);
+        Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/tab4.png").into(iv1);
+
 
 
     }

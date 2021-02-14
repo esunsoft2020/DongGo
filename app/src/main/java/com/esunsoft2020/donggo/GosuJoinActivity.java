@@ -50,9 +50,17 @@ public class GosuJoinActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
-        finish();
+        if(getIntent().getStringExtra("where").equals("Client")){
+            Intent intent = new Intent(this,MainActivity.class);
+            intent.putExtra("login",true);
+            startActivity(intent);
+            finish();
+
+        }else{
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public void clickBranch(View view) {

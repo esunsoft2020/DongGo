@@ -18,7 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DongGo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ClickServiceActivity"></activity>
+        <activity android:name=".AccountActivity"></activity>
+        <activity android:name=".SelectAreaActivity" />
+        <activity android:name=".ClickServiceActivity" />
         <activity android:name=".AllServiceActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".GosuJoin6Activity" />
