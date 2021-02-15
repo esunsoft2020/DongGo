@@ -19,12 +19,12 @@ import java.util.ArrayList;
 public class Service1Adapter extends RecyclerView.Adapter<Service1Adapter.VH> {
 
     Context context;
-    ArrayList<String3Item> items;
+    ArrayList<ThreeStringItem> items;
 
     public Service1Adapter() {
     }
 
-    public Service1Adapter(Context context, ArrayList<String3Item> items) {
+    public Service1Adapter(Context context, ArrayList<ThreeStringItem> items) {
         this.context = context;
         this.items = items;
     }
@@ -40,7 +40,7 @@ public class Service1Adapter extends RecyclerView.Adapter<Service1Adapter.VH> {
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        String3Item item = items.get(position);
+        ThreeStringItem item = items.get(position);
         holder.tvTitle.setText(item.title);
         holder.tvCount.setText(item.count);
 
