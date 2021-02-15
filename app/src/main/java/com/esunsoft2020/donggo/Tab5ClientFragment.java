@@ -1,7 +1,6 @@
 package com.esunsoft2020.donggo;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,8 +20,6 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class Tab5ClientFragment extends Fragment {
 
     RelativeLayout layout,profileLayout;
@@ -30,7 +28,9 @@ public class Tab5ClientFragment extends Fragment {
 
     RecyclerView recyclerView;
     SettingRecyclerAdapter adapter;
-    ArrayList<Service2Item> items = new ArrayList<>();
+    ArrayList<TwoStringItem> items = new ArrayList<>();
+
+    TextView tvName,tvEmail;
 
     @Nullable
     @Override
@@ -51,19 +51,25 @@ public class Tab5ClientFragment extends Fragment {
         adapter = new SettingRecyclerAdapter(getActivity(),items);
         recyclerView.setAdapter(adapter);
 
+        tvName = view.findViewById(R.id.tv_name);
+        tvEmail = view.findViewById(R.id.tv_email);
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
+        tvName.setText(G.name);
+        tvEmail.setText(G.email);
+
         //설정
         items.clear();
-        items.add(new Service2Item("http://donggo.dothome.co.kr/icon/setting/alarm.png","알림"));
-        items.add(new Service2Item("http://donggo.dothome.co.kr/icon/setting/deletememory.png","메모리 삭제"));
-        items.add(new Service2Item("http://donggo.dothome.co.kr/icon/setting/noti.png","공지사항"));
-        items.add(new Service2Item("http://donggo.dothome.co.kr/icon/setting/guide.png","동고안내"));
-        items.add(new Service2Item("http://donggo.dothome.co.kr/icon/setting/version.png","앱 버전"));
+        items.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/alarm.png","알림"));
+        items.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/deletememory.png","메모리 삭제"));
+        items.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/noti.png","공지사항"));
+        items.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/guide.png","동고안내"));
+        items.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/version.png","앱 버전"));
 
 
 

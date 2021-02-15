@@ -25,8 +25,7 @@ public class IntroActivity extends AppCompatActivity {
 
     //마지막 사용 시 로그인 상태 불러오기
     void loadData(){
-        String name = "이름";
-        Toast.makeText(this, getResources().getString(R.string.intro_text)+" "+name+"님!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getResources().getString(R.string.intro_text)+" "+G.name+"님!", Toast.LENGTH_SHORT).show();
     }
 
     //로그아웃 시 실행화면

@@ -36,7 +36,8 @@
         android:text="Test"
         android:layout_above="@id/ratingbar"
         android:textSize="14sp"
-        android:textColor="@color/text_light_gray"/>
+        android:textColor="@color/text_light_gray"
+        android:ellipsize="end"/>
 
     <RatingBar
         android:id="@+id/ratingbar"

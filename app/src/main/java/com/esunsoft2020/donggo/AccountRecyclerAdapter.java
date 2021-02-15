@@ -1,6 +1,8 @@
 package com.esunsoft2020.donggo;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +17,9 @@ import java.util.ArrayList;
 public class AccountRecyclerAdapter extends RecyclerView.Adapter<AccountRecyclerAdapter.VH> {
 
     Context context;
-    ArrayList<TwoString> items;
+    ArrayList<TwoStringItem> items;
 
-    public AccountRecyclerAdapter(Context context, ArrayList<TwoString> items) {
+    public AccountRecyclerAdapter(Context context, ArrayList<TwoStringItem> items) {
         this.context = context;
         this.items = items;
     }
@@ -31,9 +33,9 @@ public class AccountRecyclerAdapter extends RecyclerView.Adapter<AccountRecycler
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        TwoString item = items.get(position);
-        holder.tv.setText(item.First);
-        holder.tvInfo.setText(item.Second);
+        TwoStringItem item = items.get(position);
+        holder.tvInfo.setText(item.first);
+        holder.tvIndividual.setText(item.second);
     }
 
     @Override
@@ -42,18 +44,32 @@ public class AccountRecyclerAdapter extends RecyclerView.Adapter<AccountRecycler
     }
 
     class VH extends RecyclerView.ViewHolder {
-        TextView tv;
         TextView tvInfo;
+        TextView tvIndividual;
 
         public VH(@NonNull View itemView) {
             super(itemView);
-            tv = itemView.findViewById(R.id.tv);
             tvInfo = itemView.findViewById(R.id.tv_info);
+            tvIndividual = itemView.findViewById(R.id.tv_individual);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "준비중입니다.", Toast.LENGTH_SHORT).show();
+                    int position = getLayoutPosition();
+
+                    Intent intent;
+                    switch (position){
+                        case 0:
+                            intent = new Intent(context,AccountChangeNameActivity.class);
+                            context.startActivity(intent);
+                            break;
+                        case 1:
+                            intent = new Intent(context,AccountChangeEmailActivity.class);
+                            context.startActivity(intent);
+                            break;
+
+
+                    }
                 }
             });
         }

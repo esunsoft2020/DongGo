@@ -19,12 +19,12 @@ import java.util.ArrayList;
 public class Service2Adapter extends RecyclerView.Adapter<Service2Adapter.VH> {
 
     Context context;
-    ArrayList<Service2Item> items;
+    ArrayList<TwoStringItem> items;
 
     public Service2Adapter() {
     }
 
-    public Service2Adapter(Context context, ArrayList<Service2Item> items) {
+    public Service2Adapter(Context context, ArrayList<TwoStringItem> items) {
         this.context = context;
         this.items = items;
     }
@@ -41,10 +41,10 @@ public class Service2Adapter extends RecyclerView.Adapter<Service2Adapter.VH> {
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        Service2Item item = items.get(position);
-        holder.tv.setText(item.service);
+        TwoStringItem item = items.get(position);
+        holder.tv.setText(item.second);
 
-        Glide.with(context).load(item.imgUrl).into(holder.iv);
+        Glide.with(context).load(item.first).into(holder.iv);
     }
 
     @Override
@@ -69,8 +69,8 @@ public class Service2Adapter extends RecyclerView.Adapter<Service2Adapter.VH> {
 
                     int position = getLayoutPosition();
 
-                    String imgUrl = items.get(position).imgUrl;
-                    String service = items.get(position).service;
+                    String imgUrl = items.get(position).first;
+                    String service = items.get(position).second;
 
                     Intent intent = new Intent(context,ClickServiceActivity.class);
                     Bundle bundle = new Bundle();

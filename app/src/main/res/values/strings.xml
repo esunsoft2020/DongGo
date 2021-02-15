@@ -50,6 +50,9 @@
     <string name="account_text1">계정 설정</string>
     <string name="account_text2">로그아웃</string>
     <string name="account_text3">계정 탈퇴</string>
+    <string name="account_text4">이름(실명)을 사용하시면 고용율이 150% 상승합니다.</string>
+    <string name="account_text5">반드시 실명을 입력해주세요.</string>
+    <string name="account_text6">수정완료</string>
 
     <string name="gosu_tab1_text1">아직 받은 요청서가 없어요</string>
     <string name="gosu_tab1_text2">요청서를 기다리는 동안</string>
@@ -81,8 +84,51 @@
     <string name="tab4_gosu_text2">리뷰수</string>
     <string name="tab4_gosu_text3">고용수</string>
     <string name="tab4_gosu_text4">활동분석</string>
+    <string name="tab4_gosu_text5">프로필 완성도</string>
+    <string name="tab4_gosu_text6">30%</string>
+    <string name="tab4_gosu_text7_1">고수님의 전문적인 모습을 표현할 수 있는 사진을 등록해보세요. 사진과 동영상을 등록할 경우 고수님을 선택할 확률이 80% 이상 높아집니다.</string>
+    <string name="tab4_gosu_text7_2">미디어 등록하기</string>
+    <string name="tab4_gosu_text8_1">반드시 대표 서비스를 설정해주세요, 대표 서비스를 설정하지 않으면 고수님이 검색될 확률이 80%이상 낮아집니다.</string>
+    <string name="tab4_gosu_text8_2">대표서비스 등록하기</string>
+    <string name="tab4_gosu_text9_1">질문 답변을 통해 제공하는 서비스에 대한 궁금증을 알려주세요. 질문 답변을 등록할 경우 고용으로까지 연결되는 시간이 30% 이상 단축됩니다.</string>
+    <string name="tab4_gosu_text9_2">질문답변 등록하기</string>
+    <string name="tab4_gosu_text10_1">고수님의 서비스 내용을 상세 서비스에 등록해 보세요. 600자 미만의 상세 서비스를 작성할 경우 고용될 확률이 40%이상 높아집니다.</string>
+    <string name="tab4_gosu_text10_2">서비스 소개 등록하기</string>
+    <string name="tab4_gosu_text11_1">고객님께 3개 이상 리뷰를 받아 보세요. 동고에서 고용된 고수님ㄴ의 90%는 3개 이상의 리뷰를 갖고 있습니다.</string>
+    <string name="tab4_gosu_text11_2">리뷰 요청하기</string>
+    <string name="tab4_gosu_text12_1">결제방법을 등록해 주세요. 고객은 고수의 결제방법을 알고 싶어 합니다.</string>
+    <string name="tab4_gosu_text12_2">결제수단 등록하기</string>
+    <string name="tab4_gosu_text13_1">본인인증이 완료되지 않았습니다. 본인인증을 할 경우 고수님에 대한 신뢰도와 고용률이 2배 이상 높아집니다.</string>
+    <string name="tab4_gosu_text13_2">본인인증 하기</string>
+    <string name="tab4_gosu_text14_1">고수님과 안전하게 거래를 할 수 있도록 안전거래 계좌를 등록해보세요. 고수님에 대한 신뢰도와 고용률이 2배 이상 높아집니다.</string>
+    <string name="tab4_gosu_text14_2">안전거래 계좌 등록하기</string>
+
+    <string name="tab4_gosu_text9">이름</string>
+    <string name="tab4_gosu_text10">수정</string>
+    <string name="tab4_gosu_text11">대표 서비스</string>
+    <string name="tab4_gosu_text12">등록하기</string>
+    <string name="tab4_gosu_text13">한줄소개</string>
+    <string name="tab4_gosu_text14">활동 지역</string>
+    <string name="tab4_gosu_text15">이동 가능 거리</string>
+    <string name="tab4_gosu_text16">리뷰</string>
+    <string name="tab4_gosu_text17">리뷰 요청하기</string>
 
     <string name="tab5_gosu_text">고객으로 전환</string>
+    <string name="tab5_gosu_text1">동고 캐시</string>
+    <string name="tab5_gosu_text2">스토어</string>
+    <string name="tab5_gosu_text3">0캐시</string>
+    <string name="tab5_gosu_text4">충전/사용 내역</string>
+    <string name="tab5_gosu_text5">안전 거래</string>
+    <string name="tab5_gosu_text6">거래 내역</string>
+    <string name="tab5_gosu_text7">계좌 관리</string>
+    <string name="tab5_gosu_text8">편리한 기능</string>
+    <string name="tab5_gosu_text9">전담 컨설턴트</string>
+    <string name="tab5_gosu_text10">실시간 채팅으로 1:1 상담 가능합니다.</string>
+    <string name="tab5_gosu_text11">고수찾기 노출 설정</string>
+    <string name="tab5_gosu_text12">고수 찾기에 프로필을 홍보해드려요.</string>
+    <string name="tab5_gosu_text13">자동견적 설정</string>
+    <string name="tab5_gosu_text14">견적을 받지 못한 요청서에 견적을 무료로 발송합니다.</string>
+    <string name="tab5_gosu_text15">설정</string>
 
     <string name="login">로그인</string>
     <string name="login_text1">이메일</string>

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,12 +19,12 @@ import java.util.ArrayList;
 public class Service1Adapter extends RecyclerView.Adapter<Service1Adapter.VH> {
 
     Context context;
-    ArrayList<Service1Item> items;
+    ArrayList<String3Item> items;
 
     public Service1Adapter() {
     }
 
-    public Service1Adapter(Context context, ArrayList<Service1Item> items) {
+    public Service1Adapter(Context context, ArrayList<String3Item> items) {
         this.context = context;
         this.items = items;
     }
@@ -41,7 +40,7 @@ public class Service1Adapter extends RecyclerView.Adapter<Service1Adapter.VH> {
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        Service1Item item = items.get(position);
+        String3Item item = items.get(position);
         holder.tvTitle.setText(item.title);
         holder.tvCount.setText(item.count);
 

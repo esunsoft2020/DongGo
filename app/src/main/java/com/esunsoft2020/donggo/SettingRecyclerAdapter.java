@@ -18,9 +18,9 @@ import java.util.ArrayList;
 public class SettingRecyclerAdapter extends RecyclerView.Adapter<SettingRecyclerAdapter.VH> {
 
     Context context;
-    ArrayList<Service2Item> items;
+    ArrayList<TwoStringItem> items;
 
-    public SettingRecyclerAdapter(Context context, ArrayList<Service2Item> items) {
+    public SettingRecyclerAdapter(Context context, ArrayList<TwoStringItem> items) {
         this.context = context;
         this.items = items;
     }
@@ -34,9 +34,9 @@ public class SettingRecyclerAdapter extends RecyclerView.Adapter<SettingRecycler
 
     @Override
     public void onBindViewHolder(@NonNull VH holder, int position) {
-        Service2Item item = items.get(position);
-        holder.tv.setText(item.service);
-        Glide.with(context).load(item.imgUrl).into(holder.iv);
+        TwoStringItem item = items.get(position);
+        holder.tv.setText(item.second);
+        Glide.with(context).load(item.first).into(holder.iv);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class SettingRecyclerAdapter extends RecyclerView.Adapter<SettingRecycler
                 public void onClick(View v) {
                     int position = getLayoutPosition();
 
-                    String setting = items.get(position).service;
+                    String setting = items.get(position).second;
                     Toast.makeText(context, setting+"준비중입니다.", Toast.LENGTH_SHORT).show();
                 }
             });

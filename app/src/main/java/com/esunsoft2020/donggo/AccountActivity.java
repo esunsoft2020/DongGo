@@ -1,18 +1,18 @@
 package com.esunsoft2020.donggo;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -25,7 +25,7 @@ public class AccountActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     AccountRecyclerAdapter adapter;
-    ArrayList<TwoString> items = new ArrayList<>();
+    ArrayList<TwoStringItem> items = new ArrayList<>();
 
 
     @Override
@@ -50,12 +50,13 @@ public class AccountActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        adapter.notifyDataSetChanged();
 
         items.clear();
-        items.add(new TwoString("이름",G.name));
-        items.add(new TwoString("이메일",G.email));
-        items.add(new TwoString("비밀번호","*****"));
-        items.add(new TwoString("휴대전화 번호",G.phone));
+        items.add(new TwoStringItem("이름",G.name));
+        items.add(new TwoStringItem("이메일",G.email));
+        items.add(new TwoStringItem("비밀번호","*****"));
+        items.add(new TwoStringItem("휴대전화 번호",G.phone));
 
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/camera.png").into(ivCamera);
@@ -67,6 +68,7 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public void clickLogout(View view) {
         Intent intent = new Intent(this,MainActivity.class);

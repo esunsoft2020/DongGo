@@ -1,14 +1,14 @@
 package com.esunsoft2020.donggo;
 
-public class Service1Item {
+public class String3Item {
     String imgUrl;
     String title;
     String count;
 
-    public Service1Item() {
+    public String3Item() {
     }
 
-    public Service1Item(String imgUrl, String title, String count) {
+    public String3Item(String imgUrl, String title, String count) {
         this.imgUrl = imgUrl;
         this.title = title;
         this.count = count;
