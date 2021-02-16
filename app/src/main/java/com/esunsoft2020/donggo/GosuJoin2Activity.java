@@ -12,9 +12,13 @@ import android.widget.ListView;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
+import java.util.ArrayList;
+
 public class GosuJoin2Activity extends AppCompatActivity {
 
     ListView listView;
+    JoinListViewAdapter adapter;
+    ArrayList<String> items = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +30,24 @@ public class GosuJoin2Activity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        listView = findViewById(R.id.listview);
+        adapter = new JoinListViewAdapter(this,items);
+        listView.setAdapter(adapter);
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        //TODO : listview 구성하기
+
+        items.clear();
+        items.add("학업");
+        items.add("외국어");
+        items.add("외국어시험");
+        items.add("공예");
+        items.add("미술");
+        items.add("음악이론/보컬");
 
 
 

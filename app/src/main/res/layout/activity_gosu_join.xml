@@ -230,6 +230,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_toRightOf="@id/iv6"
                     android:text="@string/branch6"
+                    android:layout_marginRight="16dp"
                     android:textColor="@color/text_normal" />
             </RelativeLayout>
         </LinearLayout>
