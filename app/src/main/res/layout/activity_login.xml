@@ -104,20 +104,14 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:backgroundTint="@color/text_gray"/>
+            <ImageView
+                android:id="@+id/btn_kakao_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:layout_marginTop="4dp"
-                android:text="@string/login_text7"
-                android:textStyle="bold"
-                android:textColor="@color/text_normal"
-                android:textSize="16sp"
-                android:textAllCaps="false"
-                android:backgroundTint="#DFDF35"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginTop="4dp"
                 android:text="@string/login_text8"
                 android:textStyle="bold"
                 android:textColor="@color/white"

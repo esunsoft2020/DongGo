@@ -15,9 +15,9 @@ import java.util.ArrayList;
 public class GridviewAdapter extends BaseAdapter {
 
     Context context;
-    ArrayList<GridViewItem> items;
+    ArrayList<TwoStringItem> items;
 
-    public GridviewAdapter(Context context, ArrayList<GridViewItem> items) {
+    public GridviewAdapter(Context context, ArrayList<TwoStringItem> items) {
         this.context = context;
         this.items = items;
     }
@@ -45,13 +45,13 @@ public class GridviewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.gridview_item,parent,false);
         }
 
-        GridViewItem g = items.get(position);
+        TwoStringItem g = items.get(position);
 
         ImageView iv = convertView.findViewById(R.id.iv);
         TextView tv = convertView.findViewById(R.id.tv);
 
-        Glide.with(context).load(g.imgUrl).into(iv);
-        tv.setText(g.title);
+        Glide.with(context).load(g.first).into(iv);
+        tv.setText(g.second);
 
         return convertView;
     }

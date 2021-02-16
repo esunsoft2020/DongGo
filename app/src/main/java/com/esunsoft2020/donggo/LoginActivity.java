@@ -6,10 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.kakao.sdk.auth.LoginClient;
+import com.kakao.sdk.auth.model.OAuthToken;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function2;
 
 public class LoginActivity extends AppCompatActivity {
 
-    ImageView iv;
+    ImageView iv,kakaoLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,12 +25,39 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         iv = findViewById(R.id.iv);
+        kakaoLogin = findViewById(R.id.btn_kakao_login);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        Glide.with(this).load("http://donggo.dothome.co.kr/icon/kakao_login/ko/kakao_login_medium_wide.png").into(kakaoLogin);
+        kakaoLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //카카오 계정으로 로그인
+
+                LoginClient.getInstance().loginWithKakaoAccount(LoginActivity.this, new Function2<OAuthToken, Throwable, Unit>() {
+                    @Override
+                    public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
+
+                        if(throwable != null){
+                            Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+                        } else{
+                            Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                        }
+
+
+
+                        return null;
+                    }
+                });
+
+
+            }
+        });
 
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
