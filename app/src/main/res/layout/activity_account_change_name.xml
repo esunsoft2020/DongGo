@@ -73,7 +73,9 @@
                 android:background="@drawable/et"
                 android:hint="@string/tab4_gosu_text9"
                 android:maxLines="1"
-                android:layout_margin="16dp"/>
+                android:inputType="text"
+                android:layout_margin="16dp"
+                android:imeOptions="actionDone"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <RelativeLayout

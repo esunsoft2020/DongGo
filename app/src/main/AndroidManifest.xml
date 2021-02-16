@@ -18,7 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DongGo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AccountChangeEmailActivity"></activity>
+        <activity android:name=".AccountChangePhoneActivity"></activity>
+        <activity
+            android:name=".AccountChangePwActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".AccountChangeEmailActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".AccountChangeNameActivity"
             android:windowSoftInputMode="adjustResize" />

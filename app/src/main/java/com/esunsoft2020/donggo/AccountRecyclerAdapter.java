@@ -68,7 +68,14 @@ public class AccountRecyclerAdapter extends RecyclerView.Adapter<AccountRecycler
                             context.startActivity(intent);
                             break;
 
-
+                        case 2:
+                            intent = new Intent(context,AccountChangePwActivity.class);
+                            context.startActivity(intent);
+                            break;
+                        case 3:
+                            intent = new Intent(context,AccountChangePhoneActivity.class);
+                            context.startActivity(intent);
+                            break;
                     }
                 }
             });

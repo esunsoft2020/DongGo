@@ -42,11 +42,12 @@ public class AccountChangeNameActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        completeLayout.setClickable(false);
+
 
         input.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -59,7 +60,6 @@ public class AccountChangeNameActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
 

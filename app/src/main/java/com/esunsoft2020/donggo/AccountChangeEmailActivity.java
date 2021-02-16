@@ -41,6 +41,8 @@ public class AccountChangeEmailActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        completeLayout.setClickable(false);
+
 
 
         input.addTextChangedListener(new TextWatcher() {
@@ -51,7 +53,8 @@ public class AccountChangeEmailActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(isValidEmail(s.toString())){
+                if(G.isValidEmail(s.toString())){
+                    input.setError(null);
                     completeLayout.setClickable(true);
                     completeLayout.setBackgroundResource(R.color.brandColor);
                 }else{
@@ -66,16 +69,7 @@ public class AccountChangeEmailActivity extends AppCompatActivity {
         });
 
     }
-    //이메일 검증 정규식
-    public static boolean isValidEmail(String email) {
-        boolean err = false;
-        String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";
-        Pattern p = Pattern.compile(regex); Matcher m = p.matcher(email);
-        if(m.matches()) {
-            err = true;
-        }
-        return err;
-    }
+
 
     public void clickComplete(View view) {
         G.email = input.getText().toString();

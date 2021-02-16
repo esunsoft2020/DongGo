@@ -53,6 +53,20 @@
     <string name="account_text4">이름(실명)을 사용하시면 고용율이 150% 상승합니다.</string>
     <string name="account_text5">반드시 실명을 입력해주세요.</string>
     <string name="account_text6">수정완료</string>
+    <string name="account_text7">비밀번호 변경</string>
+    <string name="account_text8">기존 비밀번호</string>
+    <string name="account_text9">현재 비밀번호를 입력해주세요.</string>
+    <string name="account_text10">새로운 비밀번호</string>
+    <string name="account_text11">영문+숫자 8자리 이상 입력해주세요.</string>
+    <string name="account_text12">새로운 비밀번호 확인</string>
+    <string name="account_text13">비밀번호를 한번 더 입력해주세요.</string>
+    <string name="account_text14">변경 완료</string>
+    <string name="account_text15">휴대전화 번호 설정</string>
+    <string name="account_text16">예) 010-1234-5678</string>
+    <string name="account_text17">설정한 번호로 동고 알림을 받을 수 있습니다.</string>
+    <string name="account_text18">휴대전화 번호</string>
+    <string name="account_text19">재설정</string>
+    <string name="account_text20">인증 완료</string>
 
     <string name="gosu_tab1_text1">아직 받은 요청서가 없어요</string>
     <string name="gosu_tab1_text2">요청서를 기다리는 동안</string>
