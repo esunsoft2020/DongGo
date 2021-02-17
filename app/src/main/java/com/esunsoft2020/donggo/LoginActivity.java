@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.kakao.sdk.auth.LoginClient;
 import com.kakao.sdk.auth.model.OAuthToken;
+import com.kakao.sdk.user.UserApiClient;
+import com.kakao.sdk.user.model.User;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
@@ -47,6 +49,25 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
                         } else{
                             Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putBoolean("login",true);
+                            bundle.putString("kakao","kakao");
+                            intent.putExtras(bundle);
+
+                            UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
+                                @Override
+                                public Unit invoke(User user, Throwable throwable) {
+
+                                    G.name = user.getKakaoAccount().getProfile().getNickname();
+                                    G.profileImgUrl = user.getKakaoAccount().getProfile().getProfileImageUrl();
+
+                                    return null;
+                                }
+                            });
+
+                            startActivity(intent);
+                            finish();
                         }
 
 

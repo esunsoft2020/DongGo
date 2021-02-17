@@ -40,13 +40,6 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:progress="86"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/progress"
-        android:text="@string/progress3"
-        android:textColor="@color/brandColor"
-        android:layout_centerHorizontal="true"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -58,6 +51,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_below="@id/appbar">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progress"
+                android:text="@string/progress3"
+                android:textColor="@color/brandColor"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -94,13 +96,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_search"/>
-                <TextView
+                <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/branch_service4"
                     android:layout_toRightOf="@id/iv"
                     android:layout_marginLeft="8dp"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"/>
 
             </RelativeLayout>
 

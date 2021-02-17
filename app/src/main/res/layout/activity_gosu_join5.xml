@@ -41,14 +41,6 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:progress="86"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/progress"
-        android:text="@string/progress3"
-        android:textColor="@color/brandColor"
-        android:layout_centerHorizontal="true"/>
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -58,6 +50,14 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progress"
+                android:text="@string/progress3"
+                android:textColor="@color/brandColor"
+                android:layout_gravity="center"/>
 
             <TextView
                 android:id="@+id/tv"
@@ -186,21 +186,22 @@
                     android:background="@drawable/tv_selector"
                     android:text="@string/distance6"
                     android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:padding="8dp"
                     android:textSize="16sp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:onClick="clickDistance"/>
+                    android:onClick="clickDistance" />
                 <TextView
                     android:id="@+id/dis7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/tv_selector"
                     android:text="@string/distance7"
-                    android:layout_marginLeft="16dp"
                     android:padding="8dp"
                     android:textSize="16sp"
                     android:layout_weight="1"
+                    android:layout_marginRight="32dp"
                     android:gravity="center"
                     android:onClick="clickDistance"/>
                 <TextView

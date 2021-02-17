@@ -58,7 +58,10 @@ public class AccountActivity extends AppCompatActivity {
         items.add(new TwoStringItem("비밀번호","*****"));
         items.add(new TwoStringItem("휴대전화 번호",G.changePhoneFormat(G.phone)));
 
-        Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
+
+        if(G.profileImgUrl!=null)Glide.with(this).load(G.profileImgUrl).into(ivProfile);
+        else Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
+
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/camera.png").into(ivCamera);
 
         ivCamera.setOnClickListener(new View.OnClickListener() {

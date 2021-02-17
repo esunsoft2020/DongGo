@@ -41,23 +41,20 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:progress="100"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/progress"
-        android:text="@string/progress4"
-        android:textColor="@color/brandColor"
-        android:layout_centerHorizontal="true"/>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/progress">
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@id/progress">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progress"
+                android:text="@string/progress4"
+                android:textColor="@color/brandColor"
+                android:layout_gravity="center"
+                android:layout_weight="1"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -125,7 +122,9 @@
                     android:background="@drawable/et"
                     android:textSize="12sp"
                     android:layout_centerVertical="true"
-                    android:padding="12dp"/>
+                    android:padding="12dp"
+                    android:inputType="number|phone"
+                    android:imeOptions="actionDone"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -160,7 +159,9 @@
                     android:background="@drawable/et"
                     android:textSize="12sp"
                     android:layout_centerVertical="true"
-                    android:padding="12dp"/>
+                    android:padding="12dp"
+                    android:inputType="text"
+                    android:imeOptions="actionDone"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -172,7 +173,7 @@
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="8dp"/>
+                    android:layout_marginRight="8dp" />
             </RelativeLayout>
 
 
@@ -197,6 +198,5 @@
 
 
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

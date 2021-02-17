@@ -24,7 +24,7 @@ public class Tab5ClientFragment extends Fragment {
 
     RelativeLayout layout,profileLayout;
     LinearLayout layoutDeal;
-    ImageView ivDeal;
+    ImageView ivDeal, ivProfile;
 
     RecyclerView recyclerView;
     SettingRecyclerAdapter adapter;
@@ -46,6 +46,7 @@ public class Tab5ClientFragment extends Fragment {
         profileLayout = view.findViewById(R.id.layout1);
         layoutDeal = view.findViewById(R.id.layout_deal);
         ivDeal = view.findViewById(R.id.iv_deal);
+        ivProfile = view.findViewById(R.id.iv);
 
         recyclerView = view.findViewById(R.id.recycler);
         adapter = new SettingRecyclerAdapter(getActivity(),items);
@@ -72,6 +73,8 @@ public class Tab5ClientFragment extends Fragment {
         items.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/version.png","앱 버전"));
 
 
+        if(G.profileImgUrl!=null)Glide.with(this).load(G.profileImgUrl).into(ivProfile);
+        else Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
 
         Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/setting/shield.png").into(ivDeal);
 
