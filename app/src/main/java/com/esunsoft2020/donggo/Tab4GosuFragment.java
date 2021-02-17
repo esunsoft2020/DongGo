@@ -1,5 +1,8 @@
 package com.esunsoft2020.donggo;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +21,8 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static android.app.Activity.RESULT_OK;
+
 public class Tab4GosuFragment extends Fragment {
 
     @Nullable
@@ -27,8 +32,7 @@ public class Tab4GosuFragment extends Fragment {
     }
 
     CircleImageView civ;
-    ImageView iv,iv1;
-    RelativeLayout mediaUpload;
+    ImageView upload,iv1;
 
     ViewPager pager;
     ArrayList<TwoStringItem> items = new ArrayList<>();
@@ -40,10 +44,9 @@ public class Tab4GosuFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        iv=view.findViewById(R.id.iv);
         civ=view.findViewById(R.id.civ);
         iv1 = view.findViewById(R.id.iv1);
-        mediaUpload = view.findViewById(R.id.media_upload);
+        upload = view.findViewById(R.id.upload);
 
         pager = view.findViewById(R.id.pager);
         adapter = new PageTab4GosuAdapter(getActivity(),items);
@@ -81,13 +84,47 @@ public class Tab4GosuFragment extends Fragment {
 
         adapter.notifyDataSetChanged();
 
-        //개인 사진 iv(변경할 수 있게해야함)
-        Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/mypage.png").into(civ);
+        //개인 사진 iv(변경가능)
+        if(G.profileImgUrl!=null)Glide.with(this).load(G.profileImgUrl).into(civ);
+        else Glide.with(this).load("http://donggo.dothome.co.kr/icon/mypage.png").into(civ);
 
         //변경x
-        Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/shot.png").into(iv);
-        Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/tab4.png").into(iv1);
+        Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/shot.png").into(upload);
+        Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/chart.png").into(iv1);
 
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setMediaUpload();
+            }
+        });
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==100 && resultCode==RESULT_OK ){
+            Uri uri = data.getData();
+            if(uri!=null) {
+                G.profileImgUrl = uri.toString();
+            }
+        }else {
+            Bundle bundle = data.getExtras();
+            Bitmap bm = (Bitmap)bundle.get("data");
+            G.profileImgUrl = bm.toString();
+        }
+
+        Glide.with(this).load(G.profileImgUrl).into(civ);
+
+    }
+
+
+    void setMediaUpload(){
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent,100);
     }
 
     void clickIvs(View v){

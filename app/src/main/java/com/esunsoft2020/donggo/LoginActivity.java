@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putBoolean("login",true);
-                            bundle.putString("kakao","kakao");
+                            G.iskakaoLogin = true;
                             intent.putExtras(bundle);
 
                             UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     G.name = user.getKakaoAccount().getProfile().getNickname();
                                     G.profileImgUrl = user.getKakaoAccount().getProfile().getProfileImageUrl();
+                                    if(user.getKakaoAccount().getEmail()!=null) G.email = user.getKakaoAccount().getEmail();
 
                                     return null;
                                 }

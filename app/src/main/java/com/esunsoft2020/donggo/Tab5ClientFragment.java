@@ -85,13 +85,12 @@ public class Tab5ClientFragment extends Fragment {
             }
         });
 
+        //고수로 전환
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),GosuJoinActivity.class);
-                intent.putExtra("where","Client");
                 startActivity(intent);
-                getActivity().finish();
             }
         });
 
@@ -99,7 +98,9 @@ public class Tab5ClientFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),AccountActivity.class);
+                intent.putExtra("where","client");
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 

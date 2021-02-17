@@ -29,7 +29,7 @@ public class Tab5GosuFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_tab5gosu,container,false);
     }
 
-    ImageView ivPic,ivStore,ivUse, ivCons,ivSearch,ivAuto;
+    ImageView ivStore,ivUse, ivCons,ivSearch,ivAuto, ivProfile;
     RelativeLayout layoutProfile;
 
     RecyclerView recyclerView1, recyclerView2;
@@ -46,7 +46,7 @@ public class Tab5GosuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         layoutProfile = view.findViewById(R.id.layout1);
-        ivPic = view.findViewById(R.id.iv);
+        ivProfile = view.findViewById(R.id.iv);
 
         ivStore = view.findViewById(R.id.iv_store);
         ivUse = view.findViewById(R.id.iv_use);
@@ -70,15 +70,6 @@ public class Tab5GosuFragment extends Fragment {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == 10 && resultCode== RESULT_OK){
-            Glide.with(getActivity()).load(data.getDataString()).into(ivPic);
-        }
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
 
@@ -89,7 +80,10 @@ public class Tab5GosuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),AccountActivity.class);
-                startActivityForResult(intent,10);
+                intent.putExtra("where","Gosu");
+                startActivity(intent);
+                getActivity().finish();
+
             }
         });
 
@@ -111,6 +105,9 @@ public class Tab5GosuFragment extends Fragment {
         Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/setting/chat.png").into(ivCons);
         Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/setting/search.png").into(ivSearch);
         Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/setting/auto.png").into(ivAuto);
+
+        if(G.profileImgUrl!=null)Glide.with(this).load(G.profileImgUrl).into(ivProfile);
+        else Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
 
         ivStore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,6 +148,6 @@ public class Tab5GosuFragment extends Fragment {
                 Toast.makeText(getActivity(), v.getTag().toString()+"  준비중입니다.", Toast.LENGTH_SHORT).show();
 
         }
-
     }
+
 }

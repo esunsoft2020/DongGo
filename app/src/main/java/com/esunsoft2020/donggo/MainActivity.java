@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -34,17 +37,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
 
         showFragment();
 
+        //로그아웃 시
+        if(getIntent().getStringExtra("logout")!=null) onBackPressed();
+
+
 
     }
 
     void showFragment(){
-        Boolean login = getIntent().getBooleanExtra("login",false);
+        boolean login = getIntent().getBooleanExtra("login",false);
 
         bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -99,9 +107,43 @@ public class MainActivity extends AppCompatActivity {
                 }
                 tran.commit();
 
+
                 return true;
             }
         });
+    }
+
+    SharedPreferences pref;
+
+    @Override
+    public void onBackPressed() {
+        pref = getPreferences(MODE_PRIVATE);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("종료하시겠습니까?");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                //저장하고 종료
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("name",G.name);
+                editor.putString("email",G.email);
+                editor.putString("phone",G.phone);
+                editor.putString("image",G.profileImgUrl);
+                editor.putString("pw",G.pw);
+                editor.putBoolean("isEmailLogin",G.isEmailLogin);
+                editor.putBoolean("isKakaoLogin",G.iskakaoLogin);
+                editor.putBoolean("isFacebookLogin",G.isFacebookLogin);
+                editor.putBoolean("isGosu",G.isGosu);
+
+                editor.commit();
+
+            }
+        });
+        builder.setNegativeButton("No",null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        finish();
     }
 
 }

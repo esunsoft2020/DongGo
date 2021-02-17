@@ -6,14 +6,28 @@ import java.util.regex.Pattern;
 public class G {
 
     //TODO:회원가입시 이용 멤버추가 필요
-    public static String name = "이름";
-    public static String email = "Ireum@donggo.com";
+    public static String name ;
+    public static String email ;
     public static String pw = "****";
     public static String phone;
-
     public static String profileImgUrl;
 
+    public static boolean isEmailLogin;
+    public static boolean iskakaoLogin;
+    public static boolean isFacebookLogin;
+    public static boolean isGosu;
 
+    public static void init(String name,String emil,String pw, String phone, String profileImgUrl,boolean isEmailLogin,boolean iskakaoLogin,boolean isFacebookLogin,boolean isGosu){
+        G.name = name;
+        G.email =emil;
+        G.pw =pw;
+        G.phone = phone;
+        G.profileImgUrl = profileImgUrl;
+        G.isEmailLogin = isEmailLogin;
+        G.iskakaoLogin = iskakaoLogin;
+        G.isFacebookLogin = isFacebookLogin;
+        G.isGosu = isGosu;
+    }
 
     //이메일 검증 정규식
     public static boolean isValidEmail(String email) {

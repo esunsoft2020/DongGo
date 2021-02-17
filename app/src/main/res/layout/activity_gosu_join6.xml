@@ -48,13 +48,12 @@
             android:layout_below="@id/progress">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="23dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/progress"
-                android:text="@string/progress4"
-                android:textColor="@color/brandColor"
                 android:layout_gravity="center"
-                android:layout_weight="1"/>
+                android:text="@string/progress4"
+                android:textColor="@color/brandColor" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -64,6 +63,7 @@
                 android:text="@string/branch_service7"
                 android:textColor="@color/text_normal"
                 android:textSize="16sp"
+                android:layout_weight="1"
                 android:textStyle="bold"/>
 
             <TextView

@@ -52,7 +52,7 @@
                 android:src="@drawable/ic_launcher_background"/>
 
             <ImageView
-                android:id="@+id/iv"
+                android:id="@+id/upload"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_alignBottom="@id/civ"
@@ -62,7 +62,7 @@
                 android:id="@+id/layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/iv"
+                android:layout_below="@id/upload"
                 android:background="@color/brandColor"
                 android:layout_marginTop="8dp"
                 android:padding="8dp">
@@ -214,56 +214,48 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:adjustViewBounds="true"
-                    android:layout_below="@id/media_upload"
                     android:tag="iv1"/>
                 <ImageView
                     android:id="@+id/iv_2"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:adjustViewBounds="true"
-                    android:layout_below="@id/media_upload"
                     android:tag="iv2"/>
                 <ImageView
                     android:id="@+id/iv_3"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:adjustViewBounds="true"
-                    android:layout_below="@id/media_upload"
                     android:tag="iv3"/>
                 <ImageView
                     android:id="@+id/iv_4"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:adjustViewBounds="true"
-                    android:layout_below="@id/media_upload"
                     android:tag="iv4"/>
                 <ImageView
                     android:id="@+id/iv_5"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:adjustViewBounds="true"
-                    android:layout_below="@id/media_upload"
                     android:tag="iv5"/>
                 <ImageView
                     android:id="@+id/iv_6"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:adjustViewBounds="true"
-                    android:layout_below="@id/media_upload"
                     android:tag="iv6"/>
                 <ImageView
                     android:id="@+id/iv_7"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:adjustViewBounds="true"
-                    android:layout_below="@id/media_upload"
                     android:tag="iv7"/>
                 <ImageView
                     android:id="@+id/iv_8"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:adjustViewBounds="true"
-                    android:layout_below="@id/media_upload"
                     android:tag="iv8"/>
 
             </LinearLayout>
