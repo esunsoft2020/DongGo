@@ -1,9 +1,11 @@
 package com.esunsoft2020.donggo;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.loader.content.CursorLoader;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
@@ -108,12 +111,12 @@ public class Tab4GosuFragment extends Fragment {
         if(requestCode==100 && resultCode==RESULT_OK ){
             Uri uri = data.getData();
             if(uri!=null) {
-                G.profileImgUrl = uri.toString();
+                G.profileImgUrl = getRealPathFromUri(uri);
             }
         }else {
             Bundle bundle = data.getExtras();
             Bitmap bm = (Bitmap)bundle.get("data");
-            G.profileImgUrl = bm.toString();
+            G.profileImgUrl = G.BitMapToString(bm);
         }
 
         Glide.with(this).load(G.profileImgUrl).into(civ);
@@ -148,6 +151,17 @@ public class Tab4GosuFragment extends Fragment {
         }else if(v.getTag().equals("iv8")){
             pager.setCurrentItem(7,true);
         }
+    }
 
+    //Uri -- > 절대경로로 바꿔서 리턴시켜주는 메소드
+    String getRealPathFromUri(Uri uri){
+        String[] proj= {MediaStore.Images.Media.DATA};
+        CursorLoader loader= new CursorLoader(getActivity(), uri, proj, null, null, null);
+        Cursor cursor= loader.loadInBackground();
+        int column_index= cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result= cursor.getString(column_index);
+        cursor.close();
+        return  result;
     }
 }

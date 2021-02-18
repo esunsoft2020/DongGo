@@ -106,22 +106,18 @@
                 android:backgroundTint="@color/text_gray"/>
             <ImageView
                 android:id="@+id/btn_kakao_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"/>
+            <com.google.android.gms.common.SignInButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:text="@string/login_text8"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textAllCaps="false"
-                android:backgroundTint="#098AF1"/>
+                android:onClick="clickGoogleLogin"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginTop="16dp"
                 android:background="@color/white"

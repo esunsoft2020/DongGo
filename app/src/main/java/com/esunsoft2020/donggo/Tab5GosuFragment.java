@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,8 @@ public class Tab5GosuFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_tab5gosu,container,false);
     }
 
+    Switch switchClient;
+
     ImageView ivStore,ivUse, ivCons,ivSearch,ivAuto, ivProfile;
     RelativeLayout layoutProfile;
 
@@ -44,6 +48,8 @@ public class Tab5GosuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        switchClient = view.findViewById(R.id.switch_client);
 
         layoutProfile = view.findViewById(R.id.layout1);
         ivProfile = view.findViewById(R.id.iv);
@@ -108,6 +114,21 @@ public class Tab5GosuFragment extends Fragment {
 
         if(G.profileImgUrl!=null)Glide.with(this).load(G.profileImgUrl).into(ivProfile);
         else Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
+
+
+        //고객으로 전환
+        switchClient.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (!isChecked){
+                    Intent intent = new Intent(getActivity(),MainActivity.class);
+                    intent.putExtra("login",true);
+                    G.isGosu =true;
+                    startActivity(intent);
+                    getActivity().finish();
+                }
+            }
+        });
 
         ivStore.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -20,8 +20,6 @@ import java.util.Set;
 
 public class IntroActivity extends AppCompatActivity {
 
-    SharedPreferences pref;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +29,6 @@ public class IntroActivity extends AppCompatActivity {
         String keyHash = Utility.INSTANCE.getKeyHash(this);
         Log.i("keyHash",keyHash);
 
-        pref = getSharedPreferences("userData",MODE_PRIVATE);
 
 
 
@@ -47,6 +44,7 @@ public class IntroActivity extends AppCompatActivity {
 
     //마지막 사용 시 로그인 상태 불러오기
     void loadData(){
+        SharedPreferences pref = getSharedPreferences("userData",MODE_PRIVATE);
 
         G.name = pref.getString("name",null);
         G.email = pref.getString("email",null);
@@ -55,10 +53,10 @@ public class IntroActivity extends AppCompatActivity {
         G.pw = pref.getString("pw",null);
         G.isEmailLogin = pref.getBoolean("isEmailLogin",false);
         G.iskakaoLogin = pref.getBoolean("isKakaoLogin",false);
-        G.isFacebookLogin = pref.getBoolean("isFacebookLogin",false);
+        G.isGoogleLogin = pref.getBoolean("isFacebookLogin",false);
         G.isGosu = pref.getBoolean("isGosu",false);
 
-        Toast.makeText(this, getResources().getString(R.string.intro_text)+" "+G.name+"님!", Toast.LENGTH_SHORT).show();
+        if(G.name!=null) Toast.makeText(this, getResources().getString(R.string.intro_text)+" "+G.name+"님!", Toast.LENGTH_SHORT).show();
     }
 
     //로그아웃 시 실행화면
@@ -93,6 +91,7 @@ public class IntroActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 //저장하고 종료
+                SharedPreferences pref = getSharedPreferences("userData",MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("name",G.name);
                 editor.putString("email",G.email);
@@ -101,16 +100,15 @@ public class IntroActivity extends AppCompatActivity {
                 editor.putString("pw",G.pw);
                 editor.putBoolean("isEmailLogin",G.isEmailLogin);
                 editor.putBoolean("isKakaoLogin",G.iskakaoLogin);
-                editor.putBoolean("isFacebookLogin",G.isFacebookLogin);
+                editor.putBoolean("isFacebookLogin",G.isGoogleLogin);
                 editor.putBoolean("isGosu",G.isGosu);
 
                 editor.commit();
-
+                finish();
             }
         });
         builder.setNegativeButton("No",null);
         AlertDialog dialog = builder.create();
         dialog.show();
-        finish();
     }
 }

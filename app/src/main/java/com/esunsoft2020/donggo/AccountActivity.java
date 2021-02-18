@@ -1,13 +1,20 @@
 package com.esunsoft2020.donggo;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.content.CursorLoader;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -51,6 +58,17 @@ public class AccountActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler);
         adapter = new AccountRecyclerAdapter(this,items);
         recyclerView.setAdapter(adapter);
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode==0 && grantResults[0]==PackageManager.PERMISSION_DENIED){
+            Toast.makeText(this, "사진 기능에 제한이 있을 수 있습니다.", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "사진 업로드 가능", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -76,21 +94,29 @@ public class AccountActivity extends AppCompatActivity {
                 changeImage();
             }
         });
+
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+            if(checkSelfPermission(permissions[0])== PackageManager.PERMISSION_DENIED){
+                requestPermissions(permissions,0);
+            }
+        }
+
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==10 && resultCode ==RESULT_OK){
+        if(requestCode==10 && resultCode==RESULT_OK ){
             Uri uri = data.getData();
             if(uri!=null) {
-                G.profileImgUrl = uri.toString();
+                G.profileImgUrl = getRealPathFromUri(uri);
             }
         }else {
             Bundle bundle = data.getExtras();
             Bitmap bm = (Bitmap)bundle.get("data");
-            G.profileImgUrl = bm.toString();
+            G.profileImgUrl = G.BitMapToString(bm);
         }
 
         Glide.with(this).load(G.profileImgUrl).into(ivProfile);
@@ -101,6 +127,7 @@ public class AccountActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent,10);
+
     }
 
     public void clickLogout(View view) {
@@ -148,5 +175,17 @@ public class AccountActivity extends AppCompatActivity {
         }
         startActivity(intent);
         finish();
+    }
+
+    //Uri -- > 절대경로로 바꿔서 리턴시켜주는 메소드
+    String getRealPathFromUri(Uri uri){
+        String[] proj= {MediaStore.Images.Media.DATA};
+        CursorLoader loader= new CursorLoader(this, uri, proj, null, null, null);
+        Cursor cursor= loader.loadInBackground();
+        int column_index= cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result= cursor.getString(column_index);
+        cursor.close();
+        return  result;
     }
 }

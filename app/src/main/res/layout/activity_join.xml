@@ -127,6 +127,7 @@
                 android:textSize="16sp"
                 android:textColor="@color/text_normal"/>
             <EditText
+                android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/join_text6"
@@ -137,7 +138,8 @@
                 android:maxLines="1"
                 android:textSize="12sp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"/>
+                android:layout_marginRight="16dp"
+                android:imeOptions="actionDone"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -147,6 +149,7 @@
                 android:textSize="16sp"
                 android:textColor="@color/text_normal"/>
             <EditText
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/join_text8"
@@ -157,7 +160,8 @@
                 android:maxLines="1"
                 android:textSize="12sp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"/>
+                android:layout_marginRight="16dp"
+                android:imeOptions="actionDone"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -167,6 +171,7 @@
                 android:textSize="16sp"
                 android:textColor="@color/text_normal"/>
             <EditText
+                android:id="@+id/et_pw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/join_text10"
@@ -177,7 +182,8 @@
                 android:maxLines="1"
                 android:textSize="12sp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp" />
+                android:layout_marginRight="16dp"
+                android:imeOptions="actionDone"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -187,6 +193,7 @@
                 android:textSize="16sp"
                 android:textColor="@color/text_normal"/>
             <EditText
+                android:id="@+id/et_pw_check"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/join_text12"
@@ -197,7 +204,8 @@
                 android:maxLines="1"
                 android:textSize="12sp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"/>
+                android:layout_marginRight="16dp"
+                android:imeOptions="actionDone"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -205,10 +213,9 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/cb"
+                    android:id="@+id/box"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
                     android:buttonTint="@color/text_gray"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="24dp"/>
@@ -217,7 +224,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_alignTop="@id/cb"
+                    android:layout_alignTop="@id/box"
                     android:layout_marginTop="12dp"
                     android:layout_marginLeft="52dp">
 
@@ -253,6 +260,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/join_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

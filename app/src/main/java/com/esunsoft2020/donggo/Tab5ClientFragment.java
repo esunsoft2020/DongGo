@@ -1,13 +1,16 @@
 package com.esunsoft2020.donggo;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,9 +23,12 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Tab5ClientFragment extends Fragment {
 
-    RelativeLayout layout,profileLayout;
+    RelativeLayout profileLayout;
+    Switch switchGosu;
     LinearLayout layoutDeal;
     ImageView ivDeal, ivProfile;
 
@@ -31,6 +37,9 @@ public class Tab5ClientFragment extends Fragment {
     ArrayList<TwoStringItem> items = new ArrayList<>();
 
     TextView tvName,tvEmail;
+    TextView tvChange;
+    CircleImageView civChange;
+    ImageView ivChange;
 
     @Nullable
     @Override
@@ -42,7 +51,11 @@ public class Tab5ClientFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        layout = view.findViewById(R.id.layout);
+        tvChange = view.findViewById(R.id.tv_change);
+        civChange = view.findViewById(R.id.civ_change);
+        ivChange = view.findViewById(R.id.iv_change);
+
+        switchGosu = view.findViewById(R.id.switch_gosu);
         profileLayout = view.findViewById(R.id.layout1);
         layoutDeal = view.findViewById(R.id.layout_deal);
         ivDeal = view.findViewById(R.id.iv_deal);
@@ -60,6 +73,18 @@ public class Tab5ClientFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        if(!G.isGosu){
+            tvChange.setText("고수로 가입하기");
+            switchGosu.setVisibility(View.GONE);
+            civChange.setVisibility(View.VISIBLE);
+            ivChange.setVisibility(View.VISIBLE);
+        }else{
+            tvChange.setText("고수로 전환하기");
+            switchGosu.setVisibility(View.VISIBLE);
+            civChange.setVisibility(View.GONE);
+            ivChange.setVisibility(View.GONE);
+        }
 
         tvName.setText(G.name);
         tvEmail.setText(G.email);
@@ -85,12 +110,27 @@ public class Tab5ClientFragment extends Fragment {
             }
         });
 
-        //고수로 전환
-        layout.setOnClickListener(new View.OnClickListener() {
+
+        //고수로 가입
+        civChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),GosuJoinActivity.class);
+                intent.putExtra("where","client");
                 startActivity(intent);
+            }
+        });
+
+        //고수로 전환
+        switchGosu.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    Intent intent = new Intent(getActivity(), GosuActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
+
+                }
             }
         });
 
@@ -105,4 +145,5 @@ public class Tab5ClientFragment extends Fragment {
         });
 
     }
+
 }

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "713233878221",
+    "project_id": "donggo",
+    "storage_bucket": "donggo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:713233878221:android:079badcf121f4d13d02d84",
+        "android_client_info": {
+          "package_name": "com.esunsoft2020.donggo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "713233878221-7vh58ccsl5i0682aa92uv2mlijdj95ls.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.esunsoft2020.donggo",
+            "certificate_hash": "9d41e1a305cf772c0650aeb25cfbeb53852ad6eb"
+          }
+        },
+        {
+          "client_id": "713233878221-he9uu64g90ubugbvql7lem4vulhuvouu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnDTaXep9Q9K3gErJ8D4fltwWvLD0JxDs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "713233878221-he9uu64g90ubugbvql7lem4vulhuvouu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

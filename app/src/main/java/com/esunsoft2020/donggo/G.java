@@ -1,5 +1,9 @@
 package com.esunsoft2020.donggo;
 
+import android.graphics.Bitmap;
+import android.util.Base64;
+
+import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,12 +16,12 @@ public class G {
     public static String phone;
     public static String profileImgUrl;
 
-    public static boolean isEmailLogin;
-    public static boolean iskakaoLogin;
-    public static boolean isFacebookLogin;
-    public static boolean isGosu;
+    public static boolean isEmailLogin = false;
+    public static boolean iskakaoLogin = false;
+    public static boolean isGoogleLogin = false;
+    public static boolean isGosu =false;
 
-    public static void init(String name,String emil,String pw, String phone, String profileImgUrl,boolean isEmailLogin,boolean iskakaoLogin,boolean isFacebookLogin,boolean isGosu){
+    public static void init(String name,String emil,String pw, String phone, String profileImgUrl,boolean isEmailLogin,boolean iskakaoLogin,boolean isGoogleLogin,boolean isGosu){
         G.name = name;
         G.email =emil;
         G.pw =pw;
@@ -25,9 +29,24 @@ public class G {
         G.profileImgUrl = profileImgUrl;
         G.isEmailLogin = isEmailLogin;
         G.iskakaoLogin = iskakaoLogin;
-        G.isFacebookLogin = isFacebookLogin;
+        G.isGoogleLogin = isGoogleLogin;
         G.isGosu = isGosu;
     }
+
+
+
+    public static String BitMapToString(Bitmap bitmap){
+
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+
+        return temp;
+
+    }
+
+
 
     //이메일 검증 정규식
     public static boolean isValidEmail(String email) {

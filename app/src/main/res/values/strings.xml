@@ -42,7 +42,7 @@
     <string name="tab4_text">필터</string>
     <string name="chat_emptytext">메세지가 없습니다</string>
 
-    <string name="tab5_text">고수로 가입하기</string>
+    <string name="tab5_text">고수로 전환하기</string>
     <string name="tab5_text1">안전거래</string>
     <string name="tab5_text2">거래 내역</string>
     <string name="tab5_text3">설정</string>

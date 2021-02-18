@@ -25,11 +25,12 @@
     <RelativeLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/appbar"
         android:background="@color/text_normal"
         android:padding="16dp">
         <TextView
+            android:id="@+id/tv_change"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tab5_text"
@@ -38,19 +39,28 @@
             android:textStyle="bold"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_change"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@color/white"/>
-
         <ImageView
+            android:id="@+id/iv_change"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_right_24"/>
 
+        <Switch
+            android:id="@+id/switch_gosu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:track="@drawable/switch_track"
+            android:thumb="@drawable/switch_thumb"
+            android:checked="false"/>
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
