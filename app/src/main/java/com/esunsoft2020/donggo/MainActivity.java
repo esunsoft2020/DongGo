@@ -45,14 +45,16 @@ public class MainActivity extends AppCompatActivity {
         showFragment();
 
         //로그아웃 시
-        if(getIntent().getStringExtra("logout")!=null) onBackPressed();
+        if(getIntent().getStringExtra("logout")!=null) finish();
 
 
 
     }
 
+    boolean login;
+
     void showFragment(){
-        boolean login = getIntent().getBooleanExtra("login",false);
+        login = getIntent().getBooleanExtra("login",false);
 
         bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -117,33 +119,37 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("종료하시겠습니까?");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        if(login){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("종료하시겠습니까?");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
 
-                //저장하고 종료
-                SharedPreferences pref = getSharedPreferences("userData",MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString("name",G.name);
-                editor.putString("email",G.email);
-                editor.putString("phone",G.phone);
-                editor.putString("image",G.profileImgUrl);
-                editor.putString("pw",G.pw);
-                editor.putBoolean("isEmailLogin",G.isEmailLogin);
-                editor.putBoolean("isKakaoLogin",G.iskakaoLogin);
-                editor.putBoolean("isFacebookLogin",G.isGoogleLogin);
-                editor.putBoolean("isGosu",G.isGosu);
+                    //저장하고 종료
+                    SharedPreferences pref = getSharedPreferences("userData",MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("name",G.name);
+                    editor.putString("email",G.email);
+                    editor.putString("phone",G.phone);
+                    editor.putString("image",G.profileImgUrl);
+                    editor.putString("pw",G.pw);
+                    editor.putBoolean("isEmailLogin",G.isEmailLogin);
+                    editor.putBoolean("isKakaoLogin",G.iskakaoLogin);
+                    editor.putBoolean("isFacebookLogin",G.isGoogleLogin);
+                    editor.putBoolean("isGosu",G.isGosu);
 
-                editor.commit();
+                    editor.commit();
 
-                finish();
-            }
-        });
-        builder.setNegativeButton("No",null);
-        AlertDialog dialog = builder.create();
-        dialog.show();
+
+                    finish();
+                }
+            });
+            builder.setNegativeButton("No",null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        } else finish();
+
     }
 
 }

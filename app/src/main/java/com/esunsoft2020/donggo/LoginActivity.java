@@ -1,21 +1,23 @@
 package com.esunsoft2020.donggo;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.Api;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.kakao.sdk.auth.LoginClient;
@@ -23,12 +25,24 @@ import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.User;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
 
     ImageView iv, kakaoLogin;
+    EditText etEmail,etPw;
+    Button emailLoginBtn;
+    PreferenceHelper preferenceHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +51,68 @@ public class LoginActivity extends AppCompatActivity {
 
         iv = findViewById(R.id.iv);
         kakaoLogin = findViewById(R.id.btn_kakao_login);
+        etEmail = findViewById(R.id.et_email);
+        etPw = findViewById(R.id.et_pw);
+        emailLoginBtn = findViewById(R.id.email_login_btn);
+
+        preferenceHelper = new PreferenceHelper(this);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        emailLoginBtn.setClickable(false);
+        emailLoginBtn.setBackgroundColor(getResources().getColor(R.color.text_gray));
+
+
+
+
+        etEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s!=null && etPw!=null){
+                    emailLoginBtn.setClickable(true);
+                    emailLoginBtn.setBackgroundColor(getResources().getColor(R.color.brandColor));
+                }else{
+                    emailLoginBtn.setClickable(false);
+                    emailLoginBtn.setBackgroundColor(getResources().getColor(R.color.text_gray));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        etPw.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s!=null && etPw!=null){
+                    emailLoginBtn.setClickable(true);
+                    emailLoginBtn.setBackgroundColor(getResources().getColor(R.color.brandColor));
+                }else{
+                    emailLoginBtn.setClickable(false);
+                    emailLoginBtn.setBackgroundColor(getResources().getColor(R.color.text_gray));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/kakao_login/ko/kakao_login_medium_wide.png").into(kakaoLogin);
         kakaoLogin.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +169,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void clickSearchPw(View view) {
+        Toast.makeText(this, "비밀번호 찾기 준비중입니다.", Toast.LENGTH_SHORT).show();
     }
 
     public void clickJoin(View view) {
@@ -137,4 +208,68 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    public void clickEmailLogin(View view) {
+        loginUser();
+
+    }
+    private void loginUser(){
+        final String email = etEmail.getText().toString().trim();
+        final String pw = etPw.getText().toString().trim();
+
+        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+
+        LoginInterface api = retrofit.create(LoginInterface.class);
+        Call<String> call = api.getUserLogin(email, pw);
+        call.enqueue(new Callback<String>()
+        {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response)
+            {
+                if (response.isSuccessful() && response.body() != null)
+                {
+                    Log.e("onSuccess", response.body());
+
+                    String jsonResponse = response.body();
+                    parseLoginData(jsonResponse);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t)
+            {
+                Log.e("Tag", "에러 = " + t.getMessage());
+            }
+        });
+    }
+
+    private void parseLoginData(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            if (jsonObject.getString("status").equals("true")) {
+                saveInfo(response);
+
+                Toast.makeText(LoginActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+    private void saveInfo(String response) {
+        preferenceHelper.putIsLogin(true);
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            if (jsonObject.getString("status").equals("true")) {
+                JSONArray dataArray = jsonObject.getJSONArray("data");
+                for (int i = 0; i < dataArray.length(); i++) {
+                    JSONObject dataobj = dataArray.getJSONObject(i);
+                    preferenceHelper.putName(dataobj.getString("name"));
+                    preferenceHelper.putISEMAILLOGIN(dataobj.getBoolean("isEmailLogin"));
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

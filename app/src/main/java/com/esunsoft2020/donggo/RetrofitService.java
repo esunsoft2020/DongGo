@@ -3,19 +3,27 @@ package com.esunsoft2020.donggo;
 
 import java.util.ArrayList;
 
+import kotlin.jvm.JvmMultifileClass;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface RetrofitService {
 
-    @POST("/Retrofit/postMember.php")
-    Call<Member> postMethod(@Body Member member);
+    @FormUrlEncoded
+    @POST("Retrofit/postMember.php")
+    Call<Member> login(@Field("user_email")String email,
+                       @Field("user_pw")String pw);
 
-    @GET("/Retrofit/memberArray.json")
-    Call<ArrayList<Member>> getMemberArray();
-
+    @FormUrlEncoded
+    @POST("Retrofit/registerMember.php")
+    Call<Member> register(@Field("res_name")String name,
+                          @Field("res_phone")String phone,
+                          @Field("res_profileImgUrl")String profileImgUrl,
+                          @Field("res_isEmailLogin")boolean isEmailLogin);
 
 
 }

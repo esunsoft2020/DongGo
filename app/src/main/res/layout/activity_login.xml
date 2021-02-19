@@ -59,6 +59,7 @@
                 android:textSize="16sp"
                 android:layout_marginTop="52dp"/>
             <EditText
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/login_text2"
@@ -66,7 +67,8 @@
                 android:padding="8dp"
                 android:layout_marginTop="4dp"
                 android:inputType="text"
-                android:maxLines="1"/>
+                android:maxLines="1"
+                android:imeOptions="actionDone"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -74,8 +76,9 @@
                 android:text="@string/login_text3"
                 android:textColor="@color/text_normal"
                 android:textSize="16sp"
-                android:layout_marginTop="28dp"/>
+                android:layout_marginTop="20dp"/>
             <EditText
+                android:id="@+id/et_pw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/login_text4"
@@ -83,7 +86,8 @@
                 android:padding="8dp"
                 android:layout_marginTop="4dp"
                 android:inputType="textPassword"
-                android:maxLines="1"/>
+                android:maxLines="1"
+                android:imeOptions="actionDone"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -96,6 +100,7 @@
                 android:textColor="@color/text_gray"/>
 
             <Button
+                android:id="@+id/email_login_btn"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginTop="32dp"
@@ -103,7 +108,8 @@
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:backgroundTint="@color/text_gray"/>
+                android:backgroundTint="@color/text_gray"
+                android:onClick="clickEmailLogin"/>
             <ImageView
                 android:id="@+id/btn_kakao_login"
                 android:layout_width="wrap_content"

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -142,8 +143,10 @@ public class AccountActivity extends AppCompatActivity {
                 public Unit invoke(Throwable throwable) {
                     if (throwable != null)
                         Toast.makeText(AccountActivity.this, "로그아웃 실패", Toast.LENGTH_SHORT).show();
-                    else
+                    else{
+                        G.init(null,null,null,null,null,false,false,false, false);
                         Toast.makeText(AccountActivity.this, "Kakao 로그아웃", Toast.LENGTH_SHORT).show();
+                    }
                     return null;
                 }
             });

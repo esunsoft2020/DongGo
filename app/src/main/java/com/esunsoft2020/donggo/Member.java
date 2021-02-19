@@ -8,7 +8,7 @@ public class Member {
     public String phone;
     public String profileImgUrl;
 
-    public boolean isEmailLogin;
+    public String isEmailLogin;
     public boolean iskakaoLogin;
     public boolean isGoogleLogin;
     public boolean isGosu;
@@ -16,7 +16,7 @@ public class Member {
     public Member() {
     }
 
-    public Member(String name, String email, String pw, String phone, String profileImgUrl, boolean isEmailLogin, boolean iskakaoLogin, boolean isGoogleLogin, boolean isGosu) {
+    public Member(String name, String email, String pw, String phone, String profileImgUrl, String isEmailLogin, boolean iskakaoLogin, boolean isGoogleLogin, boolean isGosu) {
         this.name = name;
         this.email = email;
         this.pw = pw;
