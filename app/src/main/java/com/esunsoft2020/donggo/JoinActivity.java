@@ -179,16 +179,23 @@ public class JoinActivity extends AppCompatActivity {
         if(etPwLayout.getError()!=null) return;
         if(etCPwLayout.getError()!=null) return;
 
-        if(isGosu){
-            Intent intent = new Intent(this, GosuJoinActivity.class);
-            startActivity(intent);
-
-        } else {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("login",true);
-            startActivity(intent);
-        }
         registerMe();
+
+        if(completeRegister){
+            if(isGosu){
+                Intent intent = new Intent(this, GosuJoinActivity.class);
+                startActivity(intent);
+
+            } else {
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("login",true);
+                startActivity(intent);
+            }
+
+            G.init(etName.getText().toString(),etEmail.getText().toString(),etCPw.getText().toString(),null,null,true,false,false,false);
+            finish();
+        }
+
 
     }
 
@@ -214,8 +221,6 @@ public class JoinActivity extends AppCompatActivity {
                 {
                     Log.e("onSuccess", response.body());
 
-
-//==============================================================수정 필요!!
                     String jsonResponse = response.body();
                     try
                     {
@@ -225,9 +230,6 @@ public class JoinActivity extends AppCompatActivity {
                     {
                         e.printStackTrace();
                     }
-                    G.init(etName.getText().toString(),etEmail.getText().toString(),etCPw.getText().toString(),null,null,true,false,false,false);
-                    finish();
-
                 }
             }
 
@@ -239,19 +241,21 @@ public class JoinActivity extends AppCompatActivity {
         });
     }
 
-    private void parseRegData(String response) throws JSONException
-    {
+    boolean completeRegister;
+
+    private void parseRegData(String response) throws JSONException {
+        completeRegister = false;
 
         JSONObject jsonObject = new JSONObject(response);
         if (jsonObject.optString("status").equals("true"))
         {
             saveInfo(response);
             Toast.makeText(JoinActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
+            completeRegister = true;
 
-        }
-        else
-        {
-            Toast.makeText(JoinActivity.this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(JoinActivity.this, "중복된 이메일이 있습니다.", Toast.LENGTH_SHORT).show();
+            completeRegister = false;
         }
     }
 
