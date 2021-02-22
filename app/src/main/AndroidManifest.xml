@@ -23,8 +23,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".AccountChangePhoneActivity"></activity>
         <activity
-            android:name=".AccountChangePwActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:name=".AccountChangePwActivity"/>
         <activity
             android:name=".AccountChangeEmailActivity"
             android:windowSoftInputMode="adjustResize" />

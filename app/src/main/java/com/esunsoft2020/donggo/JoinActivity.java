@@ -182,6 +182,11 @@ public class JoinActivity extends AppCompatActivity {
         registerMe();
 
         if(completeRegister){
+
+
+            G.init(etName.getText().toString(),etEmail.getText().toString(),etCPw.getText().toString(),null,null,true,false,false,false);
+            finish();
+
             if(isGosu){
                 Intent intent = new Intent(this, GosuJoinActivity.class);
                 startActivity(intent);
@@ -192,23 +197,22 @@ public class JoinActivity extends AppCompatActivity {
                 startActivity(intent);
             }
 
-            G.init(etName.getText().toString(),etEmail.getText().toString(),etCPw.getText().toString(),null,null,true,false,false,false);
-            finish();
         }
 
 
     }
 
-    private void registerMe()
-    {
+    private void registerMe() {
         final String name = etName.getText().toString();
         final String email = etEmail.getText().toString();
         final String pw = etCPw.getText().toString();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(RegisterInterface.REGIST_URL)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .build();
+        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(RegisterInterface.REGIST_URL)
+//                .addConverterFactory(ScalarsConverterFactory.create())
+//                .build();
 
         RegisterInterface api = retrofit.create(RegisterInterface.class);
         Call<String> call = api.getUserRegist(name, email, pw);
@@ -271,6 +275,8 @@ public class JoinActivity extends AppCompatActivity {
                 for (int i = 0; i < dataArray.length(); i++)
                 {
                     JSONObject dataobj = dataArray.getJSONObject(i);
+                    preferenceHelper.putEmail(dataobj.getString("email"));
+                    preferenceHelper.putIsLogin(G.changeBooleanFormat("isEmailLogin"));
                     preferenceHelper.putName(dataobj.getString("name"));
                 }
             }

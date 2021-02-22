@@ -44,19 +44,22 @@ public class IntroActivity extends AppCompatActivity {
 
     //마지막 사용 시 로그인 상태 불러오기
     void loadData(){
-        SharedPreferences pref = getSharedPreferences("userData",MODE_PRIVATE);
+        PreferenceHelper preferenceHelper = new PreferenceHelper(this);
+        if(preferenceHelper.getIsLogin()) {
+            if(G.name!=null) Toast.makeText(this, getResources().getString(R.string.intro_text)+" "+G.name+"님!", Toast.LENGTH_SHORT).show();
+            preferenceHelper.getDatas();
+            Intent intent = new Intent(this,MainActivity.class);
+            G.loginState = true;
+            intent.putExtra("login",true);
+            startActivity(intent);
+            finish();
+        }else {
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
-        G.name = pref.getString("name",null);
-        G.email = pref.getString("email",null);
-        G.phone = pref.getString("phone",null);
-        G.profileImgUrl = pref.getString("image",null);
-        G.pw = pref.getString("pw",null);
-        G.isEmailLogin = pref.getBoolean("isEmailLogin",false);
-        G.iskakaoLogin = pref.getBoolean("isKakaoLogin",false);
-        G.isGoogleLogin = pref.getBoolean("isFacebookLogin",false);
-        G.isGosu = pref.getBoolean("isGosu",false);
 
-        if(G.name!=null) Toast.makeText(this, getResources().getString(R.string.intro_text)+" "+G.name+"님!", Toast.LENGTH_SHORT).show();
     }
 
     //로그아웃 시 실행화면
@@ -91,19 +94,19 @@ public class IntroActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 //저장하고 종료
-                SharedPreferences pref = getSharedPreferences("userData",MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putString("name",G.name);
-                editor.putString("email",G.email);
-                editor.putString("phone",G.phone);
-                editor.putString("image",G.profileImgUrl);
-                editor.putString("pw",G.pw);
-                editor.putBoolean("isEmailLogin",G.isEmailLogin);
-                editor.putBoolean("isKakaoLogin",G.iskakaoLogin);
-                editor.putBoolean("isFacebookLogin",G.isGoogleLogin);
-                editor.putBoolean("isGosu",G.isGosu);
-
-                editor.commit();
+//                SharedPreferences pref = getSharedPreferences("userData",MODE_PRIVATE);
+//                SharedPreferences.Editor editor = pref.edit();
+//                editor.putString("name",G.name);
+//                editor.putString("email",G.email);
+//                editor.putString("phone",G.phone);
+//                editor.putString("image",G.profileImgUrl);
+//                editor.putString("pw",G.pw);
+//                editor.putBoolean("isEmailLogin",G.isEmailLogin);
+//                editor.putBoolean("isKakaoLogin",G.iskakaoLogin);
+//                editor.putBoolean("isFacebookLogin",G.isGoogleLogin);
+//                editor.putBoolean("isGosu",G.isGosu);
+//
+//                editor.commit();
                 finish();
             }
         });

@@ -8,8 +8,14 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class GosuJoin6Activity extends AppCompatActivity {
 
@@ -68,7 +74,25 @@ public class GosuJoin6Activity extends AppCompatActivity {
     public void clickComplete(View view) {
         Intent intent = new Intent(this,GosuActivity.class);
         startActivity(intent);
-        finish();
+        G.isGosu=true;
+        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+        RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
+        Call<String> call = registerInterface.getUserisGosu(G.email,G.changeStringFormat(G.isGosu));
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(GosuJoin6Activity.this, "고수 가입 완료", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(GosuJoin6Activity.this, "가입 실패했습니다.", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
 
     }
 

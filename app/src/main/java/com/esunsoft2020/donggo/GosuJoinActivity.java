@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -33,6 +34,7 @@ public class GosuJoinActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/resson.png").into(ivs[0]);
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/home.png").into(ivs[1]);
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/event.png").into(ivs[2]);
@@ -50,7 +52,8 @@ public class GosuJoinActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(getIntent().getStringExtra("where").equals("Client")){
+        if(G.loginState){
+            Log.e("Gosu","client");
             Intent intent = new Intent(this,MainActivity.class);
             intent.putExtra("login",true);
             startActivity(intent);

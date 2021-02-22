@@ -208,13 +208,15 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    boolean successLogin;
+    
     public void clickEmailLogin(View view) {
+        successLogin =false;
         loginUser();
-
     }
     private void loginUser(){
-        final String email = etEmail.getText().toString().trim();
-        final String pw = etPw.getText().toString().trim();
+        final String email = etEmail.getText().toString();
+        final String pw = etPw.getText().toString();
 
         Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
 
@@ -229,6 +231,7 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     Log.e("onSuccess", response.body());
 
+                    successLogin = true;
                     String jsonResponse = response.body();
                     parseLoginData(jsonResponse);
                 }
@@ -247,8 +250,14 @@ public class LoginActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject(response);
             if (jsonObject.getString("status").equals("true")) {
                 saveInfo(response);
+                Intent intent = new Intent(this,MainActivity.class);
+                intent.putExtra("login",true);
+                startActivity(intent);
+                finish();
 
-                Toast.makeText(LoginActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(LoginActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, "이메일 또는 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -263,8 +272,36 @@ public class LoginActivity extends AppCompatActivity {
                 JSONArray dataArray = jsonObject.getJSONArray("data");
                 for (int i = 0; i < dataArray.length(); i++) {
                     JSONObject dataobj = dataArray.getJSONObject(i);
-                    preferenceHelper.putName(dataobj.getString("name"));
-                    preferenceHelper.putISEMAILLOGIN(dataobj.getBoolean("isEmailLogin"));
+                    String name = dataobj.getString("name");
+                    String email = dataobj.getString("email");
+                    String phone = dataobj.getString("phone");
+                    String profileImgUrl = dataobj.getString("profileImgUrl");
+                    boolean isEmailLogin = G.changeBooleanFormat(dataobj.getString("isEmailLogin"));
+                    boolean isKakaoLogin = G.changeBooleanFormat(dataobj.getString("isKakaoLogin"));
+                    boolean isGoogleLogin = G.changeBooleanFormat(dataobj.getString("isGoogleLogin"));
+                    boolean isGosu = G.changeBooleanFormat(dataobj.getString("isGosu"));
+
+                    preferenceHelper.putIsLogin(true);
+                    preferenceHelper.putEmail(email);
+                    preferenceHelper.putName(name);
+                    preferenceHelper.putPhone(phone);
+                    preferenceHelper.putPROFILEIMGURL(profileImgUrl);
+                    preferenceHelper.putISEMAILLOGIN(isEmailLogin);
+                    preferenceHelper.putISKAKAOLOGIN(isKakaoLogin);
+                    preferenceHelper.putISGOOGLELOGIN(isGoogleLogin);
+                    preferenceHelper.putISGOSU(isGosu);
+
+                    G.loginState = true;
+                    G.email = email;
+                    G.name = name;
+                    G.phone = phone;
+                    if(profileImgUrl!=null) G.profileImgUrl = profileImgUrl;
+                    else G.profileImgUrl = null;
+
+                    G.iskakaoLogin = isKakaoLogin;
+                    G.isGoogleLogin = isGoogleLogin;
+                    G.isGosu = isGosu;
+
                 }
             }
         } catch (JSONException e) {

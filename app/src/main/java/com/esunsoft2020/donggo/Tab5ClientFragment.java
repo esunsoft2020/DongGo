@@ -3,6 +3,7 @@ package com.esunsoft2020.donggo;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -99,7 +101,7 @@ public class Tab5ClientFragment extends Fragment {
 
 
         if(G.profileImgUrl!=null)Glide.with(this).load(G.profileImgUrl).into(ivProfile);
-        else Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
+        else Picasso.get().load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
 
         Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/setting/shield.png").into(ivDeal);
 
@@ -117,6 +119,7 @@ public class Tab5ClientFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),GosuJoinActivity.class);
                 intent.putExtra("where","client");
+                G.loginState = true;
                 startActivity(intent);
             }
         });

@@ -9,7 +9,7 @@ public interface LoginInterface {
     String LOGIN_URL = "http://donggo.dothome.co.kr/";
 
     @FormUrlEncoded
-    @POST("Retrofit/retrofit_simplelogin.php")
+    @POST("Retrofit/register_simplelogin.php")
     Call<String> getUserLogin(
             @Field("email") String email,
             @Field("pw") String pw

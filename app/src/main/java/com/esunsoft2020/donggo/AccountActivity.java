@@ -31,6 +31,10 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class AccountActivity extends AppCompatActivity {
 
@@ -119,8 +123,21 @@ public class AccountActivity extends AppCompatActivity {
             Bitmap bm = (Bitmap)bundle.get("data");
             G.profileImgUrl = G.BitMapToString(bm);
         }
-
         Glide.with(this).load(G.profileImgUrl).into(ivProfile);
+        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+        RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
+        Call<String> call = registerInterface.getUserProfileImgUrl(G.email,G.profileImgUrl);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(AccountActivity.this, "변경 완료", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(AccountActivity.this, "변경 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -131,10 +148,20 @@ public class AccountActivity extends AppCompatActivity {
 
     }
 
+    PreferenceHelper pref;
+
     public void clickLogout(View view) {
+        pref = new PreferenceHelper(this);
+        pref.putIsLogin(false);
+
         Intent intent = new Intent(this,MainActivity.class);
         intent.putExtra("logout","logout");
         startActivity(intent);
+
+        //초기화
+        G.init();
+        pref.init();
+
         finish();
 
         if(G.iskakaoLogin) {
@@ -144,7 +171,6 @@ public class AccountActivity extends AppCompatActivity {
                     if (throwable != null)
                         Toast.makeText(AccountActivity.this, "로그아웃 실패", Toast.LENGTH_SHORT).show();
                     else{
-                        G.init(null,null,null,null,null,false,false,false, false);
                         Toast.makeText(AccountActivity.this, "Kakao 로그아웃", Toast.LENGTH_SHORT).show();
                     }
                     return null;
@@ -152,8 +178,6 @@ public class AccountActivity extends AppCompatActivity {
             });
         }
 
-        //초기화
-        G.init(null,null,null,null,null,false,false,false, false);
         if(!G.iskakaoLogin) Toast.makeText(this, "로그아웃", Toast.LENGTH_SHORT).show();
     }
 

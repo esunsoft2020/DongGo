@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -12,6 +13,11 @@ import android.widget.Toast;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class AccountChangePwActivity extends AppCompatActivity {
 
@@ -126,9 +132,25 @@ public class AccountChangePwActivity extends AppCompatActivity {
         if(inputCurrent.equals(null)) inputCurrent.setError("기존 비밀번호를 입력해주세요.");
         else {
             //비밀번호 따로 저장하지 않기
-            G.pw = inputCheckNew.getText().toString();
-            finish();
-            onBackPressed();
+            String pw = inputCheckNew.getText().toString();
+
+            Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+            RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
+//            Toast.makeText(this, G.email+" : "+inputCurrent.getText().toString()+ " : "+inputCheckNew.getText().toString(), Toast.LENGTH_SHORT).show();
+            Call<String> call = registerInterface.getUserPw(G.email,inputCurrent.getText().toString(),inputCheckNew.getText().toString());
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    Toast.makeText(AccountChangePwActivity.this, "변경 완료 : "+response.body(), Toast.LENGTH_SHORT).show();
+                    Log.e("tag",response.body());
+                    onBackPressed();
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    Toast.makeText(AccountChangePwActivity.this, "다시 확인해주세요.", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
     }

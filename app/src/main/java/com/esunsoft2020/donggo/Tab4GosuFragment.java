@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,10 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -120,6 +125,20 @@ public class Tab4GosuFragment extends Fragment {
         }
 
         Glide.with(this).load(G.profileImgUrl).into(civ);
+        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+        RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
+        Call<String> call = registerInterface.getUserProfileImgUrl(G.email,G.profileImgUrl);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(getActivity(), "변경 완료", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(getActivity(), "변경 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

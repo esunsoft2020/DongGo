@@ -21,7 +21,23 @@ public class G {
     public static boolean isGoogleLogin = false;
     public static boolean isGosu =false;
 
+    public static boolean loginState = false;
+
+    public static void init(){
+        G.loginState = false;
+        G.name = null;
+        G.email = null;
+        G.pw =null;
+        G.phone = null;
+        G.profileImgUrl = null;
+        G.isEmailLogin = false;
+        G.iskakaoLogin = false;
+        G.isGoogleLogin = false;
+        G.isGosu = false;
+    }
+
     public static void init(String name,String emil,String pw, String phone, String profileImgUrl,boolean isEmailLogin,boolean iskakaoLogin,boolean isGoogleLogin,boolean isGosu){
+        G.loginState = true;
         G.name = name;
         G.email =emil;
         G.pw =pw;
@@ -84,6 +100,23 @@ public class G {
             return num.replaceFirst("(^[0-9]{4})([0-9]{4})([0-9]{4})$", "$1-$2-$3");
         }
         return num.replaceFirst("(^02|[0-9]{3})([0-9]{3,4})([0-9]{4})$", "$1-$2-$3");
+    }
+
+    //1 or 0 or null 로 온 String 을 boolean 으로 변경
+    public static boolean changeBooleanFormat(String tinyint){
+        boolean changeString =false;
+        if(tinyint.equals("1")) changeString = true;
+        else if(tinyint.equals("0") || tinyint.equals("null")) changeString = false;
+
+        return changeString;
+    }
+
+    //boolean 을 String 으로 변경
+    public static String changeStringFormat(boolean boo){
+        String changeBoolean = null;
+        if(boo==true) changeBoolean = 1+"";
+        else changeBoolean=0+"";
+        return changeBoolean;
     }
 
 
