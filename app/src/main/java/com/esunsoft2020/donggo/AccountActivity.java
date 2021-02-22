@@ -26,11 +26,15 @@ import com.google.android.material.snackbar.Snackbar;
 import com.kakao.sdk.auth.LoginClient;
 import com.kakao.sdk.user.UserApiClient;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -124,9 +128,15 @@ public class AccountActivity extends AppCompatActivity {
             G.profileImgUrl = G.BitMapToString(bm);
         }
         Glide.with(this).load(G.profileImgUrl).into(ivProfile);
+
         Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
         RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
-        Call<String> call = registerInterface.getUserProfileImgUrl(G.email,G.profileImgUrl);
+
+        File file = new File(G.profileImgUrl);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"),file);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("img",file.getName(),requestBody);
+
+        Call<String> call = registerInterface.uploadImage(part);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

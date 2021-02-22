@@ -1,10 +1,13 @@
 package com.esunsoft2020.donggo;
 
 import kotlin.jvm.JvmMultifileClass;
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface RegisterInterface {
     String REGIST_URL = "http://donggo.dothome.co.kr/";
@@ -59,6 +62,12 @@ public interface RegisterInterface {
             @Field("email") String email,
             @Field("isGosu") String isGosu
     );
+
+
+//  TODO : 사진 업로드 다시 시도...
+    @Multipart
+    @POST("/Retrofit/fileUpload.php")
+    Call<String> uploadImage(@Part MultipartBody.Part file);
 }
 
 

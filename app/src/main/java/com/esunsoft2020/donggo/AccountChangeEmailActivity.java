@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -14,6 +16,11 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class AccountChangeEmailActivity extends AppCompatActivity {
 
@@ -72,8 +79,26 @@ public class AccountChangeEmailActivity extends AppCompatActivity {
 
 
     public void clickComplete(View view) {
-        G.email = input.getText().toString();
-        finish();
+
+        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+        RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
+        Call<String> call = registerInterface.getUserEmail(G.email,input.getText().toString());
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(AccountChangeEmailActivity.this, "변경완료", Toast.LENGTH_SHORT).show();
+                Log.e("error",response.body());
+                G.email = input.getText().toString();
+//TODO : Email 변경 과정 수정 필요
+                onBackPressed();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(AccountChangeEmailActivity.this, "변경 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void clickClear(View view) {
