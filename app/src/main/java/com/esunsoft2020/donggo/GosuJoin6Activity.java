@@ -77,7 +77,7 @@ public class GosuJoin6Activity extends AppCompatActivity {
         G.isGosu=true;
         Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
         RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
-        Call<String> call = registerInterface.getUserisGosu(G.email,G.changeStringFormat(G.isGosu));
+        Call<String> call = registerInterface.getUserisGosu(G.email,G.boolean2String(G.isGosu));
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

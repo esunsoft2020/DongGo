@@ -52,11 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    boolean login;
 
     void showFragment(){
-        login = getIntent().getBooleanExtra("login",false);
-
         bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -81,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.bnv_receive:
                         if(fragments[2]==null){
 
-                            if(login) fragments[2] = new Tab3ClientFragment();
+                            if(G.loginState) fragments[2] = new Tab3ClientFragment();
                             else fragments[2] = new LogoutFragment();
 
                             tran.add(R.id.container, fragments[2]);
@@ -91,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.bnv_chat:
                         if(fragments[3]==null){
 
-                            if(login) fragments[3] = new Tab4ClientFragment();
+                            if(G.loginState) fragments[3] = new Tab4ClientFragment();
                             else fragments[3] = new LogoutFragment();
 
                             tran.add(R.id.container, fragments[3]);
@@ -100,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.bnv_setting:
                         if(fragments[4]==null){
-                            if(login) fragments[4] = new Tab5ClientFragment();
+                            if(G.loginState) fragments[4] = new Tab5ClientFragment();
                             else fragments[4] = new LogoutFragment();
 
                             tran.add(R.id.container, fragments[4]);
@@ -119,40 +116,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
-//        if(login){
-//            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//            builder.setMessage("종료하시겠습니까?");
-//            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//
-//                    //저장하고 종료
-//                    SharedPreferences pref = getSharedPreferences("userData",MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = pref.edit();
-//                    editor.putString("name",G.name);
-//                    editor.putString("email",G.email);
-//                    editor.putString("phone",G.phone);
-//                    editor.putString("image",G.profileImgUrl);
-//                    editor.putString("pw",G.pw);
-//                    editor.putBoolean("isEmailLogin",G.isEmailLogin);
-//                    editor.putBoolean("isKakaoLogin",G.iskakaoLogin);
-//                    editor.putBoolean("isFacebookLogin",G.isGoogleLogin);
-//                    editor.putBoolean("isGosu",G.isGosu);
-//
-//                    editor.commit();
-//
-//
-//                    finish();
-//                }
-//            });
-//            builder.setNegativeButton("No",null);
-//            AlertDialog dialog = builder.create();
-//            dialog.show();
-//        } else finish();
+        PreferenceHelper helper = new PreferenceHelper(this);
+        if(G.loginState) helper.putDatas();
 
         finish();
-
     }
 
 }

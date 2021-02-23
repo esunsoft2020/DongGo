@@ -50,6 +50,7 @@ public class AccountActivity extends AppCompatActivity {
     ArrayList<TwoStringItem> items = new ArrayList<>();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -158,22 +159,8 @@ public class AccountActivity extends AppCompatActivity {
 
     }
 
-    PreferenceHelper pref;
-
+    //로그아웃
     public void clickLogout(View view) {
-        pref = new PreferenceHelper(this);
-        pref.putIsLogin(false);
-
-        Intent intent = new Intent(this,MainActivity.class);
-        intent.putExtra("logout","logout");
-        startActivity(intent);
-
-        //초기화
-        G.init();
-        pref.init();
-
-        finish();
-
         if(G.iskakaoLogin) {
             UserApiClient.getInstance().logout(new Function1<Throwable, Unit>() {
                 @Override
@@ -189,20 +176,27 @@ public class AccountActivity extends AppCompatActivity {
         }
 
         if(!G.iskakaoLogin) Toast.makeText(this, "로그아웃", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this,IntroActivity.class));
+
+        //초기화
+        PreferenceHelper pref = new PreferenceHelper(this);
+        G.init();
+        pref.init();
+        finish();
     }
 
     public void clickWithdraw(View view) {
-        Toast.makeText(this, "계정 탈퇴!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "계정 탈퇴 준비중입니다.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onBackPressed() {
         Intent intent = null;
 
+        //TODO : Activity_tab5로 돌아가기
         switch (getIntent().getStringExtra("where")){
             case "client":
                 intent = new Intent(this,MainActivity.class);
-                intent.putExtra("login",true);
                 intent.putExtra("where","account");
                 break;
             case "Gosu":

@@ -2,6 +2,7 @@ package com.esunsoft2020.donggo;
 
 import android.graphics.Bitmap;
 import android.util.Base64;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
@@ -9,10 +10,9 @@ import java.util.regex.Pattern;
 
 public class G {
 
-    //TODO:회원가입시 이용 멤버추가 필요
     public static String name ;
     public static String email ;
-    public static String pw = "****";
+    public static String pw = "****";     //따로 저장x
     public static String phone;
     public static String profileImgUrl;
 
@@ -27,7 +27,6 @@ public class G {
         G.loginState = false;
         G.name = null;
         G.email = null;
-        G.pw =null;
         G.phone = null;
         G.profileImgUrl = null;
         G.isEmailLogin = false;
@@ -36,11 +35,10 @@ public class G {
         G.isGosu = false;
     }
 
-    public static void init(String name,String emil,String pw, String phone, String profileImgUrl,boolean isEmailLogin,boolean iskakaoLogin,boolean isGoogleLogin,boolean isGosu){
-        G.loginState = true;
+    public static void init(boolean loginState,String name,String emil, String phone, String profileImgUrl,boolean isEmailLogin,boolean iskakaoLogin,boolean isGoogleLogin,boolean isGosu){
+        G.loginState = loginState;
         G.name = name;
         G.email =emil;
-        G.pw =pw;
         G.phone = phone;
         G.profileImgUrl = profileImgUrl;
         G.isEmailLogin = isEmailLogin;
@@ -103,16 +101,15 @@ public class G {
     }
 
     //1 or 0 or null 로 온 String 을 boolean 으로 변경
-    public static boolean changeBooleanFormat(String tinyint){
-        boolean changeString =false;
-        if(tinyint.equals("1")) changeString = true;
-        else if(tinyint.equals("0") || tinyint.equals("null")) changeString = false;
-
-        return changeString;
+    public static boolean tinyint2Boolean(String tinyint){
+        boolean changeTinyint =false;
+        if(tinyint.equals("1")) changeTinyint = true;
+        else if(tinyint.equals("0") || tinyint.equals("null")) changeTinyint = false;
+        return changeTinyint;
     }
 
     //boolean 을 String 으로 변경
-    public static String changeStringFormat(boolean boo){
+    public static String boolean2String(boolean boo){
         String changeBoolean = null;
         if(boo==true) changeBoolean = 1+"";
         else changeBoolean=0+"";

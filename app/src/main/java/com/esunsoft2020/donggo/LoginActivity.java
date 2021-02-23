@@ -214,6 +214,8 @@ public class LoginActivity extends AppCompatActivity {
         successLogin =false;
         loginUser();
     }
+
+    //로그인
     private void loginUser(){
         final String email = etEmail.getText().toString();
         final String pw = etPw.getText().toString();
@@ -250,9 +252,8 @@ public class LoginActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject(response);
             if (jsonObject.getString("status").equals("true")) {
                 saveInfo(response);
-                Intent intent = new Intent(this,MainActivity.class);
-                intent.putExtra("login",true);
-                startActivity(intent);
+                if(G.isGosu) startActivity(new Intent(this,GosuActivity.class));
+                else startActivity(new Intent(this,MainActivity.class));
                 finish();
 
 //                Toast.makeText(LoginActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
@@ -276,20 +277,10 @@ public class LoginActivity extends AppCompatActivity {
                     String email = dataobj.getString("email");
                     String phone = dataobj.getString("phone");
                     String profileImgUrl = dataobj.getString("profileImgUrl");
-                    boolean isEmailLogin = G.changeBooleanFormat(dataobj.getString("isEmailLogin"));
-                    boolean isKakaoLogin = G.changeBooleanFormat(dataobj.getString("isKakaoLogin"));
-                    boolean isGoogleLogin = G.changeBooleanFormat(dataobj.getString("isGoogleLogin"));
-                    boolean isGosu = G.changeBooleanFormat(dataobj.getString("isGosu"));
-
-                    preferenceHelper.putIsLogin(true);
-                    preferenceHelper.putEmail(email);
-                    preferenceHelper.putName(name);
-                    preferenceHelper.putPhone(phone);
-                    preferenceHelper.putPROFILEIMGURL(profileImgUrl);
-                    preferenceHelper.putISEMAILLOGIN(isEmailLogin);
-                    preferenceHelper.putISKAKAOLOGIN(isKakaoLogin);
-                    preferenceHelper.putISGOOGLELOGIN(isGoogleLogin);
-                    preferenceHelper.putISGOSU(isGosu);
+                    boolean isEmailLogin = G.tinyint2Boolean(dataobj.getString("isEmailLogin"));
+                    boolean isKakaoLogin = G.tinyint2Boolean(dataobj.getString("isKakaoLogin"));
+                    boolean isGoogleLogin = G.tinyint2Boolean(dataobj.getString("isGoogleLogin"));
+                    boolean isGosu = G.tinyint2Boolean(dataobj.getString("isGosu"));
 
                     G.loginState = true;
                     G.email = email;
@@ -298,9 +289,13 @@ public class LoginActivity extends AppCompatActivity {
                     if(profileImgUrl!=null) G.profileImgUrl = profileImgUrl;
                     else G.profileImgUrl = null;
 
+                    G.isEmailLogin = isEmailLogin;
                     G.iskakaoLogin = isKakaoLogin;
                     G.isGoogleLogin = isGoogleLogin;
                     G.isGosu = isGosu;
+
+                    preferenceHelper.putDatas();
+
 
                 }
             }

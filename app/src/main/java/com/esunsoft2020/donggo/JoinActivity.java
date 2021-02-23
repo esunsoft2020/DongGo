@@ -184,7 +184,7 @@ public class JoinActivity extends AppCompatActivity {
         if(completeRegister){
 
 
-            G.init(etName.getText().toString(),etEmail.getText().toString(),etCPw.getText().toString(),null,null,true,false,false,false);
+            G.init(true,etName.getText().toString(),etEmail.getText().toString(),null,null,true,false,false,false);
             finish();
 
             if(isGosu){
@@ -276,7 +276,7 @@ public class JoinActivity extends AppCompatActivity {
                 {
                     JSONObject dataobj = dataArray.getJSONObject(i);
                     preferenceHelper.putEmail(dataobj.getString("email"));
-                    preferenceHelper.putIsLogin(G.changeBooleanFormat("isEmailLogin"));
+                    preferenceHelper.putIsLogin(G.tinyint2Boolean("isEmailLogin"));
                     preferenceHelper.putName(dataobj.getString("name"));
                 }
             }
@@ -308,7 +308,7 @@ public class JoinActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        G.init(null,null,null,null,null,false,false,false,false);
+        G.init();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();

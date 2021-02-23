@@ -18,6 +18,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import retrofit2.Call;
+import retrofit2.Retrofit;
+
 public class IntroActivity extends AppCompatActivity {
 
     @Override
@@ -45,14 +48,16 @@ public class IntroActivity extends AppCompatActivity {
     //마지막 사용 시 로그인 상태 불러오기
     void loadData(){
         PreferenceHelper preferenceHelper = new PreferenceHelper(this);
-        if(preferenceHelper.getIsLogin()) {
+        preferenceHelper.getDatas();
+
+        if(G.loginState) {
             if(G.name!=null) Toast.makeText(this, getResources().getString(R.string.intro_text)+" "+G.name+"님!", Toast.LENGTH_SHORT).show();
-            preferenceHelper.getDatas();
-            Intent intent = new Intent(this,MainActivity.class);
-            G.loginState = true;
-            intent.putExtra("login",true);
-            startActivity(intent);
+
+            if(G.isGosu) startActivity(new Intent(this,GosuActivity.class));
+            else startActivity(new Intent(this,MainActivity.class));
+            Log.e("getData",G.email+":"+G.name+":"+G.phone+":"+G.isEmailLogin+":"+G.loginState+":"+G.isGoogleLogin+":"+G.isGosu);
             finish();
+
         }else {
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
@@ -64,34 +69,33 @@ public class IntroActivity extends AppCompatActivity {
 
     //로그아웃 시 실행화면
     public void clickBtn1(View view) {
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
+        G.loginState=false;
+        startActivity(new Intent(this,MainActivity.class));
 //        finish();
     }
 
     //고객 로그인 실행화면
     public void clickBtn2(View view) {
-        Intent intent = new Intent(this,MainActivity.class);
-        intent.putExtra("login",true);
-        startActivity(intent);
+        G.loginState = true;
+        startActivity(new Intent(this,MainActivity.class));
 //        finish();
     }
 
     //고수 로그인 실행화면
     public void clickBtn3(View view) {
-        Intent intent = new Intent(this, GosuActivity.class);
-        startActivity(intent);
+        G.loginState=true;
+        startActivity(new Intent(this,GosuActivity.class));
 //        finish();
     }
 
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("종료하시겠습니까?");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setMessage("종료하시겠습니까?");
+//        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
 
                 //저장하고 종료
 //                SharedPreferences pref = getSharedPreferences("userData",MODE_PRIVATE);
@@ -107,11 +111,11 @@ public class IntroActivity extends AppCompatActivity {
 //                editor.putBoolean("isGosu",G.isGosu);
 //
 //                editor.commit();
-                finish();
-            }
-        });
-        builder.setNegativeButton("No",null);
-        AlertDialog dialog = builder.create();
-        dialog.show();
+//                finish();
+//            }
+//        });
+//        builder.setNegativeButton("No",null);
+//        AlertDialog dialog = builder.create();
+//        dialog.show();
     }
 }

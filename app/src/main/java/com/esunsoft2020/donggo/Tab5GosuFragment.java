@@ -121,10 +121,7 @@ public class Tab5GosuFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (!isChecked){
-                    Intent intent = new Intent(getActivity(),MainActivity.class);
-                    intent.putExtra("login",true);
-                    G.isGosu =true;
-                    startActivity(intent);
+                    startActivity(new Intent(getActivity(),MainActivity.class));
                     getActivity().finish();
                 }
             }
