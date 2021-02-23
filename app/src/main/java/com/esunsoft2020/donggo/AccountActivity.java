@@ -191,20 +191,19 @@ public class AccountActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = null;
 
         //TODO : Activity_tab5로 돌아가기
-        switch (getIntent().getStringExtra("where")){
+        switch (G.where){
             case "client":
-                intent = new Intent(this,MainActivity.class);
-                intent.putExtra("where","account");
+                startActivity(new Intent(this,MainActivity.class));
+                G.where="account";
                 break;
             case "Gosu":
-                intent = new Intent(this,GosuActivity.class);
-                intent.putExtra("where","account");
+                startActivity(new Intent(this,GosuActivity.class));
+                G.where="account";
                 break;
         }
-        startActivity(intent);
+
         finish();
     }
 

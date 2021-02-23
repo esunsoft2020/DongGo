@@ -85,9 +85,8 @@ public class Tab5GosuFragment extends Fragment {
         layoutProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),AccountActivity.class);
-                intent.putExtra("where","Gosu");
-                startActivity(intent);
+                G.where = "Gosu";
+                startActivity(new Intent(getActivity(),AccountActivity.class));
                 getActivity().finish();
 
             }

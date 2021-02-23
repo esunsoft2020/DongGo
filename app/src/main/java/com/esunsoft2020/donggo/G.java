@@ -23,6 +23,8 @@ public class G {
 
     public static boolean loginState = false;
 
+    public static String where;
+
     public static void init(){
         G.loginState = false;
         G.name = null;

@@ -10,7 +10,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -48,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
         //로그아웃 시
 //        if(getIntent().getStringExtra("logout")!=null) finish();
 
-
-
+        Log.e("where",G.where);
+        if(G.where.equals("account")|| G.where.equals("Gosu") ) bnv.setSelectedItemId(R.id.bnv_setting);
     }
 
 

@@ -3,6 +3,7 @@ package com.esunsoft2020.donggo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -41,7 +42,6 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         loadData();
     }
 
