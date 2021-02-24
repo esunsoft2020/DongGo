@@ -183,10 +183,7 @@ public class JoinActivity extends AppCompatActivity {
 
         if(completeRegister){
 
-
             G.init(true,etName.getText().toString(),etEmail.getText().toString(),null,null,true,false,false,false);
-            finish();
-
             if(isGosu){
                 Intent intent = new Intent(this, GosuJoinActivity.class);
                 startActivity(intent);
@@ -196,6 +193,7 @@ public class JoinActivity extends AppCompatActivity {
                 intent.putExtra("login",true);
                 startActivity(intent);
             }
+            finish();
 
         }
 

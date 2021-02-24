@@ -7,6 +7,7 @@ import androidx.loader.content.CursorLoader;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -18,7 +19,10 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -187,9 +191,36 @@ public class AccountActivity extends AppCompatActivity {
         G.where = "intro";
         finish();
     }
-
+    Dialog customDialog;  //커스텀
     //계정 탈퇴
     public void clickWithdraw(View view) {
+        customDialog = new Dialog(AccountActivity.this);
+        customDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customDialog.setContentView(R.layout.withdraw_dialog);
+
+        showCustomDialog();
+
+    }
+
+    public void showCustomDialog(){
+        customDialog.show();
+        Button clickNo = customDialog.findViewById(R.id.no);
+        clickNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customDialog.dismiss();
+            }
+        });
+
+        TextView clickYes = customDialog.findViewById(R.id.yes);
+        clickYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AccountActivity.this,WithdrawActivity.class));
+                customDialog.dismiss();
+                finish();
+            }
+        });
 
     }
 

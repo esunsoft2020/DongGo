@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         PreferenceHelper helper = new PreferenceHelper(this);
         if(G.loginState) helper.putDatas();
-
         finish();
     }
 

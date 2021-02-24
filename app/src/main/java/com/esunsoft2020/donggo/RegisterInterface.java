@@ -63,6 +63,20 @@ public interface RegisterInterface {
             @Field("isGosu") String isGosu
     );
 
+    @FormUrlEncoded
+    @POST("Retrofit/retrofit_registerWithdrawExcuse.php")
+    Call<String> insertExcuse(
+            @Field("email") String email,
+            @Field("selectedExcuse") String selectedExcuse,
+            @Field("excuse") String excuse
+    );
+
+    @FormUrlEncoded
+    @POST("Retrofit/retrofit_deleteAccount.php")
+    Call<String> deleteAccount(
+            @Field("email") String email,
+            @Field("name") String name
+    );
 
 //  TODO : 사진 업로드 다시 시도...
     @Multipart

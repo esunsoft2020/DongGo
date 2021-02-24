@@ -141,14 +141,14 @@ public class AccountChangePwActivity extends AppCompatActivity {
             call.enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
-                    Toast.makeText(AccountChangePwActivity.this, "변경 완료 : "+response.body(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AccountChangePwActivity.this, "변경 완료", Toast.LENGTH_SHORT).show();
                     Log.e("tag",response.body());
                     onBackPressed();
                 }
 
                 @Override
                 public void onFailure(Call<String> call, Throwable t) {
-                    Toast.makeText(AccountChangePwActivity.this, "다시 확인해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AccountChangePwActivity.this, "실패", Toast.LENGTH_SHORT).show();
                 }
             });
         }

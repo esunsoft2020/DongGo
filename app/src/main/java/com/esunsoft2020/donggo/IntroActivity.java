@@ -42,6 +42,7 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        G.where = "intro";
         loadData();
     }
 
