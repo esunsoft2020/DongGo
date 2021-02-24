@@ -188,8 +188,9 @@ public class AccountActivity extends AppCompatActivity {
         finish();
     }
 
+    //계정 탈퇴
     public void clickWithdraw(View view) {
-        Toast.makeText(this, "계정 탈퇴 준비중입니다.", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

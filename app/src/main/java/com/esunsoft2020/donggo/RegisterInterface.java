@@ -45,8 +45,8 @@ public interface RegisterInterface {
     @FormUrlEncoded
     @POST("Retrofit/retrofit_updateEmail.php")
     Call<String> getUserEmail(
-            @Field("email") String CurrentEmail,
-            @Field("email") String NewEmail
+            @Field("currentEmail") String currentEmail,
+            @Field("newEmail") String newEmail
     );
 
     @FormUrlEncoded

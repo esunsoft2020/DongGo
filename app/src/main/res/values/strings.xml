@@ -222,4 +222,9 @@
     <string name="client">고객님</string>
     <string name="Gosu">고수님</string>
 
+    <string name="changeAccount1">이름 변경</string>
+    <string name="changeAccount2">이메일 변경</string>
+    <string name="changeAccount3">비밀번호 변경</string>
+    <string name="changeAccount4">휴대전화 번호 설정</string>
+
 </resources>
