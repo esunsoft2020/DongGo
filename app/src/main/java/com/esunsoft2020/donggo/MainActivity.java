@@ -51,8 +51,13 @@ public class MainActivity extends AppCompatActivity {
         //로그아웃 시
 //        if(getIntent().getStringExtra("logout")!=null) finish();
 
-        Log.e("where",G.where);
-        if(G.where.equals("account")|| G.where.equals("Gosu") ) bnv.setSelectedItemId(R.id.bnv_setting);
+        Log.e("where",G.where+"");
+        if(G.where.equals("account") ) {
+            bnv.setSelectedItemId(R.id.bnv_setting);
+        }else if(G.where.equals("Gosu")){
+            bnv.setSelectedItemId(R.id.bnv_setting);
+        }
+        G.where = "client";
     }
 
 

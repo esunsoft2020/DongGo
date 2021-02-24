@@ -131,6 +131,7 @@ public class Tab5ClientFragment extends Fragment {
                 if(isChecked){
                     Intent intent = new Intent(getActivity(), GosuActivity.class);
                     startActivity(intent);
+                    G.where = "client";
                     getActivity().finish();
 
                 }
@@ -141,7 +142,7 @@ public class Tab5ClientFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),AccountActivity.class);
-                intent.putExtra("where","client");
+                G.where = "client";
                 startActivity(intent);
                 getActivity().finish();
             }

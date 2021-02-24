@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -84,14 +85,14 @@ public class AccountActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        adapter.notifyDataSetChanged();
 
         items.clear();
         items.add(new TwoStringItem("이름",G.name));
         items.add(new TwoStringItem("이메일",G.email));
-        items.add(new TwoStringItem("비밀번호","*****"));
+        items.add(new TwoStringItem("비밀번호",G.pw));
         items.add(new TwoStringItem("휴대전화 번호",G.changePhoneFormat(G.phone)));
 
+        adapter.notifyDataSetChanged();
 
         if(G.profileImgUrl!=null)Glide.with(this).load(G.profileImgUrl).into(ivProfile);
         else Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
@@ -182,6 +183,8 @@ public class AccountActivity extends AppCompatActivity {
         PreferenceHelper pref = new PreferenceHelper(this);
         G.init();
         pref.init();
+        Log.e("tagtag",G.where+"");
+        G.where = "intro";
         finish();
     }
 
@@ -192,18 +195,15 @@ public class AccountActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        //TODO : Activity_tab5로 돌아가기
         switch (G.where){
             case "client":
                 startActivity(new Intent(this,MainActivity.class));
-                G.where="account";
                 break;
             case "Gosu":
                 startActivity(new Intent(this,GosuActivity.class));
-                G.where="account";
                 break;
         }
-
+        G.where="account";
         finish();
     }
 

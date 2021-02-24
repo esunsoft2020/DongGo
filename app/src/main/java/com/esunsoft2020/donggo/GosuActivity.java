@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -45,11 +46,14 @@ public class GosuActivity extends AppCompatActivity {
 
         showFragment();
 
+        if(!G.loginState) finish();
 
-        if(getIntent().getStringExtra("logout")!=null) finish();
-
-
-
+        if(G.where.equals("account") ) {
+            bnv.setSelectedItemId(R.id.bnv_gosu_set);
+        }else if(G.where.equals("client")){
+            bnv.setSelectedItemId(R.id.bnv_gosu_set);
+        }
+        G.where = "Gosu";
     }
 
     void showFragment(){

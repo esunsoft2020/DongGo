@@ -121,6 +121,7 @@ public class Tab5GosuFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (!isChecked){
                     startActivity(new Intent(getActivity(),MainActivity.class));
+                    G.where = "Gosu";
                     getActivity().finish();
                 }
             }

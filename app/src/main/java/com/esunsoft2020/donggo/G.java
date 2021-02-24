@@ -12,7 +12,7 @@ public class G {
 
     public static String name ;
     public static String email ;
-    public static String pw = "****";     //따로 저장x
+    public static String pw = "*****";     //따로 저장x
     public static String phone;
     public static String profileImgUrl;
 
@@ -23,7 +23,7 @@ public class G {
 
     public static boolean loginState = false;
 
-    public static String where;
+    public static String where = "intro";
 
     public static void init(){
         G.loginState = false;
