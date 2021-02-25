@@ -39,8 +39,6 @@ public class JoinActivity extends AppCompatActivity {
     RelativeLayout layoutClient, layoutGosu, joinLayout;
     ImageView ivC,ivG;
 
-    Boolean isGosu = false;
-
     TextInputLayout etNameLayout,etEmailLayout,etPwLayout,etCPwLayout;
     TextInputEditText etName,etEmail,etPw,etCPw;
     CheckBox checkBox;
@@ -154,7 +152,7 @@ public class JoinActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ivC.setSelected(true);
                 ivG.setSelected(false);
-                isGosu = false;
+                G.prepareGosu = false;
             }
         });
         layoutGosu.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +160,7 @@ public class JoinActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ivC.setSelected(false);
                 ivG.setSelected(true);
-                isGosu=true;
+                G.prepareGosu=true;
             }
         });
 
@@ -182,19 +180,12 @@ public class JoinActivity extends AppCompatActivity {
         registerMe();
 
         if(completeRegister){
-
             G.init(true,etName.getText().toString(),etEmail.getText().toString(),null,null,true,false,false,false);
-            if(isGosu){
-                Intent intent = new Intent(this, GosuJoinActivity.class);
-                startActivity(intent);
 
-            } else {
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("login",true);
-                startActivity(intent);
-            }
+            if(G.prepareGosu) startActivity(new Intent(this,GosuJoin5Activity.class));
+            else startActivity(new Intent(this,MainActivity.class));
+
             finish();
-
         }
 
 

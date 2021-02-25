@@ -21,6 +21,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -37,6 +39,11 @@ public class GosuJoin5Activity extends AppCompatActivity {
     GoogleMap gMap;
     double lat,lng;
     LatLng latLng;
+    String doro;
+    String jiBun;
+    MarkerOptions marker;
+    CircleOptions circleOptions;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,36 +69,36 @@ public class GosuJoin5Activity extends AppCompatActivity {
 
         dis1.setSelected(true);
 
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        String doro = getIntent().getStringExtra("addressDoro");
-        String jiBun = getIntent().getStringExtra("addressJibun");
+        doro = getIntent().getStringExtra("addressDoro");
+        jiBun = getIntent().getStringExtra("addressJibun");
 
 
-        addressDoro.setText("[도로명] "+doro);
-        if(addressDoro==null){
+        addressDoro.setText("[도로명] " + doro);
+        if (addressDoro == null) {
             addressDoro.setText("불러오지 못했습니다");
         }
-        addressJibun.setText("[지번] "+jiBun);
-        if(addressJibun==null){
+        addressJibun.setText("[지번] " + jiBun);
+        if (addressJibun == null) {
             addressJibun.setText("불러오지 못했습니다");
         }
-
 
 
         //주소 -> 좌표로 변환 (지오코딩)
         Geocoder geocoder = new Geocoder(this, Locale.KOREA);
         try {
-            List<Address> addresses = geocoder.getFromLocationName(doro,1);
+            List<Address> addresses = geocoder.getFromLocationName(doro, 1);
 
             //구글지도에 보여주기 위해 검색된 위도,경도 중 1개를 멤버변수로 대입
             lat = addresses.get(0).getLatitude();
             lng = addresses.get(0).getLongitude();
-            latLng = new LatLng(lat,lng);
+            latLng = new LatLng(lat, lng);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -107,22 +114,13 @@ public class GosuJoin5Activity extends AppCompatActivity {
             public void onMapReady(GoogleMap googleMap) {
                 //파라미터로 전달된 GoogleMap이 지도 객체임!
                 gMap = googleMap;   //멤버변수에 대입하면 이 객체를 다른 메소드에소 사용 가능해서 권장
-
                 //지도의 특정좌표로 이동 및 줌인
-                LatLng seoul = new LatLng(lat, lng);
-                gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 15));   //줌:1~25
+                gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));   //줌:1~25
 
-                //마커 추가하기
-                MarkerOptions marker = new MarkerOptions();
-                marker.anchor(0.5f, 1.0f);
-                marker.title(doro);
-                marker.position(latLng);
-                gMap.addMarker(marker);
-
+                onAddMarker();
 
                 UiSettings settings = gMap.getUiSettings();
                 settings.setZoomControlsEnabled(true);
-
                 //내 위치 탐색을 지도 라이브러리에서 제공해줌
                 settings.setMyLocationButtonEnabled(true);
             }
@@ -130,8 +128,32 @@ public class GosuJoin5Activity extends AppCompatActivity {
 
     }
 
+    Circle circle;
+    public void onAddMarker(){
+        //마커 추가하기
+        marker = new MarkerOptions().position(latLng).anchor(0.5f, 1.0f).title(doro);
+        circleOptions = new CircleOptions().center(latLng).strokeWidth(0.5f).fillColor(getResources().getColor(R.color.mapCircle));
+        gMap.addMarker(marker);
+        gMap.addCircle(circleOptions);
+    }
+
+    public void changeZoom(float v){
+        gMap.resetMinMaxZoomPreference();
+        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, v));
+    }
+    public void changeRadius(float v){
+        //TODO : 기존 반경 삭제하고 새로 반경 추가하기.
+        if(circleOptions == null){
+            circleOptions = new CircleOptions().center(latLng).strokeWidth(0.5f).fillColor(getResources().getColor(R.color.mapCircle));
+
+        }else {
+            circleOptions.center(latLng);
+        }
+        gMap.addCircle(circleOptions.radius(v*1000));
+    }
 
     public void clickDistance(View view) {
+
         switch (view.getId()){
             case R.id.dis1:
                 dis1.setSelected(true);
@@ -141,6 +163,8 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 dis5.setSelected(false);
                 dis6.setSelected(false);
                 dis7.setSelected(false);
+                changeRadius(2);
+                changeZoom(13);
                 break;
             case R.id.dis2:
                 dis1.setSelected(false);
@@ -150,6 +174,8 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 dis5.setSelected(false);
                 dis6.setSelected(false);
                 dis7.setSelected(false);
+                changeRadius(5);
+                changeZoom(12);
                 break;
             case R.id.dis3:
                 dis1.setSelected(false);
@@ -159,6 +185,8 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 dis5.setSelected(false);
                 dis6.setSelected(false);
                 dis7.setSelected(false);
+                changeRadius(10);
+                changeZoom(11);
                 break;
             case R.id.dis4:
                 dis1.setSelected(false);
@@ -168,6 +196,8 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 dis5.setSelected(false);
                 dis6.setSelected(false);
                 dis7.setSelected(false);
+                changeRadius(25);
+                changeZoom(9.5f);
                 break;
             case R.id.dis5:
                 dis1.setSelected(false);
@@ -177,6 +207,8 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 dis5.setSelected(true);
                 dis6.setSelected(false);
                 dis7.setSelected(false);
+                changeRadius(50);
+                changeZoom(8.5f);
                 break;
             case R.id.dis6:
                 dis1.setSelected(false);
@@ -186,6 +218,8 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 dis5.setSelected(false);
                 dis6.setSelected(true);
                 dis7.setSelected(false);
+                changeRadius(100);
+                changeZoom(7);
                 break;
             case R.id.dis7:
                 dis1.setSelected(false);
@@ -195,11 +229,13 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 dis5.setSelected(false);
                 dis6.setSelected(false);
                 dis7.setSelected(true);
+                changeRadius(250);
+                changeZoom(6);
                 break;
         }
-
-
+        gMap.addCircle(circleOptions);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

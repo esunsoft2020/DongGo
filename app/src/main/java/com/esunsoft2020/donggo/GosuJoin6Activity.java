@@ -74,15 +74,21 @@ public class GosuJoin6Activity extends AppCompatActivity {
     public void clickComplete(View view) {
         Intent intent = new Intent(this,GosuActivity.class);
         startActivity(intent);
+
         G.isGosu=true;
+        PreferenceHelper helper = new PreferenceHelper(this);
+        helper.putIsLogin(G.isGosu);
+
         Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
         RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
         Call<String> call = registerInterface.getUserisGosu(G.email,G.boolean2String(G.isGosu));
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                Toast.makeText(GosuJoin6Activity.this, "고수 가입 완료", Toast.LENGTH_SHORT).show();
-                finish();
+                if(response.body().equals("success")) {
+                    Toast.makeText(GosuJoin6Activity.this, "고수 가입 완료", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
 
             @Override

@@ -52,25 +52,13 @@ public class GosuJoinActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(G.loginState){
-            Log.e("Gosu","client");
-            Intent intent = new Intent(this,MainActivity.class);
-            intent.putExtra("login",true);
-            startActivity(intent);
+            startActivity(new Intent(this,MainActivity.class));
             finish();
-
-        }else{
-            Intent intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
     }
 
     public void clickBranch(View view) {
-
-        Intent intent = new Intent(this,GosuJoin2Activity.class);
-        intent.putExtra("branch",view.getTag().toString());
-        startActivity(intent);
+        G.branch = view.getTag().toString();
+        startActivity(new Intent(this,GosuJoin2Activity.class));
         finish();
     }
 }

@@ -42,7 +42,7 @@ public class GosuJoin2Activity extends AppCompatActivity {
         super.onResume();
 
         items.clear();
-        String branch = getIntent().getStringExtra("branch");
+        String branch = G.branch;
 
         switch (branch){
             case "레슨":

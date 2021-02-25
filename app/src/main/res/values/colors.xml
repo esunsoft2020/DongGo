@@ -16,4 +16,5 @@
     <color name="btn">#9ed8d7</color>
     <color name="yellow">#D8C204</color>
     <color name="red">#FFEE0000</color>
+    <color name="mapCircle">#3290F495</color>
 </resources>
