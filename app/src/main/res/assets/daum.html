@@ -72,7 +72,7 @@ function onReceivedActivityMessageViaJavascriptInterface(json){
                     extraRoadAddr += data.bname;
                 }
                 // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
+                if(data.buildingName !== '' ){
                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
                 // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
@@ -85,20 +85,36 @@ function onReceivedActivityMessageViaJavascriptInterface(json){
                     doroAddr = fullRoadAddr;
                 }		
 
+                //기본 주소가 지번주소일 경우
+                if(data.addressType === 'J'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+
                 var fullJibunAddr = data.jibunAddress;             //지번 주소 변수
                 var extraJibunAddr = '';                       //지번 조합형 주소 변수
                 var jibunAddr='';
              
-                if(data.buildingName!=='' && data.apartment==='Y'){
+                if(data.buildingName!=='' ){
                     extraJibunAddr += (extraJibunAddr === '' ? ', ' + data.buildingName : data.buildingName);
                 }
-                if(fullJibunAddr !==''){
-                    fullJibunAddr += extraJibunAddr;
-                    jibunAddr = fullJibunAddr;
-                }
+                if(fullJibunAddr ===''){
+                    fullJibunAddr += (data.autoJibunAddress + extraJibunAddr);
+                    
+                }else fullJibunAddr += extraJibunAddr;
+                
+                jibunAddr = fullJibunAddr;
 
-
-				window.Android.processData("[도로명] "+doroAddr, "[지번] "+ jibunAddr);
+				window.Android.processData(doroAddr,jibunAddr);
             },
             width : '100%',
             height : '100%'

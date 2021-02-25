@@ -21,7 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DongGo"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WebViewActivity"></activity>
+        <activity android:name=".WebViewActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
         <activity
             android:name=".WithdrawActivity"
             android:windowSoftInputMode="adjustResize" />

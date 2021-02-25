@@ -6,8 +6,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,12 +25,18 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.appbar.MaterialToolbar;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 public class GosuJoin5Activity extends AppCompatActivity {
 
     TextView dis1,dis2,dis3,dis4,dis5,dis6,dis7;
     TextView addressDoro,addressJibun;
 
     GoogleMap gMap;
+    double lat,lng;
+    LatLng latLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +62,42 @@ public class GosuJoin5Activity extends AppCompatActivity {
 
         dis1.setSelected(true);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        String doro = getIntent().getStringExtra("addressDoro");
+        String jiBun = getIntent().getStringExtra("addressJibun");
+
+
+        addressDoro.setText("[도로명] "+doro);
+        if(addressDoro==null){
+            addressDoro.setText("불러오지 못했습니다");
+        }
+        addressJibun.setText("[지번] "+jiBun);
+        if(addressJibun==null){
+            addressJibun.setText("불러오지 못했습니다");
+        }
+
+
+
+        //주소 -> 좌표로 변환 (지오코딩)
+        Geocoder geocoder = new Geocoder(this, Locale.KOREA);
+        try {
+            List<Address> addresses = geocoder.getFromLocationName(doro,1);
+
+            //구글지도에 보여주기 위해 검색된 위도,경도 중 1개를 멤버변수로 대입
+            lat = addresses.get(0).getLatitude();
+            lng = addresses.get(0).getLongitude();
+            latLng = new LatLng(lat,lng);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         SupportMapFragment mapFragment = (SupportMapFragment) fragmentManager.findFragmentById(R.id.map);
 
@@ -64,10 +109,15 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 gMap = googleMap;   //멤버변수에 대입하면 이 객체를 다른 메소드에소 사용 가능해서 권장
 
                 //지도의 특정좌표로 이동 및 줌인
-                LatLng seoul = new LatLng(37.56282087, 127.035192);
+                LatLng seoul = new LatLng(lat, lng);
                 gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 15));   //줌:1~25
 
-
+                //마커 추가하기
+                MarkerOptions marker = new MarkerOptions();
+                marker.anchor(0.5f, 1.0f);
+                marker.title(doro);
+                marker.position(latLng);
+                gMap.addMarker(marker);
 
 
                 UiSettings settings = gMap.getUiSettings();
@@ -75,31 +125,8 @@ public class GosuJoin5Activity extends AppCompatActivity {
 
                 //내 위치 탐색을 지도 라이브러리에서 제공해줌
                 settings.setMyLocationButtonEnabled(true);
-
-
             }
         });
-
-
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        addressDoro.setText(getIntent().getStringExtra("addressDoro"));
-        if(addressDoro==null){
-            addressDoro.setText("불러오지 못했습니다");
-        }
-        addressJibun.setText(getIntent().getStringExtra("addressJibun"));
-        if(addressJibun==null){
-            addressJibun.setText("불러오지 못했습니다");
-        }
-
-
-
-
 
     }
 
