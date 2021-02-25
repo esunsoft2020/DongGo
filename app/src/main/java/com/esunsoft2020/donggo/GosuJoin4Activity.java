@@ -1,19 +1,23 @@
 package com.esunsoft2020.donggo;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class GosuJoin4Activity extends AppCompatActivity {
 
-    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,31 @@ public class GosuJoin4Activity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case 10:
+                if(resultCode ==RESULT_OK){
+                    String addressDoro = data.getExtras().getString("doro");
+                    String addressJibeon = data.getExtras().getString("jibun");
+                    if(addressDoro!=null && addressJibeon!=null){
+                        Bundle bundle = new Bundle();
+                        bundle.putString("addressDoro",addressDoro);
+                        bundle.putString("addressJibun",addressJibeon);
+                        startActivity(new Intent(this,GosuJoin5Activity.class).putExtras(bundle));
+                        finish();
+                    }
+                }
+                break;
+        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -50,11 +79,7 @@ public class GosuJoin4Activity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-    //다음으로 넘기기 위한 Test Button
-    public void clickNext(View view) {
-        Intent intent = new Intent(this,GosuJoin5Activity.class);
-        startActivity(intent);
-        finish();
+    public void clickAddress(View view) {
+        (GosuJoin4Activity.this).startActivityForResult(new Intent(GosuJoin4Activity.this, WebViewActivity.class),10);
     }
 }

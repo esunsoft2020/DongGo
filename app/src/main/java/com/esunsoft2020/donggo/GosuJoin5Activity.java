@@ -25,6 +25,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 public class GosuJoin5Activity extends AppCompatActivity {
 
     TextView dis1,dis2,dis3,dis4,dis5,dis6,dis7;
+    TextView addressDoro,addressJibun;
 
     GoogleMap gMap;
 
@@ -46,6 +47,9 @@ public class GosuJoin5Activity extends AppCompatActivity {
         dis5 = findViewById(R.id.dis5);
         dis6 = findViewById(R.id.dis6);
         dis7 = findViewById(R.id.dis7);
+
+        addressDoro = findViewById(R.id.address_doro);
+        addressJibun = findViewById(R.id.address_jibun);
 
         dis1.setSelected(true);
 
@@ -83,6 +87,15 @@ public class GosuJoin5Activity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        addressDoro.setText(getIntent().getStringExtra("addressDoro"));
+        if(addressDoro==null){
+            addressDoro.setText("불러오지 못했습니다");
+        }
+        addressJibun.setText(getIntent().getStringExtra("addressJibun"));
+        if(addressJibun==null){
+            addressJibun.setText("불러오지 못했습니다");
+        }
 
 
 
