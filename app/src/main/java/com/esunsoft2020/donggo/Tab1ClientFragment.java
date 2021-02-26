@@ -159,7 +159,7 @@ public class Tab1ClientFragment extends Fragment {
 
     void clickIcon(View v){
 
-        //TODO : 다른 액티비티 생성하기
+        //TODO : 다른 액티비티 생성하기(슬라이딩 뷰가 들어간 액티비티)
         Intent intent = new Intent(getActivity(),AllServiceActivity.class);
         intent.putExtra("service",v.getTag().toString());
         Toast.makeText(getActivity(), "준비중입니다.", Toast.LENGTH_SHORT).show();

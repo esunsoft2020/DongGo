@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -46,15 +47,24 @@ public class JoinListViewAdapter extends BaseAdapter {
 
         CheckBox checkBox = convertView.findViewById(R.id.cb);
         TextView tvTitle = convertView.findViewById(R.id.tv);
+        RelativeLayout layout = convertView.findViewById(R.id.layout);
 
         tvTitle.setText(items.get(position));
         checkBox.setTag(items.get(position));
+        layout.setTag(items.get(position));
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked) tvTitle.setTextColor(context.getResources().getColor(R.color.brandColor));
                 else tvTitle.setTextColor(context.getResources().getColor(R.color.text_normal));
+            }
+        });
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkBox.isChecked()) checkBox.setChecked(false);
+                else checkBox.setChecked(true);
             }
         });
 

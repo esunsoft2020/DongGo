@@ -8,7 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -19,6 +23,8 @@ public class GosuJoin2Activity extends AppCompatActivity {
     ListView listView;
     JoinListViewAdapter adapter;
     ArrayList<String> items = new ArrayList<>();
+
+    RelativeLayout next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +40,19 @@ public class GosuJoin2Activity extends AppCompatActivity {
         listView = findViewById(R.id.listview);
         adapter = new JoinListViewAdapter(this,items);
         listView.setAdapter(adapter);
+
+        next = findViewById(R.id.next_layout);
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
+        next.setClickable(false);
+        next.setBackgroundResource(R.color.text_light_gray);
 
         items.clear();
-        String branch = G.branch;
+        String branch = RegisterGosu.gosuBranch;
 
         switch (branch){
             case "레슨":
@@ -103,12 +113,26 @@ public class GosuJoin2Activity extends AppCompatActivity {
                 items.add("금융");
                 break;
         }
+
+        //TODO : CheckBox 클릭시 다음으로 넘어갈 수 있는 작업 필요 (아래 작업 작동X)
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CheckBox cb = view.findViewById(R.id.cb);
+                if(cb.isChecked()){
+                    next.setClickable(true);
+                    next.setBackgroundResource(R.color.brandColor);
+                }
+            }
+        });
     }
 
 
+
+
+
     public void clickNext(View view) {
-        Intent intent = new Intent(this,GosuJoin3Activity.class);
-        startActivity(intent);
+        startActivity(new Intent(this,GosuJoin3Activity.class));
         finish();
     }
 
@@ -130,8 +154,7 @@ public class GosuJoin2Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this,GosuJoinActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this,GosuJoinActivity.class));
         finish();
     }
 

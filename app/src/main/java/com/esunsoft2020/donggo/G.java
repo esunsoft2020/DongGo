@@ -23,7 +23,6 @@ public class G {
 
     public static boolean loginState = false;
     public static boolean prepareGosu = false;
-    public static String branch;
 
     public static String where = "intro";
 

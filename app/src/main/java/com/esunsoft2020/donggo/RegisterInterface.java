@@ -78,6 +78,19 @@ public interface RegisterInterface {
             @Field("name") String name
     );
 
+    @FormUrlEncoded
+    @POST("Retrofit/retrofit_registerGosu.php")
+    Call<String> getUserRegistGosuInfo(
+            @Field("email") String email,
+            @Field("gosuService") String gosuService,
+            @Field("gosuBranch") String gosuBranch,
+            @Field("serviceDetail") String serviceDetail,
+            @Field("address") String address,
+            @Field("radius") String radius,
+            @Field("mf") String mf,
+            @Field("phone") String phone
+    );
+
 //  TODO : 사진 업로드 다시 시도...
     @Multipart
     @POST("/Retrofit/fileUpload.php")

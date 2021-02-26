@@ -116,6 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp">
                 <EditText
+                    android:id="@+id/et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/branch_service12"
@@ -126,6 +127,7 @@
                     android:inputType="number|phone"
                     android:imeOptions="actionDone"/>
                 <TextView
+                    android:id="@+id/send_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/et"
@@ -136,7 +138,8 @@
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
                     android:layout_marginRight="8dp"
-                    android:layout_centerVertical="true"/>
+                    android:layout_centerVertical="true"
+                    android:onClick="clickSend"/>
             </RelativeLayout>
 
             <TextView
@@ -153,6 +156,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp">
                 <EditText
+                    android:id="@+id/et_confirmNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/branch_service15"
@@ -161,8 +165,10 @@
                     android:layout_centerVertical="true"
                     android:padding="12dp"
                     android:inputType="text"
-                    android:imeOptions="actionDone"/>
+                    android:imeOptions="actionDone"
+                    android:backgroundTint="@color/light_light_gray"/>
                 <TextView
+                    android:id="@+id/confirm_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/et"
@@ -173,7 +179,8 @@
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="8dp" />
+                    android:layout_marginRight="8dp"
+                    android:onClick="clickPhoneConfirm"/>
             </RelativeLayout>
 
 
