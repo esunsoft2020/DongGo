@@ -1,5 +1,6 @@
 package com.esunsoft2020.donggo;
 
+import androidx.annotation.IntegerRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -12,9 +13,12 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,6 +30,7 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 import java.util.List;
@@ -43,6 +48,9 @@ public class GosuJoin5Activity extends AppCompatActivity {
     String jiBun;
     MarkerOptions marker;
     CircleOptions circleOptions;
+
+    RelativeLayout next;
+    String selectedDistance;
 
 
     @Override
@@ -69,12 +77,16 @@ public class GosuJoin5Activity extends AppCompatActivity {
 
         dis1.setSelected(true);
 
+        next = findViewById(R.id.next_layout);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        next.setClickable(true);
+        next.setBackgroundResource(R.color.brandColor);
 
         doro = getIntent().getStringExtra("addressDoro");
         jiBun = getIntent().getStringExtra("addressJibun");
@@ -89,6 +101,7 @@ public class GosuJoin5Activity extends AppCompatActivity {
             addressJibun.setText("불러오지 못했습니다");
         }
 
+        if(doro==null) return;
 
         //주소 -> 좌표로 변환 (지오코딩)
         Geocoder geocoder = new Geocoder(this, Locale.KOREA);
@@ -165,6 +178,7 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 dis7.setSelected(false);
                 changeRadius(2);
                 changeZoom(13);
+                selectedDistance = "2km";
                 break;
             case R.id.dis2:
                 dis1.setSelected(false);
@@ -176,6 +190,7 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 dis7.setSelected(false);
                 changeRadius(5);
                 changeZoom(12);
+                selectedDistance = "5km";
                 break;
             case R.id.dis3:
                 dis1.setSelected(false);
@@ -187,6 +202,7 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 dis7.setSelected(false);
                 changeRadius(10);
                 changeZoom(11);
+                selectedDistance = "10km";
                 break;
             case R.id.dis4:
                 dis1.setSelected(false);
@@ -198,6 +214,7 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 dis7.setSelected(false);
                 changeRadius(25);
                 changeZoom(9.5f);
+                selectedDistance = "25km";
                 break;
             case R.id.dis5:
                 dis1.setSelected(false);
@@ -209,6 +226,7 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 dis7.setSelected(false);
                 changeRadius(50);
                 changeZoom(8.5f);
+                selectedDistance = "50km";
                 break;
             case R.id.dis6:
                 dis1.setSelected(false);
@@ -220,6 +238,7 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 dis7.setSelected(false);
                 changeRadius(100);
                 changeZoom(7);
+                selectedDistance = "100km";
                 break;
             case R.id.dis7:
                 dis1.setSelected(false);
@@ -231,6 +250,7 @@ public class GosuJoin5Activity extends AppCompatActivity {
                 dis7.setSelected(true);
                 changeRadius(250);
                 changeZoom(6);
+                selectedDistance = "전국";
                 break;
         }
         gMap.addCircle(circleOptions);
@@ -254,8 +274,7 @@ public class GosuJoin5Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this,GosuJoin4Activity.class);
-        startActivity(intent);
+        startActivity(new Intent(this,GosuJoin4Activity.class));
         finish();
     }
 
@@ -264,8 +283,20 @@ public class GosuJoin5Activity extends AppCompatActivity {
     }
 
     public void clickNext(View view) {
-        Intent intent = new Intent(this,GosuJoin6Activity.class);
-        startActivity(intent);
+        if(doro == null ){
+            Snackbar.make(this,view,"주소에 오류가 있습니다.",Snackbar.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(selectedDistance==null) {
+            Toast.makeText(this, "이용 가능 거리를 선택해주세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        RegisterGosu.address = doro;
+        RegisterGosu.radius = selectedDistance;
+//        Log.e("adad",RegisterGosu.address+" : "+RegisterGosu.radius);
+        startActivity(new Intent(this,GosuJoin6Activity.class));
         finish();
     }
 }

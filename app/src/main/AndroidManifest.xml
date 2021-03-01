@@ -40,7 +40,7 @@
         <activity android:name=".ClickServiceActivity" />
         <activity android:name=".AllServiceActivity" />
         <activity android:name=".SearchActivity" />
-        <activity android:name=".GosuJoin6Activity" />
+        <activity android:name=".GosuJoin6Activity"/>
         <activity android:name=".GosuJoin5Activity" />
         <activity android:name=".GosuJoin4Activity" />
         <activity android:name=".GosuJoin3Activity" />

@@ -10,11 +10,11 @@ import java.util.regex.Pattern;
 
 public class G {
 
-    public static String name ;
-    public static String email ;
+    public static String name=null;
+    public static String email=null;
     public static String pw = "*****";     //따로 저장x
-    public static String phone;
-    public static String profileImgUrl;
+    public static String phone=null;
+    public static String profileImgUrl=null;
 
     public static boolean isEmailLogin = false;
     public static boolean iskakaoLogin = false;
@@ -119,6 +119,12 @@ public class G {
         return changeBoolean;
     }
 
+    //전화번호 중 특수문자 제거
+    public static String phoneReplace(String str){
+        String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s]";
+        str =str.replaceAll(match, "");
+        return str;
+    }
 
 
 

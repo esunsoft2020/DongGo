@@ -18,8 +18,8 @@ public class PreferenceHelper {
     private final String ISGOOGLELOGIN = "iGoogleLogin";
     private final String ISGOSU = "isGosu";
 
-    private SharedPreferences app_prefs;
-    private Context context;
+    private final SharedPreferences app_prefs;
+    private final Context context;
 
     public PreferenceHelper(Context context) {
         app_prefs = context.getSharedPreferences("shared", Context.MODE_PRIVATE);
@@ -77,50 +77,4 @@ public class PreferenceHelper {
         Log.e("Gosu",G.isGosu+"");
         editor.commit();
     }
-
-    public void putName(String loginOrOut){
-        SharedPreferences.Editor editor = app_prefs.edit();
-        editor.putString(NAME, loginOrOut);
-        editor.commit();
-    }
-
-    public void putEmail(String loginOrOut) {
-        SharedPreferences.Editor editor = app_prefs.edit();
-        editor.putString(EMAIL, loginOrOut);
-        editor.commit();
-    }
-
-    public void putPhone(String loginorOut){
-        SharedPreferences.Editor editor = app_prefs.edit();
-        editor.putString(PHONE, loginorOut);
-        editor.commit();
-    }
-
-    public void putPROFILEIMGURL(String loginorOut){
-        SharedPreferences.Editor editor = app_prefs.edit();
-        editor.putString(PROFILEIMGURL, loginorOut);
-        editor.commit();
-    }
-    public void putISEMAILLOGIN(boolean loginOrOut) {
-        SharedPreferences.Editor editor = app_prefs.edit();
-        editor.putBoolean(ISEMAILLOGIN, loginOrOut);
-        editor.commit();
-    }
-    public void putISKAKAOLOGIN(boolean loginOrOut) {
-        SharedPreferences.Editor editor = app_prefs.edit();
-        editor.putBoolean(ISKAKAOLOGIN, loginOrOut);
-        editor.commit();
-    }
-    public void putISGOOGLELOGIN(boolean loginOrOut) {
-        SharedPreferences.Editor editor = app_prefs.edit();
-        editor.putBoolean(ISGOOGLELOGIN, loginOrOut);
-        editor.commit();
-    }
-    public void putISGOSU(boolean loginOrOut) {
-        SharedPreferences.Editor editor = app_prefs.edit();
-        editor.putBoolean(ISGOSU, loginOrOut);
-        editor.commit();
-    }
-
-
 }

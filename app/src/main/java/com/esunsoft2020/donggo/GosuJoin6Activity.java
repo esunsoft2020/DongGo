@@ -1,9 +1,12 @@
 package com.esunsoft2020.donggo;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,20 +14,14 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.phone.SmsRetriever;
-import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthProvider;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -41,6 +38,8 @@ public class GosuJoin6Activity extends AppCompatActivity {
     TextView tvM,tvF, send, confirm;
 
     EditText phoneNum, confirmNum;
+    RelativeLayout complete;
+    String mf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +63,19 @@ public class GosuJoin6Activity extends AppCompatActivity {
         send = findViewById(R.id.send_btn);
         confirm = findViewById(R.id.confirm_btn);
 
+        complete = findViewById(R.id.complete);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        chooseClickable(send,false);
-        chooseClickable(confirm,false);
+        send.setClickable(false);
+        send.setBackgroundColor(getResources().getColor(R.color.text_gray));
+        confirm.setClickable(false);
+        confirm.setBackgroundColor(getResources().getColor(R.color.text_gray));
+        complete.setClickable(false);
+        complete.setBackgroundResource(R.color.text_light_gray);
 
         phoneNum.addTextChangedListener(new TextWatcher() {
             @Override
@@ -79,8 +84,17 @@ public class GosuJoin6Activity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s!=null) chooseClickable(send,true);
-                else chooseClickable(send,false);
+                if(s!=null) {
+                    send.setClickable(true);
+                    send.setBackground(getResources().getDrawable(R.drawable.et));
+                    complete.setClickable(true);
+                    complete.setBackgroundResource(R.color.brandColor);
+                } else {
+                    send.setClickable(false);
+                    send.setBackgroundColor(getResources().getColor(R.color.text_gray));
+                    complete.setClickable(false);
+                    complete.setBackgroundResource(R.color.text_light_gray);
+                }
             }
 
             @Override
@@ -95,8 +109,13 @@ public class GosuJoin6Activity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s!=null) chooseClickable(confirm,true);
-                else chooseClickable(confirm,false);
+                if(s!=null) {
+                    confirm.setClickable(false);
+                    confirm.setBackground(getResources().getDrawable(R.drawable.et));
+                } else{
+                    confirm.setClickable(true);
+                    confirm.setBackgroundColor(getResources().getColor(R.color.text_gray));
+                }
             }
 
             @Override
@@ -106,16 +125,6 @@ public class GosuJoin6Activity extends AppCompatActivity {
 
 
 
-    }
-
-    public void chooseClickable(TextView view, boolean tOf){
-        if(!tOf) {
-            view.setClickable(false);
-            view.setBackgroundColor(getResources().getColor(R.color.text_gray));
-        }else {
-            view.setClickable(true);
-            view.setBackgroundColor(getResources().getColor(R.color.white));
-        }
     }
 
     @Override
@@ -136,8 +145,7 @@ public class GosuJoin6Activity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this,GosuJoin5Activity.class);
-        startActivity(intent);
+        startActivity(new Intent(this,GosuJoin4Activity.class));
         finish();
     }
 
@@ -147,20 +155,43 @@ public class GosuJoin6Activity extends AppCompatActivity {
             case R.id.tvM:
                 tvM.setSelected(true);
                 tvF.setSelected(false);
+                mf = "남";
                 break;
             case R.id.tvF:
                 tvM.setSelected(false);
                 tvF.setSelected(true);
+                mf = "여";
                 break;
         }
     }
 
-
+    FirebaseAuth mAuth;
+    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     //전화번호 인증
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void clickSend(View view) {
-        String phone = phoneNum.getText().toString();
-        //TODO : Firebase 로 전화번호 인증 작업 추가하기
+        String phone = G.phoneReplace(phoneNum.getText().toString()).replace("N","");
+        Log.e("phone",phone+"");
+
+//        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+//            @Override
+//            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+//                Toast.makeText(GosuJoin6Activity.this, "전송 성공!", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onVerificationFailed(@NonNull FirebaseException e) {
+//                Toast.makeText(GosuJoin6Activity.this, "전송 실패", Toast.LENGTH_SHORT).show();
+//
+//            }
+//        };
+        //TODO : Firebase 로 전화번호 인증 작업 추가하기 or https://zladnrms.tistory.com/60 자바스크립트 이용
+
         Snackbar.make(this,view,"준비중입니다.",Snackbar.LENGTH_SHORT).show();
+        confirm.setClickable(true);
+        confirm.setBackground(getResources().getDrawable(R.drawable.et));
+        confirmNum.setBackgroundTintList(null);
+        RegisterGosu.phone = phone;
     }
 
     //인증번호 체크
@@ -170,12 +201,10 @@ public class GosuJoin6Activity extends AppCompatActivity {
 
     //고수로 가입완료
     public void clickComplete(View view) {
-        Intent intent = new Intent(this,GosuActivity.class);
-        startActivity(intent);
-
+        RegisterGosu.mf = mf;
         G.isGosu=true;
         PreferenceHelper helper = new PreferenceHelper(this);
-        helper.putIsLogin(G.isGosu);
+        helper.putDatas();
 
         Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
         RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
@@ -207,7 +236,8 @@ public class GosuJoin6Activity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.body().equals("success")){
                     Toast.makeText(GosuJoin6Activity.this, "성공!", Toast.LENGTH_SHORT).show();
-                }else registerGosu();
+                    startActivity(new Intent(GosuJoin6Activity.this,GosuActivity.class));
+                }else Log.e("registerGosu","false");
             }
 
             @Override

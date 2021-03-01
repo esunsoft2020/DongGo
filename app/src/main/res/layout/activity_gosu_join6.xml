@@ -180,11 +180,13 @@
                     android:paddingBottom="4dp"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="8dp"
-                    android:onClick="clickPhoneConfirm"/>
+                    android:onClick="clickPhoneConfirm"
+                    android:clickable="true"/>
             </RelativeLayout>
 
 
             <RelativeLayout
+                android:id="@+id/complete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/text_light_gray"

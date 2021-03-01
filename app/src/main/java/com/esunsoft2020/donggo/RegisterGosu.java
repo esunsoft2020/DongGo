@@ -1,5 +1,7 @@
 package com.esunsoft2020.donggo;
 
+import java.util.ArrayList;
+
 public class RegisterGosu {
 
     public static String gosuBranch;
@@ -9,6 +11,9 @@ public class RegisterGosu {
     public static String radius;
     public static String mf;
     public static String phone;
+
+    public static ArrayList<String> service = new ArrayList<>();
+    public static ArrayList<String> detail = new ArrayList<>();
 
     public static void init(){
         RegisterGosu.gosuBranch = null;

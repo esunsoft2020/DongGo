@@ -104,7 +104,7 @@ public class Tab1ClientFragment extends Fragment {
         items3.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/service3/food.jpg","명절/제사 음식 대행"));
 
 
-        Glide.with(this).load("http://donggo.dothome.co.kr/icon/resson.png").into(branchs[0]);
+        Glide.with(this).load("http://donggo.dothome.co.kr/icon/lesson.png").into(branchs[0]);
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/home.png").into(branchs[1]);
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/event.png").into(branchs[2]);
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/business.png").into(branchs[3]);

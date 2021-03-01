@@ -179,15 +179,6 @@ public class JoinActivity extends AppCompatActivity {
 
         registerMe();
 
-        if(completeRegister){
-            G.init(true,etName.getText().toString(),etEmail.getText().toString(),null,null,true,false,false,false);
-
-            if(G.prepareGosu) startActivity(new Intent(this,GosuJoin5Activity.class));
-            else startActivity(new Intent(this,MainActivity.class));
-
-            finish();
-        }
-
 
     }
 
@@ -212,6 +203,7 @@ public class JoinActivity extends AppCompatActivity {
             {
                 if (response.isSuccessful() && response.body() != null)
                 {
+                    //TODO : 개인정보 로그 남아서 나중에 지우기
                     Log.e("onSuccess", response.body());
 
                     String jsonResponse = response.body();
@@ -234,27 +226,31 @@ public class JoinActivity extends AppCompatActivity {
         });
     }
 
-    boolean completeRegister;
-
     private void parseRegData(String response) throws JSONException {
-        completeRegister = false;
 
         JSONObject jsonObject = new JSONObject(response);
         if (jsonObject.optString("status").equals("true"))
         {
             saveInfo(response);
             Toast.makeText(JoinActivity.this, "회원가입 성공", Toast.LENGTH_SHORT).show();
-            completeRegister = true;
 
         } else {
             Toast.makeText(JoinActivity.this, "중복된 이메일이 있습니다.", Toast.LENGTH_SHORT).show();
-            completeRegister = false;
+
         }
+    }
+
+    private void nextActivity(){
+        G.init(true,etName.getText().toString(),etEmail.getText().toString(),null,null,true,false,false,false);
+
+        if(G.prepareGosu) startActivity(new Intent(this,GosuJoinActivity.class));
+        else startActivity(new Intent(this,MainActivity.class));
+
+        finish();
     }
 
     private void saveInfo(String response)
     {
-        preferenceHelper.putIsLogin(true);
         try
         {
             JSONObject jsonObject = new JSONObject(response);
@@ -264,9 +260,10 @@ public class JoinActivity extends AppCompatActivity {
                 for (int i = 0; i < dataArray.length(); i++)
                 {
                     JSONObject dataobj = dataArray.getJSONObject(i);
-                    preferenceHelper.putEmail(dataobj.getString("email"));
-                    preferenceHelper.putIsLogin(G.tinyint2Boolean("isEmailLogin"));
-                    preferenceHelper.putName(dataobj.getString("name"));
+                    //자동 로그인
+                    G.init(true,etName.getText().toString(),etEmail.getText().toString(),null,null,true,false,false,false);
+                    preferenceHelper.putDatas();
+                    nextActivity();
                 }
             }
         }
@@ -275,9 +272,6 @@ public class JoinActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
-
 
 
     //뒤로가기

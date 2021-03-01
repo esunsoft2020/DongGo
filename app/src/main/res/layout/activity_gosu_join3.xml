@@ -73,9 +73,11 @@
             android:layout_marginTop="40dp"
             android:layout_marginRight="32dp"
             android:layout_marginLeft="32dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:choiceMode="multipleChoice"/>
 
         <RelativeLayout
+            android:id="@+id/next_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/listview"
