@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.util.Base64;
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,6 +25,7 @@ public class G {
 
     public static boolean loginState = false;
     public static boolean prepareGosu = false;
+    public static LatLng gosuLatLng =null;
 
     public static String where = "intro";
 

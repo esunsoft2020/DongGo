@@ -74,6 +74,13 @@ public class AccountActivity extends AppCompatActivity {
         adapter = new AccountRecyclerAdapter(this,items);
         recyclerView.setAdapter(adapter);
 
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
+            String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+            if(checkSelfPermission(permissions[0])== PackageManager.PERMISSION_DENIED){
+                requestPermissions(permissions,0);
+            }
+        }
+
     }
 
     @Override
@@ -110,12 +117,13 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
 
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-            String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-            if(checkSelfPermission(permissions[0])== PackageManager.PERMISSION_DENIED){
-                requestPermissions(permissions,0);
-            }
-        }
+    }
+
+    void changeImage(){
+
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent,10);
 
     }
 
@@ -126,43 +134,49 @@ public class AccountActivity extends AppCompatActivity {
         if(requestCode==10 && resultCode==RESULT_OK ){
             Uri uri = data.getData();
             if(uri!=null) {
+                Glide.with(this).load(uri).into(ivProfile);
                 G.profileImgUrl = getRealPathFromUri(uri);
+                Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+                RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
+                Call<String> call = registerInterface.getUserProfileImgUrl(G.email,uri.toString());
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        if(response.body().equals("success")) Log.i("ProfileImgUrlSuccess",response.body());
+                        else Log.i("ProfileImgUrlFalse",response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        Log.e("ProfileImgUrlFalse",t.getMessage());
+                    }
+                });
             }
-        }else {
-            Bundle bundle = data.getExtras();
-            Bitmap bm = (Bitmap)bundle.get("data");
-            G.profileImgUrl = G.BitMapToString(bm);
         }
-        Glide.with(this).load(G.profileImgUrl).into(ivProfile);
-
-        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
-        RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
-
-        File file = new File(G.profileImgUrl);
-        RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"),file);
-        MultipartBody.Part part = MultipartBody.Part.createFormData("img",file.getName(),requestBody);
-
-        Call<String> call = registerInterface.uploadImage(part);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                Toast.makeText(AccountActivity.this, "변경 완료", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(AccountActivity.this, "변경 실패", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
-
-    void changeImage(){
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent,10);
+//
+//        File file = new File(G.profileImgUrl);
+//        RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"),file);
+//        MultipartBody.Part part = MultipartBody.Part.createFormData("img",file.getName(),requestBody);
+//
+//        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+//        RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
+//
+//        Call<String> call = registerInterface.uploadImage(part);
+//        call.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                String s = response.body();
+//                if(s.equals("success")) Toast.makeText(AccountActivity.this, "변경 완료", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                Toast.makeText(AccountActivity.this, "변경 실패", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
     }
+
 
     //로그아웃
     public void clickLogout(View view) {

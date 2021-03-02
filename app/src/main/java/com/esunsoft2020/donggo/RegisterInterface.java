@@ -91,10 +91,16 @@ public interface RegisterInterface {
             @Field("phone") String phone
     );
 
-//  TODO : 사진 업로드 다시 시도...
+    ///TODO : 이미지 업로드 다시 시도해보기
+    @FormUrlEncoded
     @Multipart
     @POST("/Retrofit/fileUpload.php")
-    Call<String> uploadImage(@Part MultipartBody.Part file);
+    Call<String> uploadImage(
+            @Field("email")String email,
+            @Part MultipartBody.Part file);
+
+
+
 }
 
 
