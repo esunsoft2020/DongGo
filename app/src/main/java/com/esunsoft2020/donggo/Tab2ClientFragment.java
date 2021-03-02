@@ -51,11 +51,11 @@ public class Tab2ClientFragment extends Fragment {
         items.clear();
 
         items.add(new Tab2RecyclerItem("http://donggo.dothome.co.kr/icon/imsi/wash.jpg","집을 빨래하다(동고 1위)","동고 압도적인 1위! 눈으로 보시고 판단해 주세요",4.7f,"(654개)","2709회 고용"));
-        items.add(new Tab2RecyclerItem("http://donggo.dothome.co.kr/icon/imsi/hebang.jpg","해방(해충으로부터 해방)","[해방]해충방역 서비스 동고 1위 프로필 참고!",5.0f,"(488개)","1833회 고용"));
         items.add(new Tab2RecyclerItem("http://donggo.dothome.co.kr/icon/imsi/clean.jpg","베스트스크린","다른 고객님들 후기 꼭 읽어주세요~맘카페 추천!!",4.8f,"(436개)","1621회 고용"));
         items.add(new Tab2RecyclerItem("http://donggo.dothome.co.kr/icon/imsi/esa.jpg","김기도","안녕하세요 동고 이사 리뷰 1등 용달빠르기도 대표 김기도입니다.",3.0f,"(123개)","4567회 고용"));
-        items.add(new Tab2RecyclerItem("http://donggo.dothome.co.kr/icon/imsi/designdonggo.jpg","디자인 동고 1위","동고디자인1위, 한국소비자 만족1위/로고,명함 및 홍보인쇄물 제작전문 / 1:1상담 디자이너 20명 / 빠른 응대",1.0f,"(234개)","5678회 고용"));
-        items.add(new Tab2RecyclerItem("http://donggo.dothome.co.kr/icon/imsi/d9.jpg","디자인 동고 1위","동고디자인1위, 한국소비자 만족1위/로고,명함 및 홍보인쇄물 제작전문 / 1:1상담 디자이너 20명 / 빠른 응대",1.0f,"(234개)","5678회 고용"));
+        items.add(new Tab2RecyclerItem("http://donggo.dothome.co.kr/icon/imsi/d9.jpg","디자인 동고 1위","동고디자인1위, 한국소비자 만족1위/로고,명함 및 홍보인쇄물 제작전문 / 1:1상담 디자이너 20명 / 빠른 응대",2.0f,"(567개)","5678회 고용"));
+        items.add(new Tab2RecyclerItem("http://donggo.dothome.co.kr/icon/imsi/designdonggo.jpg","디자인 동고 2위","동고디자인1위, 한국소비자 만족2위/로고,명함 및 홍보인쇄물 제작전문 / 1:1상담 디자이너 20명 / 빠른 응대",1.0f,"(234개)","1234회 고용"));
+        items.add(new Tab2RecyclerItem("http://donggo.dothome.co.kr/icon/imsi/hebang.jpg","해방(해충으로부터 해방)","[해방]해충방역 서비스 동고 1위프로필 참고!",5.0f,"(488개)","1833회 고용"));
 
 
 

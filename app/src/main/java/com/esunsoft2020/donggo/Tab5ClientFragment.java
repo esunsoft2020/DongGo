@@ -94,7 +94,7 @@ public class Tab5ClientFragment extends Fragment {
 
         //설정
         items.clear();
-        items.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/alarm.png","알림"));
+        items.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/alarm.png","알림"));
         items.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/deletememory.png","메모리 삭제"));
         items.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/noti.png","공지사항"));
         items.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/guide.png","동고안내"));

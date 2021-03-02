@@ -35,7 +35,7 @@ public class GosuJoinActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        Glide.with(this).load("http://donggo.dothome.co.kr/icon/resson.png").into(ivs[0]);
+        Glide.with(this).load("http://donggo.dothome.co.kr/icon/lesson.png").into(ivs[0]);
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/home.png").into(ivs[1]);
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/event.png").into(ivs[2]);
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/business.png").into(ivs[3]);
