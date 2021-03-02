@@ -2,8 +2,12 @@ package com.esunsoft2020.donggo;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.solver.state.HelperReference;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -165,9 +169,10 @@ public class GosuJoin6Activity extends AppCompatActivity {
         }
     }
 
-    FirebaseAuth mAuth;
-    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
+//    FirebaseAuth mAuth;
+//    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     //전화번호 인증
+    @SuppressLint("ResourceAsColor")
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void clickSend(View view) {
         String phone = G.phoneReplace(phoneNum.getText().toString()).replace("N","");
@@ -187,57 +192,80 @@ public class GosuJoin6Activity extends AppCompatActivity {
 //        };
         //TODO : Firebase 로 전화번호 인증 작업 추가하기 or https://zladnrms.tistory.com/60 자바스크립트 이용
 
-        Snackbar.make(this,view,"준비중입니다.",Snackbar.LENGTH_SHORT).show();
+        AlertDialog dialog = new AlertDialog.Builder(this).setMessage("전송 준비 중입니다.").setPositiveButton("OK",null).show();
+
         confirm.setClickable(true);
         confirm.setBackground(getResources().getDrawable(R.drawable.et));
         confirmNum.setBackgroundTintList(null);
         RegisterGosu.phone = phone;
+
     }
 
+    boolean phoneConfirm = false;
     //인증번호 체크
     public void clickPhoneConfirm(View view) {
-        Snackbar.make(this,view,"인증 준비 중입니다.",Snackbar.LENGTH_SHORT).show();
+        if(phoneConfirm) {
+            Snackbar.make(this,view,"이미 인증되었습니다.",Snackbar.LENGTH_SHORT).show();
+            return;
+        }
+
+        AlertDialog dialog = new AlertDialog.Builder(this).setMessage("인증 준비 중입니다.\n번호 고정은 OK를 눌러주세요.").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                phoneNum.setClickable(false);
+                phoneNum.setFocusable(false);
+                phoneNum.setBackgroundResource(R.color.light_light_gray);
+
+                confirmNum.setClickable(false);
+                confirmNum.setFocusable(false);
+                confirmNum.setBackgroundResource(R.color.light_light_gray);
+                phoneConfirm = true;
+            }
+        }).setNegativeButton("NO",null).show();
     }
 
     //고수로 가입완료
     public void clickComplete(View view) {
         RegisterGosu.mf = mf;
-        G.isGosu=true;
-        PreferenceHelper helper = new PreferenceHelper(this);
-        helper.putDatas();
+        G.phone = RegisterGosu.phone;
+        G.isGosu = true;
 
         Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
         RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
-        Call<String> call = registerInterface.getUserisGosu(G.email,G.boolean2String(G.isGosu));
+        Call<String> call = registerInterface.getUserisGosu(G.email, G.boolean2String(G.isGosu));
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if(response.body().equals("success")) {
-                    Toast.makeText(GosuJoin6Activity.this, "고수 가입 완료", Toast.LENGTH_SHORT).show();
+                String json = response.body();
+                if (json.equals("success")) {
                     registerGosu();
-                    finish();
-                }
+                    Log.e("isGosu", json);
+                } else Log.e("isGosu", json);
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(GosuJoin6Activity.this, "가입 실패했습니다.", Toast.LENGTH_SHORT).show();
+                Log.e("isGosu", t.getMessage());
             }
         });
     }
 
     //DB 에 고수 정보 등록
-    void registerGosu(){
+    public void registerGosu(){
         Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
         RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
         Call<String> call = registerInterface.getUserRegistGosuInfo(G.email,RegisterGosu.gosuBranch,RegisterGosu.gosuService,RegisterGosu.serviceDetail,RegisterGosu.address,RegisterGosu.radius,RegisterGosu.mf,RegisterGosu.phone);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if(response.body().equals("success")){
-                    Toast.makeText(GosuJoin6Activity.this, "성공!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(GosuJoin6Activity.this,GosuActivity.class));
-                }else Log.e("registerGosu","false");
+                String j = response.body();
+                if (j.equals("success")){
+                    Log.e("registerGosu",j);
+                    PreferenceHelper helper = new PreferenceHelper(GosuJoin6Activity.this);
+                    helper.putDatas();
+                    finish();
+                }else Log.e("registerGosu",j);
             }
 
             @Override
@@ -245,6 +273,7 @@ public class GosuJoin6Activity extends AppCompatActivity {
                 Log.e("registerGosu",t.getMessage());
             }
         });
+
     }
 
 

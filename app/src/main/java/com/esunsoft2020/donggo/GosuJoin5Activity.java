@@ -84,9 +84,8 @@ public class GosuJoin5Activity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        next.setClickable(true);
-        next.setBackgroundResource(R.color.brandColor);
+        next.setClickable(false);
+        next.setBackgroundResource(R.color.text_light_gray);
 
         doro = getIntent().getStringExtra("addressDoro");
         jiBun = getIntent().getStringExtra("addressJibun");
@@ -166,6 +165,9 @@ public class GosuJoin5Activity extends AppCompatActivity {
     }
 
     public void clickDistance(View view) {
+
+        next.setClickable(true);
+        next.setBackgroundResource(R.color.brandColor);
 
         switch (view.getId()){
             case R.id.dis1:

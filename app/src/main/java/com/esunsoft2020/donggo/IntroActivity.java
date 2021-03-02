@@ -1,5 +1,6 @@
 package com.esunsoft2020.donggo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -12,6 +13,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.kakao.sdk.common.util.Utility;
 
 import java.util.ArrayList;
@@ -30,8 +34,26 @@ public class IntroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_intro);
 
         //Kakao keyHash
-        String keyHash = Utility.INSTANCE.getKeyHash(this);
-        Log.i("keyHash",keyHash);
+//        String keyHash = Utility.INSTANCE.getKeyHash(this);
+//        Log.i("keyHash",keyHash);
+
+        //FCM
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("TAG", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+
+                        // Log and toast
+                        Log.d("TOKEN", token);
+                    }
+                });
 
 
 

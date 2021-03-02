@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -60,7 +61,7 @@ public class SettingRecyclerAdapter extends RecyclerView.Adapter<SettingRecycler
                     int position = getLayoutPosition();
 
                     String setting = items.get(position).second;
-                    Toast.makeText(context, setting+"준비중입니다.", Toast.LENGTH_SHORT).show();
+                    AlertDialog dialog = new AlertDialog.Builder(context).setMessage(setting+"준비중입니다.").setPositiveButton("OK",null).show();
                 }
             });
         }

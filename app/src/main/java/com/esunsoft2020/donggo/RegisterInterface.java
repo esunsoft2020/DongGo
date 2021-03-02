@@ -82,8 +82,8 @@ public interface RegisterInterface {
     @POST("Retrofit/retrofit_registerGosu.php")
     Call<String> getUserRegistGosuInfo(
             @Field("email") String email,
-            @Field("gosuService") String gosuService,
             @Field("gosuBranch") String gosuBranch,
+            @Field("gosuService") String gosuService,
             @Field("serviceDetail") String serviceDetail,
             @Field("address") String address,
             @Field("radius") String radius,

@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -40,7 +41,7 @@
         <activity android:name=".ClickServiceActivity" />
         <activity android:name=".AllServiceActivity" />
         <activity android:name=".SearchActivity" />
-        <activity android:name=".GosuJoin6Activity"/>
+        <activity android:name=".GosuJoin6Activity" />
         <activity android:name=".GosuJoin5Activity" />
         <activity android:name=".GosuJoin4Activity" />
         <activity android:name=".GosuJoin3Activity" />
@@ -76,6 +77,12 @@
                     android:scheme="kakao6975656ad5c26ba3a34f6e976e227941" />
             </intent-filter>
         </activity>
+
+        <service android:name=".MyFCMService" android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
 
         <meta-data
             android:name="com.google.android.gms.version"
