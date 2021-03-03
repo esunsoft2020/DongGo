@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +35,7 @@ public class Tab1ClientFragment extends Fragment {
     Service2Adapter adapter2,adapter3;
     ArrayList<TwoStringItem> items2 = new ArrayList<>();
     ArrayList<TwoStringItem> items3 = new ArrayList<>();
+    LinearLayout gosuJoinLayout;
 
     @Nullable
     @Override
@@ -72,6 +74,9 @@ public class Tab1ClientFragment extends Fragment {
         adapter3 = new Service2Adapter(getActivity(),items3);
         service3.setAdapter(adapter3);
 
+        gosuJoinLayout = view.findViewById(R.id.gosu_join_layout);
+        if(G.loginState && G.isGosu) gosuJoinLayout.setVisibility(View.GONE);
+        else gosuJoinLayout.setVisibility(View.VISIBLE);
 
     }
 
@@ -148,6 +153,12 @@ public class Tab1ClientFragment extends Fragment {
             }
         });
 
+        gosuJoinLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickGosuJoin();
+            }
+        });
 
 
 
@@ -155,6 +166,16 @@ public class Tab1ClientFragment extends Fragment {
 
 
 
+    }
+
+    void clickGosuJoin(){
+        if(G.loginState) {
+            startActivity(new Intent(getActivity(),GosuJoinActivity.class));
+            getActivity().finish();
+        }else {
+            startActivity(new Intent(getActivity(),JoinActivity.class));
+            getActivity().finish();
+        }
     }
 
     void clickIcon(View v){

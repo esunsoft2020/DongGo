@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "713233878221-7vh58ccsl5i0682aa92uv2mlijdj95ls.apps.googleusercontent.com",
+          "client_id": "713233878221-ifavv7jv4mg7rh72ft2dbs69rfbt8fbo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.esunsoft2020.donggo",
@@ -22,8 +22,12 @@
           }
         },
         {
-          "client_id": "713233878221-he9uu64g90ubugbvql7lem4vulhuvouu.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "713233878221-k6kmk6l0tabqtve9b8ggthmq54tllmi9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.esunsoft2020.donggo",
+            "certificate_hash": "c38548dfb9cba1169339d7870904072bc5c1d36e"
+          }
         }
       ],
       "api_key": [
@@ -33,12 +37,7 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "713233878221-he9uu64g90ubugbvql7lem4vulhuvouu.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

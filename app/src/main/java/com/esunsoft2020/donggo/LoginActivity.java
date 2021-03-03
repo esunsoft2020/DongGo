@@ -1,8 +1,11 @@
 package com.esunsoft2020.donggo;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -18,11 +21,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.kakao.sdk.auth.LoginClient;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
@@ -44,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     ImageView iv, kakaoLogin;
     EditText etEmail,etPw;
     Button emailLoginBtn;
-    PreferenceHelper preferenceHelper;
+    SignInButton googleLoginBtn;
 
 
     @Override
@@ -57,8 +72,8 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.et_email);
         etPw = findViewById(R.id.et_pw);
         emailLoginBtn = findViewById(R.id.email_login_btn);
-
-        preferenceHelper = new PreferenceHelper(this);
+        googleLoginBtn = findViewById(R.id.google_login);
+        firebaseAuth = FirebaseAuth.getInstance();
 
     }
 
@@ -67,7 +82,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onResume();
         emailLoginBtn.setClickable(false);
         emailLoginBtn.setBackgroundColor(getResources().getColor(R.color.text_gray));
-
 
 
 
@@ -128,50 +142,18 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/kakao_login/ko/kakao_login_medium_wide.png").into(kakaoLogin);
+
         kakaoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //카카오 계정으로 로그인
-
-                LoginClient.getInstance().loginWithKakaoAccount(LoginActivity.this, new Function2<OAuthToken, Throwable, Unit>() {
-                    @Override
-                    public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
-
-                        if (throwable != null) {
-                            Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putBoolean("login", true);
-                            G.iskakaoLogin = true;
-                            intent.putExtras(bundle);
-
-                            UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
-                                @Override
-                                public Unit invoke(User user, Throwable throwable) {
-
-                                    G.name = user.getKakaoAccount().getProfile().getNickname();
-                                    G.profileImgUrl = user.getKakaoAccount().getProfile().getProfileImageUrl();
-                                    if (user.getKakaoAccount().getEmail() != null)
-                                        G.email = user.getKakaoAccount().getEmail();
-
-                                    return null;
-                                }
-                            });
-
-                            startActivity(intent);
-                            finish();
-                        }
-
-
-                        return null;
-                    }
-                });
-
-
-            }
-        });
+                new AlertDialog.Builder(LoginActivity.this).setMessage("카카오 계정 로그인을 권장하지 않습니다.\n카카오 계정으로 로그인하려면 OK를 눌러주세요.").setPositiveButton("NO",null)
+                        .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                clickKakaoLogin();
+                            }
+                        }).show();
+            }});
 
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,47 +161,43 @@ public class LoginActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-    }
+
+        // Google 로그인을 앱에 통합
+        // GoogleSignInOptions 개체를 구성할 때 requestIdToken을 호출
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
+
+        googleLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickGoogleLogin();
+            }
+        });
+
+
+    }//onResume method..
 
     public void clickSearchPw(View view) {
         Toast.makeText(this, "비밀번호 찾기 준비중입니다.", Toast.LENGTH_SHORT).show();
     }
 
     public void clickJoin(View view) {
-        Intent intent = new Intent(this, JoinActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this,JoinActivity.class));
         finish();
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("login", false);
-        startActivity(intent);
+        G.loginState=false;
+        startActivity(new Intent(this,MainActivity.class));
         finish();
     }
 
-    GoogleSignInClient googleSignInClient;
-    FirebaseAuth mAuth;
 
-    public void clickGoogleLogin(View view) {
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build();
-
-        googleSignInClient = GoogleSignIn.getClient(this,gso);
-        mAuth = FirebaseAuth.getInstance();
-
-        FirebaseUser currentuser = mAuth.getCurrentUser();
-        if(currentuser!=null){
-            G.email = currentuser.getEmail();
-            Intent intent = new Intent(this,MainActivity.class);
-            intent.putExtra("login",true);
-            startActivity(intent);
-            finish();
-        }else{
-            Toast.makeText(this, "준비중입니다.", Toast.LENGTH_SHORT).show();
-        }
-
-    }
 
     boolean successLogin;
     
@@ -269,7 +247,6 @@ public class LoginActivity extends AppCompatActivity {
                 else startActivity(new Intent(this,MainActivity.class));
                 finish();
 
-//                Toast.makeText(LoginActivity.this, "Login Successfully!", Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(this, "이메일 또는 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
             }
@@ -279,7 +256,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     private void saveInfo(String response) {
-        preferenceHelper.putIsLogin(true);
         try {
             JSONObject jsonObject = new JSONObject(response);
             if (jsonObject.getString("status").equals("true")) {
@@ -306,9 +282,8 @@ public class LoginActivity extends AppCompatActivity {
                     G.iskakaoLogin = isKakaoLogin;
                     G.isGoogleLogin = isGoogleLogin;
                     G.isGosu = isGosu;
-
-                    preferenceHelper.putDatas();
-
+                    PreferenceHelper helper = new PreferenceHelper(LoginActivity.this);
+                    helper.putDatas();
 
                 }
             }
@@ -316,5 +291,95 @@ public class LoginActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    //TODO : 가입, 확인 과정 필요
+    //카카오 계정으로 로그인
+    public void clickKakaoLogin() {
+
+        LoginClient.getInstance().loginWithKakaoAccount(this, new Function2<OAuthToken, Throwable, Unit>() {
+            @Override
+            public Unit invoke(OAuthToken oAuthToken, Throwable throwable) {
+
+                if(throwable!=null) Toast.makeText(LoginActivity.this, "카카오를 불러오지 못했습니다.", Toast.LENGTH_SHORT).show();
+                else if(oAuthToken !=null){
+                    Log.e("kakao","카카오 불러오기 성공");
+
+                    UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
+                        @Override
+                        public Unit invoke(User user, Throwable throwable) {
+
+                            if(user!=null){
+                                long id = user.getId();
+
+                                G.name = user.getKakaoAccount().getProfile().getNickname();
+                                G.profileImgUrl = user.getKakaoAccount().getProfile().getProfileImageUrl();
+                                G.email = user.getKakaoAccount().getEmail();
+                                if(G.email.equals(null)) Toast.makeText(LoginActivity.this, "이메일 계정이 없습니다.", Toast.LENGTH_SHORT).show();
+                                G.isEmailLogin = false;
+                                G.loginState = true;
+                                G.iskakaoLogin = true;
+
+                                startActivity(new Intent(LoginActivity.this,IntroActivity.class));
+                                PreferenceHelper helper = new PreferenceHelper(LoginActivity.this);
+                                helper.putDatas();
+
+                                finish();
+
+                            }else
+                                Toast.makeText(LoginActivity.this, "사용자 정보 요청 실패", Toast.LENGTH_SHORT).show();
+                            return null;
+                        }
+                    });
+                }
+                return null;
+            }
+        });
+    }
+
+
+    // 구글로그인 result 상수
+    private static final int RC_SIGN_IN = 900;
+    // 구글api클라이언트
+    private GoogleSignInClient googleSignInClient;
+    // 파이어베이스 인증 객체 생성
+    private FirebaseAuth firebaseAuth;
+    public void clickGoogleLogin() {
+        startActivityForResult(new Intent(googleSignInClient.getSignInIntent()), RC_SIGN_IN);
+
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN ) {
+           GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+           if(result.isSuccess()){
+               GoogleSignInAccount account = result.getSignInAccount();
+
+               Log.e("Google",account.getEmail()+":"+account.getDisplayName()+":"+account.getPhotoUrl());
+               firebaseAuthWithGoogle(account);
+           }else Snackbar.make(this,googleLoginBtn,"Google Sign In failed",Snackbar.LENGTH_SHORT);
+        }
+    }
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        firebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // 로그인 성공
+                            Toast.makeText(LoginActivity.this, "구글 로그인 성공", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // 로그인 실패
+                            Toast.makeText(LoginActivity.this, "오류", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
     }
 }
