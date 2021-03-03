@@ -137,6 +137,7 @@
                     android:layout_marginTop="8dp"/>
 
                 <RelativeLayout
+                    android:id="@+id/activity_parse_layout"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/roundbox"
@@ -288,6 +289,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="4dp"/>
             <TextView
+                android:id="@+id/change_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab4_gosu_text10"
@@ -316,6 +318,7 @@
                 android:textColor="@color/text_black"
                 android:textStyle="bold"/>
             <TextView
+                android:id="@+id/service"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab4_gosu_text12"
@@ -363,6 +366,7 @@
                 android:layout_marginTop="4dp"/>
 
             <TextView
+                android:id="@+id/change_one_line"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab4_gosu_text10"
@@ -402,6 +406,7 @@
                 android:layout_marginTop="4dp"/>
 
             <TextView
+                android:id="@+id/change_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab4_gosu_text10"
@@ -430,6 +435,7 @@
                 android:textColor="@color/text_black"
                 android:textStyle="bold"/>
             <TextView
+                android:id="@+id/change_radius"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab4_gosu_text10"

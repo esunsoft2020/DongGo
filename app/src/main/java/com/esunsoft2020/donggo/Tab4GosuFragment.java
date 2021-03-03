@@ -11,15 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.loader.content.CursorLoader;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.appbar.AppBarLayout;
 
 import java.util.ArrayList;
 
@@ -48,6 +51,9 @@ public class Tab4GosuFragment extends Fragment {
 
     ImageView[] ivs = new ImageView[8];
 
+    TextView preview, changeName,changeAddress,changeOneLine,changeRadius, gosuService;
+    RelativeLayout APLayout, requestReviewLayout;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -64,6 +70,16 @@ public class Tab4GosuFragment extends Fragment {
             ivs[i] = view.findViewById(R.id.iv_1+i);
         }
 
+        preview = view.findViewById(R.id.preview);
+        APLayout = view.findViewById(R.id.activity_parse_layout);
+
+        changeName = view.findViewById(R.id.change_name);
+        changeAddress = view.findViewById(R.id.change_address);
+        changeOneLine = view.findViewById(R.id.change_one_line);
+        changeRadius = view.findViewById(R.id.change_radius);
+
+        requestReviewLayout = view.findViewById(R.id.btn_request_review);
+        gosuService = view.findViewById(R.id.service);
 
     }
 
@@ -107,6 +123,65 @@ public class Tab4GosuFragment extends Fragment {
             }
         });
 
+        preview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity()).setMessage("준비중입니다.").setPositiveButton("OK",null).show();
+            }
+        });
+
+        APLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity()).setMessage("활동 분석 준비중입니다.").setPositiveButton("OK",null).show();
+            }
+        });
+
+        changeName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String vv = ((TextView)v).getText().toString();
+                new AlertDialog.Builder(getActivity()).setMessage(vv+"준비중입니다.").setPositiveButton("OK",null).show();
+            }
+        });
+
+        changeAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String vv = ((TextView)v).getText().toString();
+                new AlertDialog.Builder(getActivity()).setMessage(vv+"준비중입니다.").setPositiveButton("OK",null).show();
+            }
+        });
+
+        changeRadius.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String vv = ((TextView)v).getText().toString();
+                new AlertDialog.Builder(getActivity()).setMessage(vv+"준비중입니다.").setPositiveButton("OK",null).show();
+            }
+        });
+
+        changeOneLine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String vv = ((TextView)v).getText().toString();
+                new AlertDialog.Builder(getActivity()).setMessage(vv+"준비중입니다.").setPositiveButton("OK",null).show();
+            }
+        });
+
+        requestReviewLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity()).setMessage("준비중입니다.").setPositiveButton("OK",null).show();
+            }
+        });
+
+        gosuService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity()).setMessage("준비중입니다.").setPositiveButton("OK",null).show();
+            }
+        });
     }
 
     @Override
@@ -118,10 +193,6 @@ public class Tab4GosuFragment extends Fragment {
             if(uri!=null) {
                 G.profileImgUrl = getRealPathFromUri(uri);
             }
-        }else {
-            Bundle bundle = data.getExtras();
-            Bitmap bm = (Bitmap)bundle.get("data");
-            G.profileImgUrl = G.BitMapToString(bm);
         }
 
         Glide.with(this).load(G.profileImgUrl).into(civ);
