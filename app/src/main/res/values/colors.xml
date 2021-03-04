@@ -17,4 +17,5 @@
     <color name="yellow">#D8C204</color>
     <color name="red">#FFEE0000</color>
     <color name="mapCircle">#3290F495</color>
+    <color name="clear_gray">#52999999</color>
 </resources>
