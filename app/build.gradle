@@ -11,8 +11,8 @@ android {
         applicationId "com.esunsoft2020.donggo"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 3
-        versionName "1.1"
+        versionCode 4
+        versionName "1.2"
 
         //멀티덱스 사용설정
         multiDexEnabled true

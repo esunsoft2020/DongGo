@@ -181,7 +181,6 @@ public class Tab1ClientFragment extends Fragment {
     void clickIcon(View v){
         Intent intent = new Intent(getActivity(),BranchActivity.class);
         intent.putExtra("service",v.getTag().toString());
-        Toast.makeText(getActivity(), "준비중입니다.", Toast.LENGTH_SHORT).show();
         startActivity(intent);
     }
 
