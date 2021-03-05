@@ -94,12 +94,10 @@ public interface RegisterInterface {
     ///TODO : 이미지 업로드 다시 시도해보기
     @FormUrlEncoded
     @Multipart
-    @POST("/Retrofit/fileUpload.php")
+    @POST("/Retrofit/imgimgimgimg.php")
     Call<String> uploadImage(
             @Field("email")String email,
             @Part MultipartBody.Part file);
-
-
 
 }
 

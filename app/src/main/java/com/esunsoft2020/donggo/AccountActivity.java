@@ -136,21 +136,43 @@ public class AccountActivity extends AppCompatActivity {
             if(uri!=null) {
                 Glide.with(this).load(uri).into(ivProfile);
                 G.profileImgUrl = getRealPathFromUri(uri);
+
                 Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
                 RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
-                Call<String> call = registerInterface.getUserProfileImgUrl(G.email,uri.toString());
+                File file = new File(G.profileImgUrl);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"),file);
+                MultipartBody.Part part = MultipartBody.Part.createFormData("img", file.getName(), requestBody);
+
+                Call<String> call = registerInterface.uploadImage(G.email,part);
+
                 call.enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
-                        if(response.body().equals("success")) Log.i("ProfileImgUrlSuccess",response.body());
-                        else Log.i("ProfileImgUrlFalse",response.body());
+                        if(response.body().equals("success")) Toast.makeText(AccountActivity.this, "사진변경이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                        else Toast.makeText(AccountActivity.this, "실패", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
-                        Log.e("ProfileImgUrlFalse",t.getMessage());
+                        Log.e("tag",t.getMessage());
                     }
                 });
+
+//                Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+//                RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
+//                Call<String> call = registerInterface.getUserProfileImgUrl(G.email,uri.toString());
+//                call.enqueue(new Callback<String>() {
+//                    @Override
+//                    public void onResponse(Call<String> call, Response<String> response) {
+//                        if(response.body().equals("success")) Log.i("ProfileImgUrlSuccess",response.body());
+//                        else Log.i("ProfileImgUrlFalse",response.body());
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<String> call, Throwable t) {
+//                        Log.e("ProfileImgUrlFalse",t.getMessage());
+//                    }
+//                });
             }
         }
 //

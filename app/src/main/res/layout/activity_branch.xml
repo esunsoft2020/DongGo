@@ -38,6 +38,7 @@
             </LinearLayout>
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
+<!--    drop down -->
     <LinearLayout
         android:id="@+id/dropdown_all"
         android:layout_width="match_parent"
@@ -246,15 +247,13 @@
             android:background="@color/clear_gray"/>
     </LinearLayout>
 
-
+<!--    TODO:viewpager -->
+<!--viewpager..-->
     <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/appbar">
-
     </RelativeLayout>
-
-
 
 </RelativeLayout>
