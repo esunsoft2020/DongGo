@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +25,13 @@ import androidx.viewpager.widget.ViewPager;
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.AppBarLayout;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -191,25 +196,36 @@ public class Tab4GosuFragment extends Fragment {
         if(requestCode==100 && resultCode==RESULT_OK ){
             Uri uri = data.getData();
             if(uri!=null) {
+                Glide.with(this).load(uri).into(civ);
                 G.profileImgUrl = getRealPathFromUri(uri);
+
+                Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+                RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
+                File file = new File(G.profileImgUrl);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"),file);
+                MultipartBody.Part part = MultipartBody.Part.createFormData("img", file.getName(), requestBody);
+
+                Call<String> call = registerInterface.uploadImage(G.email,part);
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Call<String> call, Response<String> response) {
+                        if(response.body().equals("success")) Toast.makeText(getActivity(), "사진변경이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                        else {
+                            Log.e("image",response.body());
+                            Toast.makeText(getActivity(), "실패 : 사진 변경을 다시 해주세요.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<String> call, Throwable t) {
+                        Log.e("image",t.getMessage());
+                        Toast.makeText(getActivity(), "네트워크가 불안정합니다.", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
             }
         }
 
-        Glide.with(this).load(G.profileImgUrl).into(civ);
-        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
-        RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
-        Call<String> call = registerInterface.getUserProfileImgUrl(G.email,G.profileImgUrl);
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                Toast.makeText(getActivity(), "변경 완료", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(getActivity(), "변경 실패", Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 

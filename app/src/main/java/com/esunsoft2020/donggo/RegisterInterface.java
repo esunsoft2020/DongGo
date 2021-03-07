@@ -52,13 +52,6 @@ public interface RegisterInterface {
     );
 
     @FormUrlEncoded
-    @POST("Retrofit/retrofit_updateProfileImgUrl.php")
-    Call<String> getUserProfileImgUrl(
-            @Field("email") String email,
-            @Field("profileImgUrl")String profileImgUrl
-    );
-
-    @FormUrlEncoded
     @POST("Retrofit/retrofit_updateIsGosu.php")
     Call<String> getUserisGosu(
             @Field("email") String email,
@@ -93,10 +86,9 @@ public interface RegisterInterface {
             @Field("phone") String phone
     );
 
-    ///TODO : 이미지 업로드 다시 시도해보기
     //https://youngest-programming.tistory.com/340 참고
     @Multipart
-    @POST("/Retrofit/imgimgimgimg.php")
+    @POST("/Retrofit/retrofit_updateProfileImgUrl.php")
     Call<String> uploadImage(
             @Part("email")String email,
             @Part MultipartBody.Part file

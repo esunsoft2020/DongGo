@@ -93,7 +93,7 @@ public class Tab5GosuFragment extends Fragment {
         });
 
         items2.clear();
-        items2.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/alarm.png","알림"));
+        items2.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/alarm.png","알림"));
         items2.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/deletememory.png","메모리 삭제"));
         items2.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/noti.png","공지사항"));
         items2.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/book.png","고수 가이드"));

@@ -151,13 +151,14 @@ public class AccountActivity extends AppCompatActivity {
                         if(response.body().equals("success")) Toast.makeText(AccountActivity.this, "사진변경이 완료되었습니다.", Toast.LENGTH_SHORT).show();
                         else {
                             Log.e("image",response.body());
-                            Toast.makeText(AccountActivity.this, "실패", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AccountActivity.this, "실패 : 사진 변경을 다시해주세요.", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
                         Log.e("tag",t.getMessage());
+                        Toast.makeText(AccountActivity.this, "네트워크가 불안정합니다.", Toast.LENGTH_SHORT).show();
                     }
                 });
 
