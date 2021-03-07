@@ -1,5 +1,7 @@
 package com.esunsoft2020.donggo;
 
+import java.util.ArrayList;
+
 import kotlin.jvm.JvmMultifileClass;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -92,12 +94,13 @@ public interface RegisterInterface {
     );
 
     ///TODO : 이미지 업로드 다시 시도해보기
-    @FormUrlEncoded
+    //https://youngest-programming.tistory.com/340 참고
     @Multipart
     @POST("/Retrofit/imgimgimgimg.php")
     Call<String> uploadImage(
-            @Field("email")String email,
-            @Part MultipartBody.Part file);
+            @Part("email")String email,
+            @Part MultipartBody.Part file
+    );
 
 }
 

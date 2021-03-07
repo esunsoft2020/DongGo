@@ -149,7 +149,10 @@ public class AccountActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
                         if(response.body().equals("success")) Toast.makeText(AccountActivity.this, "사진변경이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                        else Toast.makeText(AccountActivity.this, "실패", Toast.LENGTH_SHORT).show();
+                        else {
+                            Log.e("image",response.body());
+                            Toast.makeText(AccountActivity.this, "실패", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
