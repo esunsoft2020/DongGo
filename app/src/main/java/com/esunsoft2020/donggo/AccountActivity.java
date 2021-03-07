@@ -161,45 +161,8 @@ public class AccountActivity extends AppCompatActivity {
                     }
                 });
 
-//                Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
-//                RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
-//                Call<String> call = registerInterface.getUserProfileImgUrl(G.email,uri.toString());
-//                call.enqueue(new Callback<String>() {
-//                    @Override
-//                    public void onResponse(Call<String> call, Response<String> response) {
-//                        if(response.body().equals("success")) Log.i("ProfileImgUrlSuccess",response.body());
-//                        else Log.i("ProfileImgUrlFalse",response.body());
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<String> call, Throwable t) {
-//                        Log.e("ProfileImgUrlFalse",t.getMessage());
-//                    }
-//                });
             }
         }
-//
-//        File file = new File(G.profileImgUrl);
-//        RequestBody requestBody = RequestBody.create(MediaType.parse("image/*"),file);
-//        MultipartBody.Part part = MultipartBody.Part.createFormData("img",file.getName(),requestBody);
-//
-//        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
-//        RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
-//
-//        Call<String> call = registerInterface.uploadImage(part);
-//        call.enqueue(new Callback<String>() {
-//            @Override
-//            public void onResponse(Call<String> call, Response<String> response) {
-//                String s = response.body();
-//                if(s.equals("success")) Toast.makeText(AccountActivity.this, "변경 완료", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<String> call, Throwable t) {
-//                Toast.makeText(AccountActivity.this, "변경 실패", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
     }
 
 
