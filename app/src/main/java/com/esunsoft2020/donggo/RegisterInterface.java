@@ -1,8 +1,5 @@
 package com.esunsoft2020.donggo;
 
-import java.util.ArrayList;
-
-import kotlin.jvm.JvmMultifileClass;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Field;

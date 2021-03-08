@@ -2,10 +2,17 @@ package com.esunsoft2020.donggo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -13,7 +20,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class BranchActivity extends AppCompatActivity {
 
@@ -23,10 +33,13 @@ public class BranchActivity extends AppCompatActivity {
 
     LinearLayout title;
     ImageView ivTitle;
-    RelativeLayout dropdownLayoutBottom, container;
+    RelativeLayout dropdownLayoutBottom;
     LinearLayout dropdownAllLayout;
     TextView tvTitle;
     boolean drop;
+
+    ViewPager pager;
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +57,6 @@ public class BranchActivity extends AppCompatActivity {
         title = findViewById(R.id.title);
         ivTitle = findViewById(R.id.iv);
         dropdownLayoutBottom = findViewById(R.id.dropdown_layout1);
-        container = findViewById(R.id.container);
         dropdownAllLayout = findViewById(R.id.dropdown_all);
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
@@ -53,20 +65,26 @@ public class BranchActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tvTitle = findViewById(R.id.tv_title);
 
+        pager = findViewById(R.id.pager);
+        tabLayout = findViewById(R.id.layout_tab);
+
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        drop = false;
-
         tvTitle.setText(getIntent().getStringExtra("service"));
+        
+        drop = false;
 
         title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!drop) clickDropFalse();
                 else clickDropTrue();
+                loadData();
             }
         });
 
@@ -74,6 +92,7 @@ public class BranchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 clickDropTrue();
+                loadData();
             }
         });
 
@@ -86,6 +105,11 @@ public class BranchActivity extends AppCompatActivity {
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/health.png").into(branchs[5]);
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/alba.png").into(branchs[6]);
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/else.png").into(branchs[7]);
+    }
+    
+    void loadData() {
+
+
     }
 
     @Override
@@ -102,16 +126,18 @@ public class BranchActivity extends AppCompatActivity {
     void clickDropFalse(){
         Picasso.get().load(android.R.drawable.arrow_up_float).into(ivTitle);
         dropdownAllLayout.setVisibility(View.VISIBLE);
-        container.setClickable(false);
+        pager.setClickable(false);
         dropdownLayoutBottom.setClickable(true);
+        tabLayout.setVisibility(View.GONE);
         drop = true;
     }
 
     void clickDropTrue(){
         Picasso.get().load(android.R.drawable.arrow_down_float).into(ivTitle);
         dropdownAllLayout.setVisibility(View.GONE);
-        container.setClickable(true);
+        pager.setClickable(true);
         dropdownLayoutBottom.setClickable(true);
+        tabLayout.setVisibility(View.VISIBLE);
         drop = false;
     }
 

@@ -37,6 +37,16 @@
                     android:layout_marginTop="8dp"/>
             </LinearLayout>
         </com.google.android.material.appbar.MaterialToolbar>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/layout_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabSelectedTextColor="#489848"
+            app:tabIndicatorColor="#489848"
+            app:tabIndicatorHeight="4dp"
+            app:tabIndicatorFullWidth="false"
+            app:tabMode="scrollable"
+            app:tabGravity="start"/>
     </com.google.android.material.appbar.AppBarLayout>
 <!--    drop down -->
     <LinearLayout
@@ -247,13 +257,9 @@
             android:background="@color/clear_gray"/>
     </LinearLayout>
 
-<!--    TODO:viewpager -->
-<!--viewpager..-->
-    <RelativeLayout
-        android:id="@+id/container"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/appbar">
-    </RelativeLayout>
-
+        android:layout_below="@id/appbar"/>
 </RelativeLayout>
