@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="popular_service">
+        <item>영어 과외</item>
+        <item>퍼스널트레이닝(PT)</item>
+        <item>집 인테리어</item>
+        <item>욕실/화장실 리모델링</item>
+        <item>보컬 레슨</item>
+        <item>에어컨 설치 및 수리</item>
+        <item>싱크대 교체</item>
+        <item>수학 과외</item>
+        <item>타일 시공</item>
+        <item>조명 인테리어</item>
+    </string-array>
+
+    <string-array name="lesson">
+        <item>학업</item>
+        <item>외국어</item>
+        <item>외국어시험</item>
+        <item>공예</item>
+        <item>미술</item>
+        <item>음악이론/보컬</item>
+    </string-array>
+
+    <string-array name="home">
+        <item>이사</item>
+        <item>청소 업체</item>
+        <item>인테리어</item>
+        <item>야외 시공</item>
+        <item>부동산</item>
+        <item>철거/정리</item>
+        <item>펫/반려동물</item>
+        <item>문/창문</item>
+    </string-array>
+
+    <string-array name="event">
+        <item>웨딩</item>
+        <item>촬영 및 편집</item>
+        <item>뮤직/엔터테인먼트</item>
+        <item>음식</item>
+        <item>뷰티/미용</item>
+        <item>기획 및 장식</item>
+    </string-array>
+
+    <string-array name="business">
+        <item>번역</item>
+        <item>통역</item>
+        <item>문서</item>
+        <item>인쇄</item>
+        <item>마케팅</item>
+    </string-array>
+    <string-array name="design">
+        <item>디자인 외주</item>
+        <item>개발 외주</item>
+    </string-array>
+
+    <string-array name="health">
+        <item>심리</item>
+        <item>미용</item>
+        <item>건강</item>
+    </string-array>
+    <string-array name="alba">
+        <item>서빙.주방 알바</item>
+        <item>매장관리.판매 알바</item>
+        <item>서비스.행사 알바</item>
+        <item>문화.여가.생활 알바</item>
+        <item>방송.미디어 알바</item>
+    </string-array>
+    <string-array name="else_e">
+        <item>여행</item>
+        <item>공예제작</item>
+        <item>의류/잡화</item>
+        <item>자동차</item>
+        <item>대여/대관</item>
+        <item>금융</item>
+    </string-array>
+
+
+
+    <string-array name="study1">
+        <item>영어 과외</item>
+        <item>수학 과외</item>
+        <item>국어 과외</item>
+        <item>과학 과외</item>
+        <item>사회 과외</item>
+        <item>논술 과외</item>
+        <item>토론 과외</item>
+    </string-array>
+    <string-array name="language1">
+        <item>비즈니스 중국어</item>
+        <item>일본어(일어) 과외</item>
+        <item>비즈니스 일본어</item>
+        <item>네덜란드어 과외</item>
+        <item>독일어(독어)과외</item>
+        <item>라틴어 과외</item>
+    </string-array>
+    <string-array name="foreign_test1">
+        <item>HSK 과외</item>
+        <item>JLPT 과외</item>
+        <item>ACT 과외</item>
+        <item>AP 과외</item>
+        <item>DELE 과외</item>
+    </string-array>
+    <string-array name="crafts1">
+        <item>가죽공예 레슨</item>
+        <item>마카쥬 레슨</item>
+        <item>바느질/재봉틀 레슨</item>
+        <item>뜨개질/위빙 레슨</item>
+        <item>금손/악세사리공예 레슨</item>
+    </string-array>
+    <string-array name="art1">
+        <item>서예 레슨</item>
+        <item>아동미술 레슨</item>
+        <item>클레이아트 레슨</item>
+        <item>조소 레슨</item>
+        <item>동양화 레슨</item>
+    </string-array>
+    <string-array name="music1">
+        <item>음향/레코딩 레슨</item>
+        <item>디제잉 레슨</item>
+        <item>시창청음/화성학 레슨</item>
+        <item>작곡/편곡 레슨</item>
+        <item>작사 레슨</item>
+    </string-array>
+
+
+    <string-array name="esa2">
+        <item>국내 이사</item>
+        <item>원룸/소형 이사</item>
+        <item>가정이사 (투룸 이상)</item>
+        <item>사무실/상업공간 이사</item>
+        <item>용달/화물 운송</item>
+    </string-array>
+    <string-array name="clean2">
+        <item>라돈 저감 시공</item>
+        <item>이사/입주 청소 업체</item>
+        <item>거주 청소 업체</item>
+        <item>사무실/상업공간 청소 업체</item>
+        <item>에어컨 청소</item>
+    </string-array>
+    <string-array name="interior2">
+        <item>욕실/화장실 리모델링</item>
+        <item>주택 건축</item>
+        <item>주택 리모델링</item>
+        <item>집 수리</item>
+        <item>홈 스타일링</item>
+    </string-array>
+    <string-array name="outside2">
+        <item>옥상공사/방수</item>
+        <item>지붕 공사</item>
+        <item>조경 공사</item>
+        <item>어닝/차양 시공</item>
+        <item>데크 시공</item>
+    </string-array>
+    <string-array name="home_buy2">
+        <item>집 사기</item>
+        <item>집 팔기</item>
+        <item>감정평가</item>
+        <item>집 전세/월세 구하기</item>
+        <item>집 전세/월세 내놓기</item>
+    </string-array>
+    <string-array name="pull_down2">
+        <item>철거</item>
+        <item>폐기물 처리</item>
+        <item>정리수납 컨설팅</item>
+    </string-array>
+    <string-array name="pet2">
+        <item>반려동물 훈련</item>
+        <item>반려견 산책</item>
+        <item>펫 호텔</item>
+        <item>펫 시터(주인 집에서)</item>
+        <item>펫 시터(시터 집에서)</item>
+    </string-array>
+    <string-array name="door2">
+        <item>문 설치 및 수리</item>
+        <item>도어 시공</item>
+        <item>중문 시공</item>
+        <item>샷시 설치 및 수리</item>
+        <item>외풍차단/틈막이 시공</item>
+    </string-array>
+
+    
+    
+    <string-array name="wedding3">
+        <item>웨딩 영상 촬영</item>
+        <item>웨딩 사진 촬영(본식)</item>
+        <item>웨딩 스냅 촬영(스튜디오/야외)</item>
+        <item>웨딩 헤어/메이크업</item>
+        <item>웨딩 연주</item>
+    </string-array>
+    <string-array name="camera3">
+        <item>스냅 촬영</item>
+        <item>개인용 사진 촬영</item>
+        <item>기업/상업용 사진 촬영</item>
+        <item>개인용 영상 촬영</item>
+        <item>기업/상업용 영상 촬영</item>
+    </string-array>
+    <string-array name="music3">
+        <item>강연자 섭외</item>
+        <item>행사 MC</item>
+        <item>댄스 공연</item>
+        <item>보컬 공연</item>
+        <item>밴드 공연</item>
+    </string-array>
+    <string-array name="food3">
+        <item>요리 도우미</item>
+        <item>푸드 스타일링</item>
+        <item>케이터링</item>
+        <item>맞춤 케이크</item>
+        <item>반찬/도시락 배달</item>
+    </string-array>
+    <string-array name="beauty3">
+        <item>헤어 (컷/염색/펌)</item>
+        <item>헤어/메이크업</item>
+        <item>네일</item>
+        <item>왁싱</item>
+        <item>속눈썹 연장/파마</item>
+    </string-array>
+    <string-array name="plan3">
+        <item>파티/행사기획</item>
+        <item>꽃장식</item>
+        <item>엽서 제작 (초대장/청첩장)</item>
+        <item>에어간판/스카이댄스 제작</item>
+        <item>전시부스 제작</item>
+    </string-array>
+
+    <string-array name="writer4">
+        <item>한문 번역</item>
+        <item>영어 번역</item>
+        <item>중국어 번역</item>
+        <item>일본어(일어) 번역</item>
+        <item>베트남어 번역</item>
+    </string-array>
+    <string-array name="speaker4">
+        <item>영어 통역</item>
+        <item>중국어 통역</item>
+        <item>일본어 (일어) 통역</item>
+        <item>러시아어 통역</item>
+        <item>베트남어 통역</item>
+    </string-array>
+    <string-array name="paper4">
+        <item>교정/교열</item>
+        <item>문서/글 작성</item>
+        <item>속기 (타이핑)</item>
+        <item>사업계획서 작성</item>
+        <item>PPT 제작</item>
+    </string-array>
+    <string-array name="print4">
+        <item>굿즈/판촉물 제작</item>
+        <item>엽서 제작 (초대장/청첩장)</item>
+        <item>배너 제작</item>
+        <item>현수막 제작</item>
+        <item>시트지 인쇄.컷팅</item>
+    </string-array>
+    <string-array name="marketing4">
+        <item>해외 마케팅</item>
+        <item>블로그 마케팅</item>
+        <item>SNS/바이럴 마케팅</item>
+        <item>디지털 마케팅</item>
+        <item>인플루언서 마케팅</item>
+    </string-array>
+
+    <string-array name="design5">
+        <item>인쇄물 디자인</item>
+        <item>명함 디자인</item>
+        <item>로고 디자인</item>
+        <item>간판 디자인</item>
+        <item>프레젠테이션 디자인</item>
+    </string-array>
+    <string-array name="develop5">
+        <item>게임 개발</item>
+        <item>iOS 개발</item>
+        <item>안드로이드 개발</item>
+        <item>웹 개발</item>
+        <item>퍼블리싱</item>
+    </string-array>
+    
+    <string-array name="mental6">
+        <item>심리검사</item>
+        <item>심리상담</item>
+        <item>성인 상담</item>
+        <item>부부/커플 상담</item>
+        <item>아동/청소년 상담</item>
+    </string-array>
+    <string-array name="miyong6">
+        <item>퍼스널 컬러/이미지 메이킹</item>
+        <item>헤어/메이크업</item>
+        <item>헤어 (컷/염색/펌)</item>
+        <item>네일</item>
+        <item>왁싱</item>
+    </string-array>
+    <string-array name="health6">
+        <item>반찬/도시락 배달</item>
+        <item>영양/식단 관리</item>
+        <item>퍼스널트레이닝(PT)</item>
+        <item>크로스핏</item>
+        <item>스피닝</item>
+    </string-array>
+
+    <string-array name="alba7_1">
+        <item>일반음식점 알바</item>
+        <item>레스토랑 알바</item>
+        <item>패스트푸드.치킨.피자전문점 알바</item>
+        <item>커피.디저트전문점 알바</item>
+        <item>베이커리.도넛.떡집 알바</item>
+    </string-array>
+    <string-array name="alba7_2">
+        <item>편의점 알바</item>
+        <item>마트.유통점 알바</item>
+        <item>백화점.면세점.아울렛 알바</item>
+        <item>의류.잡화매장 알바</item>
+        <item>인터넷쇼핑몰.소셜커머스.홈쇼핑 알바</item>
+    </string-array>
+    <string-array name="alba7_3">
+        <item>안내데스크.매표 알바</item>
+        <item>주차관리.주차도우미 알바</item>
+        <item>보안.경비.경호 알바</item>
+        <item>부분.피팅모델 알바</item>
+        <item>이벤트.행사스텝 알바</item>
+    </string-array>
+    <string-array name="alba7_4">
+        <item>호텔.리조트.숙박시설 알바</item>
+        <item>놀이공원.테마파크 알바</item>
+        <item>여행.캠트.레포츠 알바</item>
+        <item>영화.공연.전시장 알바</item>
+        <item>이색테마.키즈카페 알바</item>
+    </string-array>
+    <string-array name="alba7_5">
+        <item>보조출연.방청 알바</item>
+        <item>방송스텝.촬영보조 알바</item>
+        <item>조명.음향.무대 알바</item>
+        <item>방송사.프로덕션 알바</item>
+        <item>신문.잡지.출판사 알바</item>
+    </string-array>
+
+
+    <string-array name="else8_1">
+        <item>국내 여행</item>
+        <item>반려동물 동반 여행</item>
+        <item>남유럽/지중해 패키지여행</item>
+        <item>동남아 패키지여행</item>
+        <item>동유럽 패키지여행</item>
+    </string-array>
+    <string-array name="else8_2">
+        <item>플라워 제작</item>
+        <item>꽃풍선 제작</item>
+        <item>캐릭터/이모티콘 제작</item>
+        <item>가구/목공예 제작</item>
+        <item>커스텀 제작</item>
+    </string-array>
+    <string-array name="else8_3">
+        <item>중고 골프채 구매</item>
+        <item>골프 피팅/수리</item>
+        <item>자전거 피팅/수리</item>
+        <item>명품 수선/리폼</item>
+        <item>수제화 제작</item>
+    </string-array>
+    <string-array name="else8_4">
+        <item>자동차 외부수리</item>
+        <item>자동차 정비</item>
+        <item>자동차 튜닝</item>
+        <item>자동차 썬팅</item>
+        <item>자동차 랩핑</item>
+    </string-array>
+    <string-array name="else8_5">
+        <item>노트북/PC 렌탈</item>
+        <item>가전제품 렌탈</item>
+        <item>헬스기구 렌탈</item>
+        <item>자판기 렌탈.구매</item>
+        <item>미술품 구매 및 렌탈</item>
+    </string-array>
+    <string-array name="else8_6">
+        <item>재무 설계</item>
+        <item>보험 설계</item>
+        <item>보험 청구 상담</item>
+        <item>암 보험</item>
+        <item>화재 보험</item>
+    </string-array>
+
+
+
+
+    <string-array name="area">
+        <item>전국</item>
+        <item>강원</item>
+        <item>경기</item>
+        <item>경남</item>
+        <item>경북</item>
+        <item>광주</item>
+        <item>대구</item>
+        <item>대전</item>
+        <item>부산</item>
+        <item>서울</item>
+        <item>세종</item>
+        <item>울산</item>
+        <item>인천</item>
+        <item>전남</item>
+        <item>전북</item>
+        <item>제주</item>
+        <item>충남</item>
+        <item>충북</item>
+    </string-array>
+
+    <string-array name="area1">
+        <item>전국 전체</item>
+    </string-array>
+
+    <string-array name="area2">
+        <item>강원 전체</item>
+        <item>강릉시</item>
+        <item>고성군</item>
+        <item>동해시</item>
+        <item>삼척시</item>
+        <item>속초시</item>
+        <item>양구군</item>
+        <item>양양군</item>
+        <item>영월군</item>
+        <item>원주시</item>
+        <item>인제군</item>
+        <item>정선군</item>
+        <item>철원군</item>
+        <item>춘천시</item>
+        <item>태백시</item>
+        <item>평창군</item>
+        <item>홍천군</item>
+        <item>화천</item>
+        <item>화천군</item>
+        <item>횡성군</item>
+    </string-array>
+
+    <string-array name="area3">
+        <item>경기 전체</item>
+        <item>가평군</item>
+        <item>고양시 덕양구</item>
+        <item>고양시 일산동구</item>
+    </string-array>
+
+    <string-array name="area4">
+        <item>경남 전체</item>
+        <item>거제시</item>
+        <item>거창군</item>
+        <item>고성군</item>
+    </string-array>
+    <string-array name="area5">
+        <item>경북 전체</item>
+        <item>경산시</item>
+        <item>경주시</item>
+        <item>고령군</item>
+    </string-array>
+
+    <string-array name="area6">
+        <item>광주 전체</item>
+        <item>광산구</item>
+        <item>남구</item>
+        <item>동구</item>
+    </string-array>
+
+    <string-array name="area7">
+        <item>대구 전체</item>
+        <item>남구</item>
+        <item>달서구</item>
+        <item>달성군</item>
+    </string-array>
+
+    <string-array name="area8">
+        <item>대전 전체</item>
+        <item>대덕구</item>
+        <item>동구</item>
+        <item>서구</item>
+    </string-array>
+    
+    <string-array name="area9">
+        <item>부산 전체</item>
+        <item>강서구</item>
+        <item>금정구</item>
+        <item>기장군</item>
+    </string-array>
+    
+    <string-array name="area10">
+        <item>서울 전체</item>
+        <item>강남구</item>
+        <item>강동구</item>
+        <item>강북구</item>
+    </string-array>
+
+    <string-array name="area11">
+        <item>세종</item>
+    </string-array>
+    <string-array name="area12">
+        <item>울산 전체</item>
+        <item>남구</item>
+        <item>동구</item>
+        <item>북구</item>
+    </string-array>
+
+    <string-array name="area13">
+        <item>인천 전체</item>
+        <item>강화군</item>
+        <item>계양구</item>
+        <item>남구</item>
+    </string-array>
+
+    <string-array name="area14">
+        <item>전남 전체</item>
+        <item>강진구</item>
+        <item>고흥군</item>
+        <item>곡성군</item>
+    </string-array>
+    
+    <string-array name="area15">
+        <item>전북 전체</item>
+        <item>고창군</item>
+        <item>군산시</item>
+        <item>김제시</item>
+    </string-array>
+    
+    <string-array name="area16">
+        <item>제주 전체</item>
+        <item>서귀포시</item>
+        <item>제주시</item>
+    </string-array>
+
+    <string-array name="area17">
+        <item>충남 전체</item>
+        <item>계룡시</item>
+        <item>공주시</item>
+        <item>금산군</item>
+    </string-array>
+    <string-array name="area18">
+        <item>충북 전체</item>
+        <item>괴산군</item>
+        <item>단양군</item>
+        <item>보은군</item>
+    </string-array>
+    
+
+
+</resources>

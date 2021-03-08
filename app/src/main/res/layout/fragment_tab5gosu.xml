@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -36,20 +37,313 @@
             android:textSize="16sp"
             android:textStyle="bold"/>
         <Switch
+            android:id="@+id/switch_client"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:track="@drawable/switch_track"
             android:thumb="@drawable/switch_thumb"
             android:checked="true"/>
-
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/layout">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/layout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cd"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:cardCornerRadius="4dp">
+                    <ImageView
+                        android:id="@+id/iv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"/>
+                </com.google.android.material.card.MaterialCardView>
 
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Test"
+                    android:layout_toRightOf="@id/cd"
+                    android:layout_marginLeft="16dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_normal"
+                    android:layout_marginTop="8dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Gosu"
+                    android:layout_toRightOf="@id/tv_name"
+                    android:textColor="@color/text_normal"
+                    android:textSize="16sp"
+                    android:layout_alignBottom="@id/tv_name"
+                    android:layout_marginLeft="12dp"/>
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/join_text8"
+                    android:layout_below="@id/tv_name"
+                    android:layout_alignLeft="@id/tv_name"
+                    android:textSize="14sp"/>
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_black"
+                android:layout_below="@id/layout1"
+                android:text="@string/tab5_gosu_text1"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"/>
+
+            <RelativeLayout
+                android:id="@+id/layout_deal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv"
+                android:padding="16dp">
+                <ImageView
+                    android:id="@+id/iv_store"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:adjustViewBounds="true"
+                    app:tint="@color/text_gray"
+                    android:tag="@string/tab5_gosu_text2"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tab5_gosu_text2"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/text_gray"
+                    android:textSize="16sp"
+                    android:layout_toRightOf="@id/iv_store"/>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et"
+                    android:backgroundTint="@color/brandColor"
+                    android:layout_alignParentRight="true"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tab5_gosu_text3"
+                        android:textColor="@color/white"/>
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_use"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_deal"
+                android:paddingLeft="16dp">
+                <ImageView
+                    android:id="@+id/iv_use"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:adjustViewBounds="true"
+                    app:tint="@color/text_gray"
+                    android:tag="@string/tab5_gosu_text4"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tab5_gosu_text4"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/text_gray"
+                    android:textSize="16sp"
+                    android:layout_toRightOf="@id/iv_use"/>
+
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tab5_gosu_text5"
+                android:layout_below="@id/layout_use"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_black"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="16dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv1"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                android:padding="16dp"/>
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tab5_gosu_text8"
+                android:layout_below="@id/recycler1"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_black"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"/>
+
+            <RelativeLayout
+                android:id="@+id/layout_cons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv2"
+                android:paddingLeft="16dp"
+                android:layout_marginTop="16dp">
+                <ImageView
+                    android:id="@+id/iv_cons"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:adjustViewBounds="true"
+                    app:tint="@color/text_gray"
+                    android:layout_centerVertical="true"
+                    android:tag="@string/tab5_gosu_text9"/>
+                <TextView
+                    android:id="@+id/tv3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tab5_gosu_text9"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/text_gray"
+                    android:textSize="16sp"
+                    android:layout_toRightOf="@id/iv_cons"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv3"
+                    android:text="@string/tab5_gosu_text10"
+                    android:layout_alignLeft="@id/tv3"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_cons"
+                android:paddingLeft="16dp"
+                android:layout_marginTop="16dp">
+                <ImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:adjustViewBounds="true"
+                    app:tint="@color/text_gray"
+                    android:layout_centerVertical="true"
+                    android:tag="@string/tab5_gosu_text11"/>
+                <TextView
+                    android:id="@+id/tv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tab5_gosu_text11"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/text_gray"
+                    android:textSize="16sp"
+                    android:layout_toRightOf="@id/iv_search"/>
+                <TextView
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv4"
+                    android:text="@string/tab5_gosu_text12"
+                    android:layout_alignLeft="@id/tv4"
+                    android:maxWidth="250dp"/>
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:track="@drawable/switch_track"
+                    android:thumb="@drawable/switch_thumb"
+                    android:checked="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="16dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/layout_auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_search"
+                android:paddingLeft="16dp"
+                android:layout_marginTop="16dp">
+                <ImageView
+                    android:id="@+id/iv_auto"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:adjustViewBounds="true"
+                    app:tint="@color/text_gray"
+                    android:layout_centerVertical="true"
+                    android:tag="@string/tab5_gosu_text13"/>
+                <TextView
+                    android:id="@+id/tv5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tab5_gosu_text13"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/text_gray"
+                    android:textSize="16sp"
+                    android:layout_toRightOf="@id/iv_auto"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv5"
+                    android:text="@string/tab5_gosu_text14"
+                    android:layout_alignLeft="@id/tv5"/>
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:track="@drawable/switch_track"
+                    android:thumb="@drawable/switch_thumb"
+                    android:checked="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="16dp"/>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tab5_gosu_text15"
+                android:layout_below="@id/layout_auto"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_black"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="16dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                android:layout_below="@id/tv6"/>
+
+
+
+        </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

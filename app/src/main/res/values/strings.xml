@@ -16,12 +16,18 @@
     <string name="gosu_tab4">프로필</string>
     <string name="gosu_tab5">마이페이지</string>
 
-    <string name="tab1_client">딱!맞는 고수를</string>
+    <string name="tab1_client">딱! 맞는 고수를</string>
     <string name="tab1_client_text">소개해드립니다!</string>
+    <string name="tab1_client_text1">어떤 분야의 전문가를 찾으시나요?</string>
+    <string name="tab1_client_text3">동고 인기 서비스</string>
+    <string name="tab1_client_text4">추천 서비스</string>
+    <string name="tab1_client_text5">신규 서비스</string>
+
+    <string name="tab1_client_text2">인기서비스</string>
 
     <string name="tab2">고수 찾기</string>
     <string name="tab2_text">리뷰 많은순</string>
-    <string name="tab2_text2">시/군/구</string>
+    <string name="tab2_text2">시/군/구 선택</string>
     <string name="tab2_text3">서비스 선택</string>
 
     <string name="logout_text">로그인 후 이용해주세요</string>
@@ -36,7 +42,31 @@
     <string name="tab4_text">필터</string>
     <string name="chat_emptytext">메세지가 없습니다</string>
 
-    <string name="tab5_text">고수로 가입하기</string>
+    <string name="tab5_text">고수로 전환하기</string>
+    <string name="tab5_text1">안전거래</string>
+    <string name="tab5_text2">거래 내역</string>
+    <string name="tab5_text3">설정</string>
+
+    <string name="account_text1">계정 설정</string>
+    <string name="account_text2">로그아웃</string>
+    <string name="account_text3">계정 탈퇴</string>
+    <string name="account_text4">이름(실명)을 사용하시면 고용율이 150% 상승합니다.</string>
+    <string name="account_text5">반드시 실명을 입력해주세요.</string>
+    <string name="account_text6">수정완료</string>
+    <string name="account_text7">비밀번호 변경</string>
+    <string name="account_text8">기존 비밀번호</string>
+    <string name="account_text9">현재 비밀번호를 입력해주세요.</string>
+    <string name="account_text10">새로운 비밀번호</string>
+    <string name="account_text11">영문+숫자 8자리 이상 입력해주세요.</string>
+    <string name="account_text12">새로운 비밀번호 확인</string>
+    <string name="account_text13">비밀번호를 한번 더 입력해주세요.</string>
+    <string name="account_text14">변경 완료</string>
+    <string name="account_text15">휴대전화 번호 설정</string>
+    <string name="account_text16">예) 010-1234-5678</string>
+    <string name="account_text17">설정한 번호로 동고 알림을 받을 수 있습니다.</string>
+    <string name="account_text18">휴대전화 번호</string>
+    <string name="account_text19">재설정</string>
+    <string name="account_text20">인증 완료</string>
 
     <string name="gosu_tab1_text1">아직 받은 요청서가 없어요</string>
     <string name="gosu_tab1_text2">요청서를 기다리는 동안</string>
@@ -45,6 +75,20 @@
     <string name="gosu_tab2_text1">바쁠 때에도 견적을 빠르게!</string>
     <string name="gosu_tab2_text2">편리한</string>
     <string name="gosu_tab2_text3">바로견적</string>
+    <string name="gosu_tab2_text4">바로견적 장점</string>
+    <string name="gosu_tab2_text5">견적 발송 비용만으로 고객과</string>
+    <string name="gosu_tab2_text6">채팅/전화 상담까지 가능!</string>
+    <string name="gosu_tab2_text7">미리 설정한 조건과 맞는</string>
+    <string name="gosu_tab2_text8">고객의 요청에</string>
+    <string name="gosu_tab2_text9">빠르게 견적 발송!</string>
+    <string name="gosu_tab2_text10">자동충전 설정 시</string>
+    <string name="gosu_tab2_text11">10% 할인</string>
+    <string name="gosu_tab2_text12">으로</string>
+    <string name="gosu_tab2_text13">저렴하게 이용</string>
+    <string name="gosu_tab2_text14">+바로 견적 등록하기</string>
+    <string name="gosu_tab2_text15">대표 이미지 등록 및 프로필 완성도 70% 이상 시 원활한</string>
+    <string name="gosu_tab2_text16">서비스 이용을 하실 수 있습니다.</string>
+    <string name="gosu_tab2_text17">서비스 이용은 당사 사정에 따라 추후에 변경될 수 있습니다.</string>
 
     <string name="chat_empty_gosutext1">견적을 작성하고</string>
     <string name="chat_empty_gosutext2">고객과 상담을 진행해보세요!</string>
@@ -53,8 +97,52 @@
     <string name="tab4_gosu_text1">리뷰 평점</string>
     <string name="tab4_gosu_text2">리뷰수</string>
     <string name="tab4_gosu_text3">고용수</string>
+    <string name="tab4_gosu_text4">활동분석</string>
+    <string name="tab4_gosu_text5">프로필 완성도</string>
+    <string name="tab4_gosu_text6">30%</string>
+    <string name="tab4_gosu_text7_1">고수님의 전문적인 모습을 표현할 수 있는 사진을 등록해보세요. 사진과 동영상을 등록할 경우 고수님을 선택할 확률이 80% 이상 높아집니다.</string>
+    <string name="tab4_gosu_text7_2">미디어 등록하기</string>
+    <string name="tab4_gosu_text8_1">반드시 대표 서비스를 설정해주세요, 대표 서비스를 설정하지 않으면 고수님이 검색될 확률이 80%이상 낮아집니다.</string>
+    <string name="tab4_gosu_text8_2">대표서비스 등록하기</string>
+    <string name="tab4_gosu_text9_1">질문 답변을 통해 제공하는 서비스에 대한 궁금증을 알려주세요. 질문 답변을 등록할 경우 고용으로까지 연결되는 시간이 30% 이상 단축됩니다.</string>
+    <string name="tab4_gosu_text9_2">질문답변 등록하기</string>
+    <string name="tab4_gosu_text10_1">고수님의 서비스 내용을 상세 서비스에 등록해 보세요. 600자 미만의 상세 서비스를 작성할 경우 고용될 확률이 40%이상 높아집니다.</string>
+    <string name="tab4_gosu_text10_2">서비스 소개 등록하기</string>
+    <string name="tab4_gosu_text11_1">고객님께 3개 이상 리뷰를 받아 보세요. 동고에서 고용된 고수님ㄴ의 90%는 3개 이상의 리뷰를 갖고 있습니다.</string>
+    <string name="tab4_gosu_text11_2">리뷰 요청하기</string>
+    <string name="tab4_gosu_text12_1">결제방법을 등록해 주세요. 고객은 고수의 결제방법을 알고 싶어 합니다.</string>
+    <string name="tab4_gosu_text12_2">결제수단 등록하기</string>
+    <string name="tab4_gosu_text13_1">본인인증이 완료되지 않았습니다. 본인인증을 할 경우 고수님에 대한 신뢰도와 고용률이 2배 이상 높아집니다.</string>
+    <string name="tab4_gosu_text13_2">본인인증 하기</string>
+    <string name="tab4_gosu_text14_1">고수님과 안전하게 거래를 할 수 있도록 안전거래 계좌를 등록해보세요. 고수님에 대한 신뢰도와 고용률이 2배 이상 높아집니다.</string>
+    <string name="tab4_gosu_text14_2">안전거래 계좌 등록하기</string>
+
+    <string name="tab4_gosu_text9">이름</string>
+    <string name="tab4_gosu_text10">수정</string>
+    <string name="tab4_gosu_text11">대표 서비스</string>
+    <string name="tab4_gosu_text12">등록하기</string>
+    <string name="tab4_gosu_text13">한줄소개</string>
+    <string name="tab4_gosu_text14">활동 지역</string>
+    <string name="tab4_gosu_text15">이동 가능 거리</string>
+    <string name="tab4_gosu_text16">리뷰</string>
+    <string name="tab4_gosu_text17">리뷰 요청하기</string>
 
     <string name="tab5_gosu_text">고객으로 전환</string>
+    <string name="tab5_gosu_text1">동고 캐시</string>
+    <string name="tab5_gosu_text2">스토어</string>
+    <string name="tab5_gosu_text3">0캐시</string>
+    <string name="tab5_gosu_text4">충전/사용 내역</string>
+    <string name="tab5_gosu_text5">안전 거래</string>
+    <string name="tab5_gosu_text6">거래 내역</string>
+    <string name="tab5_gosu_text7">계좌 관리</string>
+    <string name="tab5_gosu_text8">편리한 기능</string>
+    <string name="tab5_gosu_text9">전담 컨설턴트</string>
+    <string name="tab5_gosu_text10">실시간 채팅으로 1:1 상담 가능합니다.</string>
+    <string name="tab5_gosu_text11">고수찾기 노출 설정</string>
+    <string name="tab5_gosu_text12">고수 찾기에 프로필을 홍보해드려요.</string>
+    <string name="tab5_gosu_text13">자동견적 설정</string>
+    <string name="tab5_gosu_text14">견적을 받지 못한 요청서에 견적을 무료로 발송합니다.</string>
+    <string name="tab5_gosu_text15">설정</string>
 
     <string name="login">로그인</string>
     <string name="login_text1">이메일</string>
@@ -66,4 +154,96 @@
     <string name="login_text7">Kakao로 시작하기</string>
     <string name="login_text8">Facebook으로 시작하기</string>
     <string name="login_text9">회원가입</string>
+
+    <string name="join_text1">고객으로 가입</string>
+    <string name="join_text2">고수님에게 도움을 받고 싶어요</string>
+    <string name="join_text3">고수로 가입</string>
+    <string name="join_text4">비즈니스에 맞는 고객을 만나고 싶어요</string>
+    <string name="join_text5">이름</string>
+    <string name="join_text6">이름(실명)을 입력해주세요.</string>
+    <string name="join_text7">이메일</string>
+    <string name="join_text8">id@donggo.com</string>
+    <string name="join_text9">비밀번호</string>
+    <string name="join_text10">영문+숫자 조합 8자리 이상 입력해주세요.</string>
+    <string name="join_text11">비밀번호 확인</string>
+    <string name="join_text12">비밀번호를 한번 더 입력해주세요.</string>
+    <string name="join_text13">이용약관</string>
+    <string name="join_text14">및</string>
+    <string name="join_text15">개인정보처리방침</string>
+    <string name="join_text16">에 동의합니다.(필수)</string>
+
+    <string name="branch1">레슨</string>
+    <string name="branch2">홈/리빙</string>
+    <string name="branch3">이벤트</string>
+    <string name="branch4">비즈니스</string>
+    <string name="branch5">디자인/개발</string>
+    <string name="branch6">건강/미용</string>
+    <string name="branch7">알바</string>
+    <string name="branch8">기타</string>
+
+    <string name="gosu_join">고수가입</string>
+    <string name="gosu_join_text2">전문 활동 분야를 선택해주세요.</string>
+    <string name="gosu_join2_text1"></string>
+    <string name="branch_service">어떤 서비스를 제공하실 수 있나요?</string>
+    <string name="branch_service1">구체적으로 어떤 서비스를 제공하실 수 있나요?</string>
+    <string name="branch_service2">고수님의 활동 지역의 주소를 알려주세요.</string>
+    <string name="branch_service3">활동 지역은 근처의 고객을 찾는게 도움이 됩니다.</string>
+    <string name="branch_service4">예)강남구 역삼동 123-45(혹은 건물명)</string>
+    <string name="branch_service5">주소 수정</string>
+    <string name="branch_service6">이용 가능 거리</string>
+    <string name="branch_service7">고객님과 매칭을 위해 아래의 정보가 추가로 필요해요.</string>
+    <string name="branch_service8">성별</string>
+    <string name="branch_service9">남자</string>
+    <string name="branch_service10">여자</string>
+    <string name="branch_service11">휴대전화 번호인증</string>
+    <string name="branch_service12">예)010-1234-5678</string>
+    <string name="branch_service13">전송</string>
+    <string name="branch_service14">인증번호</string>
+    <string name="branch_service15">SMS 인증번호를 입력해주세요.</string>
+    <string name="branch_service16">인증하기</string>
+
+    <string name="complete">완료</string>
+    <string name="next">다음</string>
+    <string name="progress1">66%</string>
+    <string name="progress2">77%</string>
+    <string name="progress3">86%</string>
+    <string name="progress4">100%</string>
+    <string name="example_address1">[도로명] 서울특별시 강남구 테헤란로 221(역삼동)</string>
+    <string name="example_address2">[지번] 서울특별시 강남구 역삼동 677-26</string>
+
+    <string name="distance1">2km</string>
+    <string name="distance2">5km</string>
+    <string name="distance3">10km</string>
+    <string name="distance4">25km</string>
+    <string name="distance5">50km</string>
+    <string name="distance6">100km</string>
+    <string name="distance7">전국</string>
+    <string name="all">전체보기</string>
+    <string name="client">고객님</string>
+    <string name="Gosu">고수님</string>
+
+    <string name="changeAccount1">이름 변경</string>
+    <string name="changeAccount2">이메일 변경</string>
+    <string name="changeAccount3">비밀번호 변경</string>
+    <string name="changeAccount4">휴대전화 번호 설정</string>
+
+    <string name="withdraw1">정말 동고를 떠나실 건가요?</string>
+    <string name="withdraw2">계정삭제시 모든 개인정보가 삭제되며 구매하신 캐시는 환불되지 않아요</string>
+    <string name="withdraw3">다시 생각해 볼게요</string>
+    <string name="withdraw4">계정탈퇴</string>
+
+    <string name="withdraw5">동고 탈퇴 전 꼭 확인 해주세요.</string>
+    <string name="withdraw6">1. 탈퇴시 모든 개인정보가 삭제되며, 구매하신 캐시는 소멸되어 환불되지 않습니다.</string>
+    <string name="withdraw7">2. 동고 이용에 불편이 있어 탈퇴를 고민하신다면,</string>
+    <string name="withdraw8">esunsoft2020@gmail.com 로 문의 바랍니다.</string>
+    <string name="withdraw9">3. 위 내용을 모두 학인하였고, 탈퇴 완료 시 내용에 동의합니다.</string>
+    <string name="withdraw10">탈퇴 사유</string>
+    <string name="withdraw11">알림이 너무 많이 와요</string>
+    <string name="withdraw12">사용하기 어려워요</string>
+    <string name="withdraw13">오류가 많아서 불편해요</string>
+    <string name="withdraw14">기타</string>
+    <string name="withdraw15">떠나게 되시어 정말 아쉽네요. 이유를 자세히 알려주실 수 있나요?</string>
+    <string name="withdraw16">탈퇴완료</string>
+
+
 </resources>

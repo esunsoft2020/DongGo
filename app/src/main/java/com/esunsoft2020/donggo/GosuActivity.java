@@ -6,7 +6,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,14 +26,37 @@ public class GosuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gosu);
+        manager = getSupportFragmentManager();
+        FragmentTransaction tran = manager.beginTransaction();
 
         bnv = findViewById(R.id.bnv);
 
-        manager = getSupportFragmentManager();
-        FragmentTransaction tran = manager.beginTransaction();
         fragments[0] = new Tab1GosuFragment();
         tran.add(R.id.container, fragments[0]);
         tran.commit();
+
+
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        showFragment();
+
+        if(!G.loginState) finish();
+
+        if(G.where.equals("account") ) {
+            bnv.setSelectedItemId(R.id.bnv_gosu_set);
+        }else if(G.where.equals("client")){
+            bnv.setSelectedItemId(R.id.bnv_gosu_set);
+        }
+        G.where = "Gosu";
+    }
+
+    void showFragment(){
 
         bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -81,9 +108,16 @@ public class GosuActivity extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
     }
+
+    @Override
+    public void onBackPressed() {
+        PreferenceHelper helper = new PreferenceHelper(this);
+        if(G.loginState) helper.putDatas();
+
+        finish();
+    }
+
+
 
 }

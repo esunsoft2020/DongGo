@@ -6,8 +6,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -32,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
         tran.commit();
 
 
+
     }
+
 
     @Override
     protected void onResume() {
@@ -40,12 +48,20 @@ public class MainActivity extends AppCompatActivity {
 
         showFragment();
 
+        //로그아웃 시
+//        if(getIntent().getStringExtra("logout")!=null) finish();
 
+        Log.e("where",G.where+"");
+        if(G.where.equals("account") ) {
+            bnv.setSelectedItemId(R.id.bnv_setting);
+        }else if(G.where.equals("Gosu")){
+            bnv.setSelectedItemId(R.id.bnv_setting);
+        }
+        G.where = "client";
     }
 
-    void showFragment(){
-        Boolean login = getIntent().getBooleanExtra("login",false);
 
+    void showFragment(){
         bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -70,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.bnv_receive:
                         if(fragments[2]==null){
 
-                            if(login) fragments[2] = new Tab3ClientFragment();
+                            if(G.loginState) fragments[2] = new Tab3ClientFragment();
                             else fragments[2] = new LogoutFragment();
 
                             tran.add(R.id.container, fragments[2]);
@@ -80,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.bnv_chat:
                         if(fragments[3]==null){
 
-                            if(login) fragments[3] = new Tab4ClientFragment();
+                            if(G.loginState) fragments[3] = new Tab4ClientFragment();
                             else fragments[3] = new LogoutFragment();
 
                             tran.add(R.id.container, fragments[3]);
@@ -89,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.bnv_setting:
                         if(fragments[4]==null){
-                            if(login) fragments[4] = new Tab5ClientFragment();
+                            if(G.loginState) fragments[4] = new Tab5ClientFragment();
                             else fragments[4] = new LogoutFragment();
 
                             tran.add(R.id.container, fragments[4]);
@@ -99,9 +115,18 @@ public class MainActivity extends AppCompatActivity {
                 }
                 tran.commit();
 
+
                 return true;
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        PreferenceHelper helper = new PreferenceHelper(this);
+        if(G.loginState) helper.putDatas();
+        finish();
     }
 
 }
