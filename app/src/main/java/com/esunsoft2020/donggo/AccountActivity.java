@@ -105,8 +105,8 @@ public class AccountActivity extends AppCompatActivity {
 
         adapter.notifyDataSetChanged();
 
-        if(G.profileImgUrl!=null)Glide.with(this).load(G.profileImgUrl).into(ivProfile);
-        else Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
+        if(G.profileImgUrl==null) Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
+        else Glide.with(this).load(G.profileImgUrl).into(ivProfile);
 
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/camera.png").into(ivCamera);
 

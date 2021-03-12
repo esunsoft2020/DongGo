@@ -222,7 +222,7 @@ public class LoginActivity extends AppCompatActivity {
             {
                 if (response.isSuccessful() && response.body() != null)
                 {
-                    Log.e("onSuccess", response.body());
+//                    Log.e("onSuccess", response.body());
 
                     successLogin = true;
                     String jsonResponse = response.body();
@@ -277,11 +277,13 @@ public class LoginActivity extends AppCompatActivity {
                     G.phone = phone;
                     if(profileImgUrl!=null) G.profileImgUrl = profileImgUrl;
                     else G.profileImgUrl = null;
+                    Log.e("profileImgUrl",G.profileImgUrl);
 
                     G.isEmailLogin = isEmailLogin;
                     G.iskakaoLogin = isKakaoLogin;
                     G.isGoogleLogin = isGoogleLogin;
                     G.isGosu = isGosu;
+
                     PreferenceHelper helper = new PreferenceHelper(LoginActivity.this);
                     helper.putDatas();
 
