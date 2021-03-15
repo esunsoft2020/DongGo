@@ -28,34 +28,34 @@
 
 
 <!--    액티비티를 보기 위한 버튼  -->
-    <Button
-        android:id="@+id/btn1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        android:layout_alignParentRight="true"
-        android:layout_above="@id/btn2"
-        android:onClick="clickBtn1"
-        android:textAllCaps="false"/>
-    <Button
-        android:id="@+id/btn2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LoginClient"
-        android:layout_alignParentRight="true"
-        android:layout_above="@id/btn3"
-        android:onClick="clickBtn2"
-        android:textAllCaps="false"/>
+<!--    <Button-->
+<!--        android:id="@+id/btn1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Logout"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_above="@id/btn2"-->
+<!--        android:onClick="clickBtn1"-->
+<!--        android:textAllCaps="false"/>-->
+<!--    <Button-->
+<!--        android:id="@+id/btn2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="LoginClient"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_above="@id/btn3"-->
+<!--        android:onClick="clickBtn2"-->
+<!--        android:textAllCaps="false"/>-->
 
 
-    <Button
-        android:id="@+id/btn3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LoginGosu"
-        android:layout_alignParentRight="true"
-        android:layout_above="@id/tv"
-        android:onClick="clickBtn3"
-        android:textAllCaps="false"/>
+<!--    <Button-->
+<!--        android:id="@+id/btn3"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="LoginGosu"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_above="@id/tv"-->
+<!--        android:onClick="clickBtn3"-->
+<!--        android:textAllCaps="false"/>-->
 
 </RelativeLayout>

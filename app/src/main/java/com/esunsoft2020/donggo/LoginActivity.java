@@ -277,7 +277,6 @@ public class LoginActivity extends AppCompatActivity {
                     G.phone = phone;
                     if(profileImgUrl!=null) G.profileImgUrl = profileImgUrl;
                     else G.profileImgUrl = null;
-                    Log.e("profileImgUrl",G.profileImgUrl);
 
                     G.isEmailLogin = isEmailLogin;
                     G.iskakaoLogin = isKakaoLogin;

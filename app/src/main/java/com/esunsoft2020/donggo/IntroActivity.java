@@ -3,15 +3,10 @@ package com.esunsoft2020.donggo;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -19,15 +14,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.kakao.sdk.common.util.Utility;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
-import retrofit2.Call;
-import retrofit2.Retrofit;
 
 public class IntroActivity extends AppCompatActivity {
 
@@ -57,18 +43,25 @@ public class IntroActivity extends AppCompatActivity {
                         Log.d("TOKEN", token);
                     }
                 });
-
-
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         G.where = "intro";
-        loadData();
-    }
 
+        handler.sendEmptyMessageDelayed(0, (long) (1.5*1000));
+//        loadData();
+
+
+    }//onResume...
+
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            loadData();
+        }
+    };
     //마지막 사용 시 로그인 상태 불러오기
     void loadData(){
         PreferenceHelper preferenceHelper = new PreferenceHelper(this);
