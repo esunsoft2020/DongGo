@@ -249,6 +249,7 @@
                     android:onClick="clickIcon"/>
             </GridLayout>
         </RelativeLayout>
+<!--        dropdown 내려갔을 경우 아래 투명 회색 부분-->
         <RelativeLayout
             android:id="@+id/dropdown_layout1"
             android:layout_width="match_parent"

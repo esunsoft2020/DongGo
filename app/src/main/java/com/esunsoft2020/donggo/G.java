@@ -1,8 +1,14 @@
 package com.esunsoft2020.donggo;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -129,9 +135,23 @@ public class G {
         return str;
     }
 
+    //Custom Toast
+    public static void CustomToast(Context context, String msg){
+        TextView tvToastMsg = new TextView(context);
+        tvToastMsg.setText(msg);
+        tvToastMsg.setBackgroundResource(R.color.text_gray);
+        tvToastMsg.setTextColor(context.getResources().getColor(R.color.white));
+        tvToastMsg.setTextSize(16);
+        tvToastMsg.setHeight(80);
+        tvToastMsg.setWidth(800);
+        tvToastMsg.setGravity(Gravity.CENTER);
 
 
+        final Toast toastMsg = Toast.makeText(context, "", Toast.LENGTH_SHORT);
+        toastMsg.setView(tvToastMsg);
 
+        toastMsg.show();
+    }
 
 
 }

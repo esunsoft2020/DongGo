@@ -9,13 +9,17 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class IntroActivity extends AppCompatActivity {
+
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class IntroActivity extends AppCompatActivity {
                         Log.d("TOKEN", token);
                     }
                 });
+        tv = findViewById(R.id.tv);
     }
 
     @Override
@@ -68,7 +73,8 @@ public class IntroActivity extends AppCompatActivity {
         preferenceHelper.getDatas();
 
         if(G.loginState) {
-            if(G.name!=null) Toast.makeText(this, getResources().getString(R.string.intro_text)+" "+G.name+"님!", Toast.LENGTH_SHORT).show();
+            if(G.name!=null) G.CustomToast(this,getResources().getString(R.string.intro_text)+" "+G.name+"님!");
+//                Toast.makeText(this, getResources().getString(R.string.intro_text)+" "+G.name+"님!", Toast.LENGTH_SHORT).show();
 
             if(G.isGosu) startActivity(new Intent(this,GosuActivity.class));
             else startActivity(new Intent(this,MainActivity.class));
