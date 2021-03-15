@@ -244,6 +244,8 @@
     <string name="withdraw14">기타</string>
     <string name="withdraw15">떠나게 되시어 정말 아쉽네요. 이유를 자세히 알려주실 수 있나요?</string>
     <string name="withdraw16">탈퇴완료</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

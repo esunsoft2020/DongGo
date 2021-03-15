@@ -114,8 +114,8 @@ public class Tab4GosuFragment extends Fragment {
         adapter.notifyDataSetChanged();
 
         //개인 사진 iv(변경가능)
-        if(G.profileImgUrl!=null)Glide.with(this).load(G.profileImgUrl).into(civ);
-        else Glide.with(this).load("http://donggo.dothome.co.kr/icon/mypage.png").into(civ);
+        if(G.profileImgUrl==null) Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(civ);
+        else Glide.with(this).load(G.profileImgUrl).into(civ);
 
         //변경x
         Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/shot.png").into(upload);

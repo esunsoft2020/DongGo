@@ -101,8 +101,8 @@ public class Tab5ClientFragment extends Fragment {
         items.add(new TwoStringItem("http://donggo.dothome.co.kr/icon/setting/version.png","앱 버전"));
 
 
-        if(G.profileImgUrl!=null)Glide.with(this).load(G.profileImgUrl).into(ivProfile);
-        else Picasso.get().load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
+        if(G.profileImgUrl==null) Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
+        else Glide.with(this).load(G.profileImgUrl).into(ivProfile);
 
         Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/setting/shield.png").into(ivDeal);
 
