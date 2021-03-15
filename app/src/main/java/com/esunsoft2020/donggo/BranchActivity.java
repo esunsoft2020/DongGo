@@ -161,8 +161,9 @@ public class BranchActivity extends AppCompatActivity {
 
     void clickDropFalse(){
         Picasso.get().load(android.R.drawable.arrow_up_float).into(ivTitle);
-        dropdownAllLayout.setVisibility(View.VISIBLE);
+//        pager.setVisibility(View.GONE);
         pager.setClickable(false);
+        dropdownAllLayout.setVisibility(View.VISIBLE);
         dropdownLayoutBottom.setClickable(true);
         tabLayout.setVisibility(View.GONE);
         drop = true;
@@ -172,6 +173,7 @@ public class BranchActivity extends AppCompatActivity {
         Picasso.get().load(android.R.drawable.arrow_down_float).into(ivTitle);
         dropdownAllLayout.setVisibility(View.GONE);
         pager.setClickable(true);
+//        pager.setVisibility(View.VISIBLE);
         dropdownLayoutBottom.setClickable(true);
         tabLayout.setVisibility(View.VISIBLE);
         drop = false;

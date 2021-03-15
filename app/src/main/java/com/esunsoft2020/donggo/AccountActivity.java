@@ -45,6 +45,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
+
 public class AccountActivity extends AppCompatActivity {
 
     CircleImageView ivProfile;
@@ -95,6 +97,7 @@ public class AccountActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
         super.onResume();
 
         items.clear();
@@ -105,7 +108,7 @@ public class AccountActivity extends AppCompatActivity {
 
         adapter.notifyDataSetChanged();
 
-        if(G.profileImgUrl==null) Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
+        if((G.profileImgUrl).equals("null")) Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
         else Glide.with(this).load(G.profileImgUrl).into(ivProfile);
 
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/camera.png").into(ivCamera);

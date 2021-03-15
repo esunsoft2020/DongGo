@@ -23,6 +23,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_OK;
+import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
 
 public class Tab5GosuFragment extends Fragment {
     @Nullable
@@ -111,7 +112,7 @@ public class Tab5GosuFragment extends Fragment {
         Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/setting/search.png").into(ivSearch);
         Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/setting/auto.png").into(ivAuto);
 
-        if(G.profileImgUrl==null) Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
+        if((G.profileImgUrl).equals("null")) Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(ivProfile);
         else Glide.with(this).load(G.profileImgUrl).into(ivProfile);
 
 
