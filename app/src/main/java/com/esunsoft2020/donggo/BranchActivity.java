@@ -80,8 +80,8 @@ public class BranchActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         tvTitle.setText(getIntent().getStringExtra("service"));
+        loadData(tvTitle.getText().toString());
 
-        loadData(getIntent().getStringExtra("service"));
         drop = false;
 
         title.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +89,6 @@ public class BranchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!drop) clickDropFalse();
                 else clickDropTrue();
-                loadData(getIntent().getStringExtra("service"));
             }
         });
 
@@ -97,7 +96,6 @@ public class BranchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 clickDropTrue();
-                loadData(getIntent().getStringExtra("service"));
             }
         });
 
@@ -111,39 +109,39 @@ public class BranchActivity extends AppCompatActivity {
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/alba.png").into(branchs[6]);
         Glide.with(this).load("http://donggo.dothome.co.kr/icon/else.png").into(branchs[7]);
     }
-    
+    String[] services;
     void loadData(String service) {
-        String[] titles;
+
         switch (service){
             case "레슨":
-                titles = getResources().getStringArray(R.array.lesson);
+                services = getResources().getStringArray(R.array.lesson);
                 break;
             case "홈/리빙":
-                titles = getResources().getStringArray(R.array.home);
+                services = getResources().getStringArray(R.array.home);
                 break;
             case "이벤트":
-                titles = getResources().getStringArray(R.array.event);
+                services = getResources().getStringArray(R.array.event);
                 break;
             case "비즈니스":
-                titles = getResources().getStringArray(R.array.business);
+                services = getResources().getStringArray(R.array.business);
                 break;
             case "디자인/개발":
-                titles = getResources().getStringArray(R.array.design);
+                services = getResources().getStringArray(R.array.design);
                 break;
             case "건강/미용":
-                titles = getResources().getStringArray(R.array.health);
+                services = getResources().getStringArray(R.array.health);
                 break;
             case "알바":
-                titles = getResources().getStringArray(R.array.alba);
+                services = getResources().getStringArray(R.array.alba);
                 break;
             case "기타":
-                titles = getResources().getStringArray(R.array.else_e);
+                services = getResources().getStringArray(R.array.else_e);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + service);
         }
 
-        adapter = new BranchTabAdapter(getSupportFragmentManager(),FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,titles);
+        adapter = new BranchTabAdapter(getSupportFragmentManager(),FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT,services);
         pager.setAdapter(adapter);
         tabLayout.setupWithViewPager(pager);
     }
@@ -161,8 +159,7 @@ public class BranchActivity extends AppCompatActivity {
 
     void clickDropFalse(){
         Picasso.get().load(android.R.drawable.arrow_up_float).into(ivTitle);
-//        pager.setVisibility(View.GONE);
-        pager.setClickable(false);
+        pager.setVisibility(View.GONE);
         dropdownAllLayout.setVisibility(View.VISIBLE);
         dropdownLayoutBottom.setClickable(true);
         tabLayout.setVisibility(View.GONE);
@@ -172,9 +169,8 @@ public class BranchActivity extends AppCompatActivity {
     void clickDropTrue(){
         Picasso.get().load(android.R.drawable.arrow_down_float).into(ivTitle);
         dropdownAllLayout.setVisibility(View.GONE);
-        pager.setClickable(true);
-//        pager.setVisibility(View.VISIBLE);
-        dropdownLayoutBottom.setClickable(true);
+        pager.setVisibility(View.VISIBLE);
+        dropdownLayoutBottom.setClickable(false);
         tabLayout.setVisibility(View.VISIBLE);
         drop = false;
     }
@@ -214,6 +210,7 @@ public class BranchActivity extends AppCompatActivity {
                 throw new IllegalStateException("Unexpected value: " + view.getTag() + "");
         }
         tvTitle.setText(title);
+        loadData(tvTitle.getText().toString());
         clickDropTrue();
     }
 }
