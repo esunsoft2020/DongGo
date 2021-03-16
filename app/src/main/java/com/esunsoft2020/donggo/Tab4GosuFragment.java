@@ -59,6 +59,8 @@ public class Tab4GosuFragment extends Fragment {
     TextView preview, changeName,changeAddress,changeOneLine,changeRadius, gosuService;
     RelativeLayout APLayout, requestReviewLayout;
 
+    TextView tvName, tvLine;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -86,11 +88,25 @@ public class Tab4GosuFragment extends Fragment {
         requestReviewLayout = view.findViewById(R.id.btn_request_review);
         gosuService = view.findViewById(R.id.service);
 
+        tvName = view.findViewById(R.id.tv_name);
+        tvLine = view.findViewById(R.id.tv_line);
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+        loadData();
+        tvName.setText(G.name);
+
+        String gosuBranch = RegisterGosu.gosuBranch;
+        String serviceDetail = RegisterGosu.serviceDetail;
+
+        gosuBranch = gosuBranch.replace("{\"gosuService\":\"","").replace("\"}","");
+        serviceDetail = serviceDetail.replace("{\"serviceDetail\":\"","").replace("\"}","");
+
+        tvLine.setText(G.name+"고수의 "+gosuBranch+", "+serviceDetail);
 
         for(ImageView iv : ivs){
             iv.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +133,7 @@ public class Tab4GosuFragment extends Fragment {
         if(G.profileImgUrl==null) Glide.with(this).load("http://donggo.dothome.co.kr/icon/account/pic.png").into(civ);
         else Glide.with(this).load(G.profileImgUrl).into(civ);
 
-        //변경x
+        //변경x(고정이미지)
         Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/shot.png").into(upload);
         Glide.with(getActivity()).load("http://donggo.dothome.co.kr/icon/chart.png").into(iv1);
 
@@ -146,7 +162,7 @@ public class Tab4GosuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String vv = ((TextView)v).getText().toString();
-                new AlertDialog.Builder(getActivity()).setMessage(vv+"준비중입니다.").setPositiveButton("OK",null).show();
+                new AlertDialog.Builder(getActivity()).setMessage(vv+" 준비중입니다.").setPositiveButton("OK",null).show();
             }
         });
 
@@ -154,7 +170,7 @@ public class Tab4GosuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String vv = ((TextView)v).getText().toString();
-                new AlertDialog.Builder(getActivity()).setMessage(vv+"준비중입니다.").setPositiveButton("OK",null).show();
+                new AlertDialog.Builder(getActivity()).setMessage(vv+" 준비중입니다.").setPositiveButton("OK",null).show();
             }
         });
 
@@ -162,7 +178,7 @@ public class Tab4GosuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String vv = ((TextView)v).getText().toString();
-                new AlertDialog.Builder(getActivity()).setMessage(vv+"준비중입니다.").setPositiveButton("OK",null).show();
+                new AlertDialog.Builder(getActivity()).setMessage(vv+" 준비중입니다.").setPositiveButton("OK",null).show();
             }
         });
 
@@ -187,6 +203,14 @@ public class Tab4GosuFragment extends Fragment {
                 new AlertDialog.Builder(getActivity()).setMessage("준비중입니다.").setPositiveButton("OK",null).show();
             }
         });
+    }
+
+
+    //본인 고수 정보 가져오기
+    void loadData(){
+
+
+
     }
 
     @Override

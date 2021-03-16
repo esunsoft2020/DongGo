@@ -15,5 +15,12 @@ public interface LoginInterface {
             @Field("pw") String pw
     );
 
+    @FormUrlEncoded
+    @POST("retrofit_gosuInfoLoading.php")
+    Call<String> getGosuInfo(
+            @Field("email") String email,
+            @Field("name") String name
+    );
+
 
 }

@@ -124,14 +124,14 @@ public class GosuJoin2Activity extends AppCompatActivity {
         if(RegisterGosu.service.size()>0) {
             startActivity(new Intent(this, GosuJoin3Activity.class));
 
-            RegisterGosu.gosuService = "{\"gosuService\":[\"";
+            RegisterGosu.gosuService = "{\"gosuService\":\"";
             for(int i=0 ; i<RegisterGosu.service.size() ; i++){
                 RegisterGosu.gosuService +=RegisterGosu.service.get(i);
                 if(i<(RegisterGosu.service.size()-1)){
                     RegisterGosu.gosuService +=",";
                 }
             }
-            RegisterGosu.gosuService += "\"]}";
+            RegisterGosu.gosuService += "\"}";
 //            Log.e("gosuService",RegisterGosu.gosuService);
             finish();
         }else Toast.makeText(this, "서비스를 선택해주세요.", Toast.LENGTH_SHORT).show();

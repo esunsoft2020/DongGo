@@ -283,14 +283,26 @@ public class LoginActivity extends AppCompatActivity {
                     G.isGoogleLogin = isGoogleLogin;
                     G.isGosu = isGosu;
 
+                    //TODO: isGosu 가 true면 gosuinfo 불러오기(tab4Gosufragment 수정 필요)
+                    if(isGosu){
+                        loadGosuInfo();
+                    }
+
                     PreferenceHelper helper = new PreferenceHelper(LoginActivity.this);
                     helper.putDatas();
+
 
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+    }
+
+    void loadGosuInfo(){
+        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
+        RegisterInterface
 
     }
 
