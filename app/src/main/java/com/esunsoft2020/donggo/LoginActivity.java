@@ -275,8 +275,7 @@ public class LoginActivity extends AppCompatActivity {
                     G.email = email;
                     G.name = name;
                     G.phone = phone;
-                    if(profileImgUrl!=null) G.profileImgUrl = profileImgUrl;
-                    else G.profileImgUrl = null;
+                    G.profileImgUrl = profileImgUrl;
 
                     G.isEmailLogin = isEmailLogin;
                     G.iskakaoLogin = isKakaoLogin;
@@ -302,7 +301,19 @@ public class LoginActivity extends AppCompatActivity {
 
     void loadGosuInfo(){
         Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
-        RegisterInterface
+        LoginInterface loginInterface = retrofit.create(LoginInterface.class);
+        Call<String> call = loginInterface.getGosuInfo(G.email,G.name);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
+            }
+        });
 
     }
 
