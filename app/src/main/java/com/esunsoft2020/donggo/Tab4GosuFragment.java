@@ -3,6 +3,8 @@ package com.esunsoft2020.donggo;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -19,14 +21,31 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.loader.content.CursorLoader;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.MediaType;
@@ -59,7 +78,7 @@ public class Tab4GosuFragment extends Fragment {
     TextView preview, changeName,changeAddress,changeOneLine,changeRadius, gosuService;
     RelativeLayout APLayout, requestReviewLayout;
 
-    TextView tvName, tvLine;
+    TextView tvName, tvLine, tvArea, tvRadius;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -90,6 +109,10 @@ public class Tab4GosuFragment extends Fragment {
 
         tvName = view.findViewById(R.id.tv_name);
         tvLine = view.findViewById(R.id.tv_line);
+        tvArea = view.findViewById(R.id.tv_area);
+        tvRadius = view.findViewById(R.id.tv_dis);
+
+
 
     }
 
@@ -99,14 +122,6 @@ public class Tab4GosuFragment extends Fragment {
 
         loadData();
         tvName.setText(G.name);
-
-        String gosuBranch = RegisterGosu.gosuBranch;
-        String serviceDetail = RegisterGosu.serviceDetail;
-
-        gosuBranch = gosuBranch.replace("{\"gosuService\":\"","").replace("\"}","");
-        serviceDetail = serviceDetail.replace("{\"serviceDetail\":\"","").replace("\"}","");
-
-        tvLine.setText(G.name+"고수의 "+gosuBranch+", "+serviceDetail);
 
         for(ImageView iv : ivs){
             iv.setOnClickListener(new View.OnClickListener() {
@@ -208,9 +223,132 @@ public class Tab4GosuFragment extends Fragment {
 
     //본인 고수 정보 가져오기
     void loadData(){
+        LoginInterface loginInterface = RetrofitHelper.getRetrofitInstance().create(LoginInterface.class);
+        Call<String> call = loginInterface.getGosuInfo(G.email,G.name);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.isSuccessful() && response.body() != null)
+                {
+                    String jsonResponse = response.body();
+                    parseLoginData(jsonResponse);
+                }
+                Log.e("Tag", "error = " +response.body());
+            }
 
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.e("Tag", "에러 = " + t.getMessage());
+                Snackbar.make(getActivity(),pager,"Gosu정보를 불러오지 못했습니다.",Snackbar.LENGTH_SHORT).setAction("다시 시도", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        loadData();
+                    }
+                }).show();
+            }
+        });
 
+    }
 
+    private void parseLoginData(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            if (jsonObject.getString("status").equals("true")) {
+                saveInfo(response);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void saveInfo(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            if (jsonObject.getString("status").equals("true")) {
+                JSONArray dataArray = jsonObject.getJSONArray("data");
+                for (int i = 0; i < dataArray.length(); i++) {
+                    JSONObject dataobj = dataArray.getJSONObject(i);
+                    String gosuBranch = dataobj.getString("gosuBranch");
+                    String gosuService = dataobj.getString("gosuService");
+                    String serviceDetail = dataobj.getString("serviceDetail");
+                    String address= dataobj.getString("address");
+                    String radius= dataobj.getString("radius");
+                    String mf= dataobj.getString("mf");
+
+                    RegisterGosu.gosuBranch = gosuBranch;
+                    RegisterGosu.gosuService = gosuService;
+                    RegisterGosu.serviceDetail = serviceDetail;
+                    RegisterGosu.address = address;
+                    RegisterGosu.radius = radius;
+                    RegisterGosu.mf = mf;
+
+                    gosuBranch = gosuBranch.replace("{\"gosuService\":\"","").replace("\"}","");
+                    serviceDetail = serviceDetail.replace("{\"serviceDetail\":\"","").replace("\"}","");
+
+                    tvLine.setText(G.name+"고수의 "+gosuBranch+", "+serviceDetail + " 서비스");
+                    tvArea.setText(RegisterGosu.address);
+                    tvRadius.setText(RegisterGosu.radius);
+
+                    mapPoint(RegisterGosu.address);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    double lat,lng;
+    LatLng latLng;
+    GoogleMap gMap;
+
+    void mapPoint(String doro){
+        //주소 -> 좌표로 변환 (지오코딩)
+        Geocoder geocoder = new Geocoder(getActivity(), Locale.KOREA);
+        try {
+            List<Address> addresses = geocoder.getFromLocationName(doro, 1);
+
+            //구글지도에 보여주기 위해 검색된 위도,경도 중 1개를 멤버변수로 대입
+            lat = addresses.get(0).getLatitude();
+            lng = addresses.get(0).getLongitude();
+            latLng = new LatLng(lat, lng);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
+
+        //비동기 방식(별도 Thread 방식)으로 구글 서버에서 맵의 데이터를 읽어오도록..
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                //파라미터로 전달된 GoogleMap이 지도 객체임!
+                gMap = googleMap;   //멤버변수에 대입하면 이 객체를 다른 메소드에소 사용 가능해서 권장
+                //지도의 특정좌표로 이동 및 줌인
+                gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 13));   //줌:1~25
+
+                onAddMarker();
+
+                UiSettings settings = gMap.getUiSettings();
+                settings.setZoomControlsEnabled(true);
+                //내 위치 탐색을 지도 라이브러리에서 제공해줌
+                settings.setMyLocationButtonEnabled(true);
+            }
+        });
+    }
+
+    MarkerOptions marker;
+    CircleOptions circleOptions;
+
+    public void onAddMarker(){
+        //마커 추가하기
+        marker = new MarkerOptions().position(latLng).anchor(0.5f, 1.0f).title(RegisterGosu.address);
+        circleOptions = new CircleOptions().center(latLng).strokeWidth(0.5f).fillColor(getResources().getColor(R.color.mapCircle));
+        gMap.addMarker(marker);
+        gMap.addCircle(circleOptions);
     }
 
     @Override

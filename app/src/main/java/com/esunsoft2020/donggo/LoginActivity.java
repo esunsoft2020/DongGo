@@ -300,23 +300,65 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     void loadGosuInfo(){
-        Retrofit retrofit = RetrofitHelper.getRetrofitInstance();
-        LoginInterface loginInterface = retrofit.create(LoginInterface.class);
+        LoginInterface loginInterface = RetrofitHelper.getRetrofitInstance().create(LoginInterface.class);
         Call<String> call = loginInterface.getGosuInfo(G.email,G.name);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-
+                if (response.isSuccessful() && response.body() != null)
+                {
+                    String jsonResponse = response.body();
+                    parseLoginGosuData(jsonResponse);
+                }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-
+                Log.e("Tag", "에러 = " + t.getMessage());
             }
         });
 
     }
 
+    private void parseLoginGosuData(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            if (jsonObject.getString("status").equals("true")) {
+                saveGosuInfo(response);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void saveGosuInfo(String response) {
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            if (jsonObject.getString("status").equals("true")) {
+                JSONArray dataArray = jsonObject.getJSONArray("data");
+                for (int i = 0; i < dataArray.length(); i++) {
+                    JSONObject dataobj = dataArray.getJSONObject(i);
+                    String gosuBranch = dataobj.getString("gosuBranch");
+                    String gosuService = dataobj.getString("gosuService");
+                    String serviceDetail = dataobj.getString("serviceDetail");
+                    String address= dataobj.getString("address");
+                    String radius= dataobj.getString("radius");
+                    String mf= dataobj.getString("mf");
+
+                    RegisterGosu.gosuBranch = gosuBranch;
+                    RegisterGosu.gosuService = gosuService;
+                    RegisterGosu.serviceDetail = serviceDetail;
+                    RegisterGosu.address = address;
+                    RegisterGosu.radius = radius;
+                    RegisterGosu.mf = mf;
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
     //TODO : 가입, 확인 과정 필요
     //카카오 계정으로 로그인
     public void clickKakaoLogin() {

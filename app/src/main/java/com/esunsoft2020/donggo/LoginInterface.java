@@ -16,7 +16,7 @@ public interface LoginInterface {
     );
 
     @FormUrlEncoded
-    @POST("retrofit_gosuInfoLoading.php")
+    @POST("Retrofit/retrofit_gosuInfoLoading.php")
     Call<String> getGosuInfo(
             @Field("email") String email,
             @Field("name") String name
