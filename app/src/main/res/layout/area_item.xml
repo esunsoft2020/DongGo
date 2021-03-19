@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clickable_layout">
 
     <TextView
         android:id="@+id/tv"
@@ -10,8 +11,8 @@
         android:layout_height="wrap_content"
         android:text="Test"
         android:padding="16dp"
-        android:textColor="@color/text_gray"
-        android:textSize="12sp"/>
+        android:textColor="@color/text_black"
+        android:textSize="14sp"/>
 
     <ImageView
         android:id="@+id/iv_updown"
