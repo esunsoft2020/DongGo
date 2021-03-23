@@ -28,10 +28,11 @@
         android:background="@color/text_light_gray"
         android:layout_below="@id/tv"/>
 
+<!--    아코디언 작업.. 클릭 문제 해결 필요-->
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_below="@id/tv"
         android:padding="16dp"/>
     <View
